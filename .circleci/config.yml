@@ -34,5 +34,3 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
-      # run tests!
-      - run: gradle test
