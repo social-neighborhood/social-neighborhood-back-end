@@ -11,7 +11,7 @@
   * [Richard Santiago Urrea Garcia](https://github.com/RichardUG)
 
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f7836194a1304ee2ba541c4117743d85)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=social-neighborhood/social-neighborhood-back-end&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f7836194a1304ee2ba541c4117743d85)](https://www.codacy.com/gh/social-neighborhood/social-neighborhood-back-end/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=social-neighborhood/social-neighborhood-back-end&amp;utm_campaign=Badge_Grade)
 
 
 # Licencia & Derechos de Autor
