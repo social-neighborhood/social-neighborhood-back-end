@@ -1,13 +1,30 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-public class tipoInmuebleConjunto {
-    private Integer id;
-    private Integer idTipoInmueble;
-    private String nombre;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public tipoInmuebleConjunto(Integer idTipoInmueble, String nombre) {
+@Entity
+@Table(name = "tipoinmuebleconjunto")
+public class tipoInmuebleConjunto {
+    @Id
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "idtipoinmueble")
+    private Integer idTipoInmueble;
+    @Column(name = "idconjunto")
+    private Integer idConjunto;
+
+    public tipoInmuebleConjunto(Integer idTipoInmueble, Integer idConjunto) {
         this.idTipoInmueble = idTipoInmueble;
-        this.nombre = nombre;
+        this.idConjunto = idConjunto;
+    }
+
+    public tipoInmuebleConjunto(Integer id, Integer idTipoInmueble, Integer idConjunto) {
+        this.id = id;
+        this.idTipoInmueble = idTipoInmueble;
+        this.idConjunto = idConjunto;
     }
 
     public Integer getId() {
@@ -26,12 +43,12 @@ public class tipoInmuebleConjunto {
         this.idTipoInmueble = idTipoInmueble;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getNombre() {
+        return idConjunto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(Integer idConjunto) {
+        this.idConjunto = idConjunto;
     }
 
     @Override
@@ -39,7 +56,7 @@ public class tipoInmuebleConjunto {
         return "tipoInmuebleConjunto{" +
                 "id=" + id +
                 ", idTipoInmueble=" + idTipoInmueble +
-                ", nombre='" + nombre + '\'' +
+                ", idConjunto='" + idConjunto + '\'' +
                 '}';
     }
 }

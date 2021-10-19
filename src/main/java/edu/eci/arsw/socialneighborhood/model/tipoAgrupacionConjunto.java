@@ -1,13 +1,31 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-public class tipoAgrupacionConjunto {
-    private Integer id;
-    private Integer idTipoAgrupacion;
-    private String nombre;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public tipoAgrupacionConjunto(Integer idTipoAgrupacion, String nombre) {
+@Entity
+@Table(name = "tipoagrupacionconjunto")
+public class tipoAgrupacionConjunto {
+    @Id
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "idtipoagrupacion")
+    private Integer idTipoAgrupacion;
+    @Column(name = "idconjunto")
+    private Integer idConjunto;
+
+
+    public tipoAgrupacionConjunto(Integer idTipoAgrupacion, Integer idConjunto) {
         this.idTipoAgrupacion = idTipoAgrupacion;
-        this.nombre = nombre;
+        this.idConjunto = idConjunto;
+    }
+
+    public tipoAgrupacionConjunto(Integer id, Integer idTipoAgrupacion, Integer idConjunto) {
+        this.id = id;
+        this.idTipoAgrupacion = idTipoAgrupacion;
+        this.idConjunto = idConjunto;
     }
 
     public Integer getId() {
@@ -26,12 +44,12 @@ public class tipoAgrupacionConjunto {
         this.idTipoAgrupacion = idTipoAgrupacion;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getNombre() {
+        return idConjunto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombre(Integer idConjunto) {
+        this.idConjunto = idConjunto;
     }
 
     @Override
@@ -39,7 +57,7 @@ public class tipoAgrupacionConjunto {
         return "tipoAgrupacionConjunto{" +
                 "id=" + id +
                 ", idTipoAgrupacion=" + idTipoAgrupacion +
-                ", nombre='" + nombre + '\'' +
+                ", idConjunto='" + idConjunto + '\'' +
                 '}';
     }
 }

@@ -1,11 +1,25 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-public class TipoInmueble {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "conjunto")
+public class conjunto {
+    @Id
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "nombre")
     private String nombre;
 
+    public conjunto(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public TipoInmueble(String nombre) {
+    public conjunto(Integer id, String nombre) {
+        this.id = id;
         this.nombre = nombre;
     }
 
@@ -23,13 +37,5 @@ public class TipoInmueble {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @Override
-    public String toString() {
-        return "TipoInmueble{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                '}';
     }
 }

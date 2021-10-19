@@ -1,13 +1,34 @@
 package edu.eci.arsw.socialneighborhood.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "unidaddevivienda")
 public class unidadDeVivienda {
+    @Id
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "idagrupacion")
     private Integer idAgrupacion;
+    @Column(name = "idtipoinmuebleconjunto")
     private Integer idTipoInmuebleConjunto;
+    @Column(name = "numinmueble")
     private String numInmueble;
+    @Column(name = "costoadministracion")
     private Integer costoAdministracion;
 
     public unidadDeVivienda(Integer idAgrupacion, Integer idTipoInmuebleConjunto, String numInmueble, Integer costoAdministracion) {
+        this.idAgrupacion = idAgrupacion;
+        this.idTipoInmuebleConjunto = idTipoInmuebleConjunto;
+        this.numInmueble = numInmueble;
+        this.costoAdministracion = costoAdministracion;
+    }
+
+    public unidadDeVivienda(Integer id, Integer idAgrupacion, Integer idTipoInmuebleConjunto, String numInmueble, Integer costoAdministracion) {
+        this.id = id;
         this.idAgrupacion = idAgrupacion;
         this.idTipoInmuebleConjunto = idTipoInmuebleConjunto;
         this.numInmueble = numInmueble;
