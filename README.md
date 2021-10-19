@@ -10,6 +10,11 @@
   * [Juan Camilo Posso Guevara](https://github.com/JCPosso)
   * [Richard Santiago Urrea Garcia](https://github.com/RichardUG)
 
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/f7836194a1304ee2ba541c4117743d85)](https://www.codacy.com/gh/social-neighborhood/social-neighborhood-back-end/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=social-neighborhood/social-neighborhood-back-end&amp;utm_campaign=Badge_Grade)
+
+[![CircleCI](https://circleci.com/gh/social-neighborhood/social-neighborhood-back-end/tree/main.svg?style=svg&circle-token=ede44e37f085d05e72430f46c171d21b5de2adea)](https://circleci.com/gh/social-neighborhood/social-neighborhood-back-end/tree/main)
+
 # Licencia & Derechos de Autor
 
 **©** Ana Maria Salazar Bohorquez, Juan Camilo Posso Guevara, Richard Santiago Urrea Garcia. [Escuela Colombiana de Ingeniería Julio Garavito](https://www.escuelaing.edu.co/es/)  
