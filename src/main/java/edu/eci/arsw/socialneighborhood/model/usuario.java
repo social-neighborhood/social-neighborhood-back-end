@@ -1,9 +1,6 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -27,6 +24,9 @@ public class usuario {
     @Column(name = "contraseña")
     public String password ;
 
+    public usuario(){
+
+    }
     public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password) {
         this.tdoc = tdoc;
         this.ndoc = ndoc;

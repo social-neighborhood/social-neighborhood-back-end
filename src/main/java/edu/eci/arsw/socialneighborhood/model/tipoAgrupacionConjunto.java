@@ -44,11 +44,11 @@ public class tipoAgrupacionConjunto {
         this.idTipoAgrupacion = idTipoAgrupacion;
     }
 
-    public Integer getNombre() {
+    public Integer getIdConjunto() {
         return idConjunto;
     }
 
-    public void setNombre(Integer idConjunto) {
+    public void setIdConjunto(Integer idConjunto) {
         this.idConjunto = idConjunto;
     }
 

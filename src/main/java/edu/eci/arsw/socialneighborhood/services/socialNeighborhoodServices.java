@@ -1,9 +1,13 @@
 package edu.eci.arsw.socialneighborhood.services;
 
+import edu.eci.arsw.socialneighborhood.model.unidadDeVivienda;
+import edu.eci.arsw.socialneighborhood.model.usuario;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("socialNeighborhoodServices")
 public class socialNeighborhoodServices {
@@ -11,7 +15,15 @@ public class socialNeighborhoodServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
 
-    public static Object getconjuntosByUser(String email) {
-        return null;
+    public usuario userByEmail(String email) {
+        return socialNeighborhood.userByEmail(email);
+    }
+
+    public List<unidadDeVivienda> getUnidadesDeViviendaByEmail(String email){
+        return socialNeighborhood.getUnidadDeVivinendaByEmail(email);
+    }
+
+    public Object postUsuario(usuario usuario){
+        return socialNeighborhood.postUsuario(usuario);
     }
 }

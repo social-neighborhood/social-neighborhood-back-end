@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Service("socialNeighborhoodImpl")
@@ -37,6 +36,22 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Qualifier("usuarioRepository")
     usuarioRepository usuarioRepository;
 
+    @Autowired
+    @Qualifier("zonaComunConjuntoRepository")
+    zonaComunConjuntoRepository zonaComunConjuntoRepository;
+
+    @Autowired
+    @Qualifier("agrupacionRepository")
+    agrupacionRepository agrupacionRepository;
+
+    @Autowired
+    @Qualifier("unidadDeViviendaUsuarioRepository")
+    unidadDeViviendaUsuarioRepository unidadDeViviendaUsuarioRepository;
+
+    @Autowired
+    @Qualifier("conjuntoUsuarioRepository")
+    conjuntoUsuarioRepository conjuntoUsuarioRepository ;
+
     @Override
     public List<tipoAgrupacion> getTipoAgrupacion() {
         return tipoAgrupacionRepository.findAll();
@@ -63,85 +78,101 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public Object putTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
-        tipoAgrupacionConjuntoRepository.deleteById(agrupacionConjunto.getId());
-        return postTipoAgrupacion(agrupacionConjunto);
-    }
-
-    @Override
-    public Object putTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
-        return null;
-    }
-
-    @Override
     public Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
         return tipoAgrupacionConjuntoRepository.save(agrupacionConjunto);
     }
 
     @Override
     public Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
-        return null;
+        return tipoInmuebleConjuntoRepository.save(inmuebleConjunto);
     }
 
     @Override
     public Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
-        return null;
+        unidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.getById(unidadDeVivienda.getId());
+        unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
+        return unidadDeViviendaRepository.save(unidadDeViviendaDB);
     }
 
     @Override
     public Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
-        return null;
+        return unidadDeViviendaRepository.save(unidadDeVivienda);
     }
 
     @Override
-    public List<usuario> getUsuario() {
-        return null;
+    public List<usuario> getConjuntoUsuario() {
+        return usuarioRepository.findAll();
     }
 
     @Override
-    public Object putUsuario(usuario usuario) {
-        usuarioRepository.deleteById(usuario.getId());
-        return postUsuario(usuario);
-    }
-
-    @Override
-    public Object postUsuario(usuario usuario) {
-
-        return usuarioRepository.save(usuario);
+    public Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario) {
+        return conjuntoUsuarioRepository.save(conjuntoUsuario);
     }
 
     @Override
     public Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        return null;
+        zonaComunConjunto zonaComunConjuntoDB = zonaComunConjuntoRepository.getById(zonaComunConjunto.getId());
+        zonaComunConjuntoDB.setCostoAlquiler(zonaComunConjunto.getCostoAlquiler());
+        zonaComunConjuntoDB.setTiempoAlquilerCobro(zonaComunConjunto.getTiempoAlquilerCobro());
+        zonaComunConjuntoDB.setDisponible(zonaComunConjunto.getDisponible());
+        return zonaComunConjuntoRepository.save(zonaComunConjuntoDB);
     }
 
     @Override
     public Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        return null;
+        return zonaComunConjuntoRepository.save(zonaComunConjunto);
     }
 
     @Override
     public List<agrupacion> getAgrupacion() {
-        return null;
-    }
-
-    @Override
-    public Object putAgrupacion(agrupacion agrupacion) {
-        return null;
+        return agrupacionRepository.findAll();
     }
 
     @Override
     public Object postAgrupacion(agrupacion agrupacion) {
-        return null;
+        return agrupacionRepository.save(agrupacion);
     }
 
     @Override
     public Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
-        return null;
+        unidadDeViviendaUsuario unidadDeViviendaUsuarioDB = unidadDeViviendaUsuarioRepository.getById(unidadDeViviendaUsuario.getId());
+        unidadDeViviendaUsuarioDB.setDisponible(unidadDeViviendaUsuario.getDisponible());
+        unidadDeViviendaUsuarioDB.setTipoHabitante(unidadDeViviendaUsuario.getTipoHabitante());
+        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuarioDB);
     }
 
     @Override
     public Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
+        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuario);
+    }
+
+    @Override
+    public Object postUsuario(usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public usuario userByEmail(String email) {
+        List<usuario> usuarios = usuarioRepository.findAll();
+        for (usuario usuario: usuarios){
+            if(usuario.getEmail().equals(email)){
+                return usuarioRepository.getById(usuario.getId());
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email) {
+        //List<usuario> usuarios = usuarioRepository.fin;
+        List<conjuntoUsuario> conjuntoUsuarios;
+        List<unidadDeVivienda> unidadDeViviendas;
+        List<unidadDeVivienda> unidadDeViviendaList = unidadDeViviendaRepository.findAll();
+        //for (unidadDeVivienda unidadDeVivienda: unidadDeViviendaList){
+        //    if (unidadDeVivienda.get){
+
+       //     }
+       // }
         return null;
     }
 }

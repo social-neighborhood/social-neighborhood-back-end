@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.sql.SQLException;
 
 @Service("adminServices")
 public class adminServices {
@@ -17,7 +16,7 @@ public class adminServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
 
-    public List<tipoAgrupacion> getTipoAgrupacion() throws SQLException {
+    public List<tipoAgrupacion> getTipoAgrupacion(){
         return socialNeighborhood.getTipoAgrupacion();
     }
 
@@ -37,14 +36,6 @@ public class adminServices {
         return socialNeighborhood.getUnidadDeVivinenda();
     }
 
-    public Object putTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
-        return socialNeighborhood.putTipoAgrupacion(agrupacionConjunto);
-    }
-
-    public Object putTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
-        return socialNeighborhood.putTipoInmueble(inmuebleConjunto);
-    }
-
     public Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
         return socialNeighborhood.postTipoAgrupacion(agrupacionConjunto);
     }
@@ -61,16 +52,12 @@ public class adminServices {
         return socialNeighborhood.postUnidadDeVivinenda(unidadDeVivienda);
     }
 
-    public List<usuario> getUsuario() {
-        return socialNeighborhood.getUsuario();
+    public List<usuario> getConjuntoUsuario() {
+        return socialNeighborhood.getConjuntoUsuario();
     }
 
-    public Object putUsuario(usuario usuario) {
-        return socialNeighborhood.putUsuario(usuario);
-    }
-
-    public Object postUsuario(usuario usuario) {
-        return socialNeighborhood.postUsuario(usuario);
+    public Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario) {
+        return socialNeighborhood.postConjuntoUsuario(conjuntoUsuario);
     }
 
     public Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
@@ -83,10 +70,6 @@ public class adminServices {
 
     public List<agrupacion> getAgrupacion(){
         return socialNeighborhood.getAgrupacion();
-    }
-
-    public Object putAgrupacion(agrupacion agrupacion){
-        return socialNeighborhood.putAgrupacion(agrupacion);
     }
 
     public Object postAgrupacion(agrupacion agrupacion){

@@ -3,10 +3,9 @@ package edu.eci.arsw.socialneighborhood.persistence;
 import edu.eci.arsw.socialneighborhood.model.*;
 
 import java.util.List;
-import java.sql.SQLException;
 
 public interface socialNeighborhood {
-    List<tipoAgrupacion> getTipoAgrupacion() throws SQLException;
+    List<tipoAgrupacion> getTipoAgrupacion();
 
     List<tipoInmueble> getTipoInmueble();
 
@@ -16,10 +15,6 @@ public interface socialNeighborhood {
 
     List<unidadDeVivienda> getUnidadDeVivinenda();
 
-    Object putTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto);
-
-    Object putTipoInmueble(tipoInmuebleConjunto inmuebleConjunto);
-
     Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto);
 
     Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto);
@@ -28,11 +23,9 @@ public interface socialNeighborhood {
 
     Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
 
-    List<usuario> getUsuario();
+    List<usuario> getConjuntoUsuario();
 
-    Object putUsuario(usuario usuario);
-
-    Object postUsuario(usuario usuario);
+    Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario);
 
     Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto);
 
@@ -40,11 +33,15 @@ public interface socialNeighborhood {
 
     List<agrupacion> getAgrupacion();
 
-    Object putAgrupacion(agrupacion agrupacion);
-
     Object postAgrupacion(agrupacion agrupacion);
 
     Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
 
     Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
+
+    Object postUsuario(usuario usuario);
+
+    Object userByEmail(String email);
+
+    List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email);
 }
