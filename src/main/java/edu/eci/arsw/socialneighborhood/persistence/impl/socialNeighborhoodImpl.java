@@ -53,9 +53,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Qualifier("conjuntoUsuarioRepository")
     conjuntoUsuarioRepository conjuntoUsuarioRepository ;
 
-    @Autowired
-    @Qualifier("cache")
-    cache cache ;
+    cache cache;
 
     @Override
     public List<tipoAgrupacion> getTipoAgrupacion() {

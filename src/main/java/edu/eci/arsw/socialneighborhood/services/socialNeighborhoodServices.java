@@ -15,9 +15,7 @@ public class socialNeighborhoodServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
 
-    @Autowired
-    @Qualifier("cache")
-    cache cache =null;
+    edu.eci.arsw.socialneighborhood.cache cache;
 
     public usuario userByEmail(String email) {
         return socialNeighborhood.userByEmail(email);

@@ -1,16 +1,14 @@
 package edu.eci.arsw.socialneighborhood;
 
-import edu.eci.arsw.socialneighborhood.model.*;
-import org.springframework.stereotype.Service;
 
-@Service("cache")
+
 public class cache {
 
-    private int idconjunto;
-    private int idusuario;
-    private int idConjuntoUsuario;
-    private int idUnidadDeVivienda;
-    private int idUnidadDeViviendaUsuario;
+    private int idconjunto=0;
+    private int idusuario=0;
+    private int idConjuntoUsuario=0;
+    private int idUnidadDeVivienda=0;
+    private int idUnidadDeViviendaUsuario=0;
 
     public cache(int idconjunto, int idusuario, int idConjuntoUsuario, int idUnidadDeVivienda, int idUnidadDeViviendaUsuario) {
         this.idconjunto = idconjunto;
