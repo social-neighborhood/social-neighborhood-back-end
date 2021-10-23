@@ -20,6 +20,7 @@ public class unidadDeVivienda {
     @Column(name = "costoadministracion")
     private Integer costoAdministracion;
 
+    public unidadDeVivienda(){}
     public unidadDeVivienda(Integer idAgrupacion, Integer idTipoInmuebleConjunto, String numInmueble, Integer costoAdministracion) {
         this.idAgrupacion = idAgrupacion;
         this.idTipoInmuebleConjunto = idTipoInmuebleConjunto;

@@ -16,6 +16,7 @@ public class tipoInmuebleConjunto {
     @Column(name = "idconjunto")
     private Integer idConjunto;
 
+    public tipoInmuebleConjunto(){}
     public tipoInmuebleConjunto(Integer idTipoInmueble, Integer idConjunto) {
         this.idTipoInmueble = idTipoInmueble;
         this.idConjunto = idConjunto;
@@ -47,7 +48,7 @@ public class tipoInmuebleConjunto {
         return idConjunto;
     }
 
-    public void setNombre(Integer idConjunto) {
+    public void setIdConjunto(Integer idConjunto) {
         this.idConjunto = idConjunto;
     }
 

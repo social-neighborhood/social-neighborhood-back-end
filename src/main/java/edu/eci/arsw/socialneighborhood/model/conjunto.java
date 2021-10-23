@@ -14,6 +14,7 @@ public class conjunto {
     @Column(name = "nombre")
     private String nombre;
 
+    public conjunto(){}
     public conjunto(String nombre) {
         this.nombre = nombre;
     }

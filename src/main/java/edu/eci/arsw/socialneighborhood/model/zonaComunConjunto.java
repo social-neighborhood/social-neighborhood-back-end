@@ -24,6 +24,7 @@ public class zonaComunConjunto {
     @Column(name = "disponible")
     private Boolean Disponible;
 
+    public zonaComunConjunto(){}
 
     public zonaComunConjunto(Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible) {
         this.idZonaComun = idZonaComun;

@@ -16,6 +16,7 @@ public class conjuntoUsuario {
     @Column(name = "idusuario")
     private Integer idUsuario;
 
+    public conjuntoUsuario(){}
     public conjuntoUsuario(Integer idConjunto, Integer idUsuario) {
         this.idConjunto = idConjunto;
         this.idUsuario = idUsuario;

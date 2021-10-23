@@ -14,6 +14,7 @@ public class zonaComun {
     @Column(name = "nombre")
     private String nombre;
 
+    public zonaComun(){}
     public zonaComun(String nombre) {
         this.nombre = nombre;
     }

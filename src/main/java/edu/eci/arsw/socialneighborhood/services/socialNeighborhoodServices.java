@@ -1,7 +1,7 @@
 package edu.eci.arsw.socialneighborhood.services;
 
-import edu.eci.arsw.socialneighborhood.model.unidadDeVivienda;
-import edu.eci.arsw.socialneighborhood.model.usuario;
+import edu.eci.arsw.socialneighborhood.cache;
+import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +15,10 @@ public class socialNeighborhoodServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
 
+    @Autowired
+    @Qualifier("cache")
+    cache cache =null;
+
     public usuario userByEmail(String email) {
         return socialNeighborhood.userByEmail(email);
     }
@@ -25,5 +29,30 @@ public class socialNeighborhoodServices {
 
     public Object postUsuario(usuario usuario){
         return socialNeighborhood.postUsuario(usuario);
+    }
+
+    public List<agrupacion> getAgrupacion() {
+        return socialNeighborhood.getAgrupacion();
+    }
+
+    public List<tipoAgrupacionConjunto> tipoAgrupacionConjunto() {
+        return socialNeighborhood.getTipoAgrupacionPropia();
+    }
+
+    public List<tipoInmuebleConjunto> tipoInmuebleConjunto() {
+        return socialNeighborhood.getTipoInmueblesPropia();
+    }
+
+    public List<tipoAgrupacion> tipoAgrupacion() {
+        return socialNeighborhood.getTipoAgrupacion();
+    }
+
+    public List<tipoInmueble> tipoInmueble() {
+        return socialNeighborhood.getTipoInmueble();
+    }
+
+    public Object autorizado(int idconjunto, int idusuario, int idConjuntoUsuario, int idUnidadDeVivienda, int idUnidadDeViviendaUsuario) {
+        cache = new cache(idconjunto, idusuario, idConjuntoUsuario, idUnidadDeVivienda, idUnidadDeViviendaUsuario);
+        return null;
     }
 }

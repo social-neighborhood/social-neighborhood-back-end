@@ -53,4 +53,70 @@ public class socialNeighborhoodController {
         }
     }
 
+    @RequestMapping(value = "/agrupacion",method = RequestMethod.GET)
+    public ResponseEntity<?> getAgrupacion(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.getAgrupacion(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoAgrupacionConjunto",method = RequestMethod.GET)
+    public ResponseEntity<?> gettipoAgrupacionConjunto(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.tipoAgrupacionConjunto(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoInmuebleConjunto",method = RequestMethod.GET)
+    public ResponseEntity<?> gettipoInmuebleConjunto(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.tipoInmuebleConjunto(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoAgrupacion",method = RequestMethod.GET)
+    public ResponseEntity<?> gettipoAgrupacion(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.tipoAgrupacion(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoInmueble",method = RequestMethod.GET)
+    public ResponseEntity<?> gettipoInmueble(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.tipoInmueble(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/autorizado/{idconjunto}/{idusuario}/{idConjuntoUsuario}/{idUnidadDeVivienda}/{idUnidadDeViviendaUsuario}",method = RequestMethod.POST)
+    public ResponseEntity<?> autorizado(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoUsuario") int idConjuntoUsuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda, @PathVariable("idUnidadDeViviendaUsuario") int idUnidadDeViviendaUsuario){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.autorizado(idconjunto, idusuario, idConjuntoUsuario, idUnidadDeVivienda, idUnidadDeViviendaUsuario), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

@@ -16,6 +16,7 @@ public class tipoAgrupacionConjunto {
     @Column(name = "idconjunto")
     private Integer idConjunto;
 
+    public tipoAgrupacionConjunto(){}
 
     public tipoAgrupacionConjunto(Integer idTipoAgrupacion, Integer idConjunto) {
         this.idTipoAgrupacion = idTipoAgrupacion;

@@ -20,6 +20,7 @@ public class unidadDeViviendaUsuario {
     @Column(name = "disponible")
     private Boolean disponible;
 
+    public unidadDeViviendaUsuario(){}
     public unidadDeViviendaUsuario(Integer idConjuntoUsuario, Integer idUnidadDeVivienda, String tipoHabitante, Boolean disponible) {
         this.idConjuntoUsuario = idConjuntoUsuario;
         this.idUnidadDeVivienda = idUnidadDeVivienda;

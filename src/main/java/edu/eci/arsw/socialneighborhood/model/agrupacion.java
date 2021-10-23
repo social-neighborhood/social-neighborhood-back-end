@@ -16,6 +16,7 @@ public class agrupacion {
     @Column(name = "numagrupacion")
     private String numero;
 
+    public agrupacion(){}
     public agrupacion(Integer idtipoInmuebleConjunto, String numero) {
         this.idtipoInmuebleConjunto = idtipoInmuebleConjunto;
         this.numero = numero;

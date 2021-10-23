@@ -14,6 +14,7 @@ public class tipoAgrupacion {
     @Column(name = "nombre")
     private String nombre;
 
+    public tipoAgrupacion(){}
     public tipoAgrupacion(String nombre) {
         this.nombre = nombre;
     }
