@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin(origins = "*", methods= {RequestMethod.OPTIONS})
+@CrossOrigin(origins = "*")
 public class adminController {
     @Autowired
     @Qualifier("adminServices")
