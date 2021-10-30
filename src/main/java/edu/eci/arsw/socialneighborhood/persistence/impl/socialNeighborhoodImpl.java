@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("socialNeighborhoodImpl")
@@ -53,7 +54,17 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Qualifier("conjuntoUsuarioRepository")
     conjuntoUsuarioRepository conjuntoUsuarioRepository ;
 
-    cache cache;
+    @Autowired
+    @Qualifier("conjuntoRepository")
+    conjuntoRepository conjuntoRepository ;
+
+    @Autowired
+    @Qualifier("zonaComunRepository")
+    zonaComunRepository zonaComunRepository;
+
+    @Autowired
+    @Qualifier("conjuntoAdministradorRepository")
+    conjuntoAdministradorRepository conjuntoAdministradorRepository;
 
     @Override
     public List<tipoAgrupacion> getTipoAgrupacion() {
@@ -82,14 +93,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
-        agrupacionConjunto.setIdConjunto(cache.getConjunto());
+        //agrupacionConjunto.setIdConjunto(cache.getConjunto());
         agrupacionConjunto.setId(Math.toIntExact(tipoAgrupacionConjuntoRepository.count()+1));
         return tipoAgrupacionConjuntoRepository.save(agrupacionConjunto);
     }
 
     @Override
     public Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
-        inmuebleConjunto.setIdConjunto(cache.getConjunto());
+        //inmuebleConjunto.setIdConjunto(cache.getConjunto());
         inmuebleConjunto.setId(Math.toIntExact(tipoInmuebleConjuntoRepository.count()+1));
         return tipoInmuebleConjuntoRepository.save(inmuebleConjunto);
     }
@@ -114,8 +125,8 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario) {
-        conjuntoUsuario.setIdConjunto(cache.getConjunto());
-        conjuntoUsuario.setId(Math.toIntExact(conjuntoUsuarioRepository.count()+1));
+       // conjuntoUsuario.setIdConjunto(cache.getConjunto());
+        //conjuntoUsuario.setId(Math.toIntExact(conjuntoUsuarioRepository.count()+1));
         return conjuntoUsuarioRepository.save(conjuntoUsuario);
     }
 
@@ -130,7 +141,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        zonaComunConjunto.setIdConjunto(cache.getConjunto());
+        //zonaComunConjunto.setIdConjunto(cache.getConjunto());
         zonaComunConjunto.setId(Math.toIntExact(zonaComunConjuntoRepository.count()+1));
         return zonaComunConjuntoRepository.save(zonaComunConjunto);
     }
@@ -182,7 +193,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     public List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email) {
         List<usuario> usuarios = usuarioRepository.findAll();
         List<conjuntoUsuario> conjuntoUsuarios = conjuntoUsuarioRepository.findAll();
-        List<unidadDeVivienda> unidadDeViviendas = null;
+        List<unidadDeVivienda> unidadDeViviendas = new ArrayList<unidadDeVivienda>();
         List<unidadDeVivienda> unidadDeViviendaList = unidadDeViviendaRepository.findAll();
         List<unidadDeViviendaUsuario> unidadDeViviendaUsuarios = unidadDeViviendaUsuarioRepository.findAll();
         for (usuario usuario1:usuarios){
@@ -207,5 +218,167 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
         return null;
     }
 
+    @Override
+    public conjunto getConjuntoById(int id) {
+        return conjuntoRepository.getById(id);
+    }
 
+    @Override
+    public usuario getUsuarioById(int id) {
+        return usuarioRepository.getById(id);
+    }
+
+    @Override
+    public conjuntoUsuario getConjuntoUsuarioByID(int id) {
+        return conjuntoUsuarioRepository.getById(id);
+    }
+
+    @Override
+    public unidadDeVivienda getUnidadDeViviendaByID(int id) {
+        return unidadDeViviendaRepository.getById(id);
+    }
+
+    @Override
+    public unidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int id) {
+        return unidadDeViviendaUsuarioRepository.getById(id);
+    }
+
+    @Override
+    public agrupacion getAgrupacionByID(int idAgrupacion) {
+        return agrupacionRepository.getById(idAgrupacion);
+    }
+
+    @Override
+    public tipoAgrupacion getTipoAgrupacionByID(int idTipoAgrupacion) {
+        return tipoAgrupacionRepository.getById(idTipoAgrupacion);
+    }
+
+    @Override
+    public tipoInmueble getTipoinmuebleByID(int idTipoInmueble) {
+        return tipoInmuebleRepository.getById(idTipoInmueble);
+    }
+
+    @Override
+    public tipoAgrupacionConjunto getTipoAgrupacionConjuntoByID(int idTipoAgrupacionConjunto) {
+        return tipoAgrupacionConjuntoRepository.getById(idTipoAgrupacionConjunto);
+    }
+
+    @Override
+    public tipoInmuebleConjunto getTipoInmuebleConjuntoByID(int idTipoInmuebleConjunto) {
+        return tipoInmuebleConjuntoRepository.getById(idTipoInmuebleConjunto);
+    }
+
+    @Override
+    public List<zonaComunConjunto> getZonasComunesConjuntoByIdConjunto(int idconjunto) {
+        List<zonaComunConjunto> zonasComunesConjunto=null;
+        List<zonaComunConjunto> zonaComunConjuntoList=zonaComunConjuntoRepository.findAll();
+        for(zonaComunConjunto zonaComunConjunto:zonaComunConjuntoList){
+            if (zonaComunConjunto.getIdConjunto().equals(idconjunto)){
+                zonasComunesConjunto.add(zonaComunConjunto);
+            }
+        }
+        return zonasComunesConjunto;
+    }
+
+    @Override
+    public List<zonaComun> getZonasComunesByZonasComunesConjunto(List<zonaComunConjunto> zonasComunesConjunto) {
+        List<zonaComun> zonasComunes= null;
+        for (zonaComunConjunto zonaComunConjunto: zonasComunesConjunto){
+            zonasComunes.add(zonaComunRepository.getById(zonaComunConjunto.getIdZonaComun()));
+        }
+        return zonasComunes;
+    }
+
+    @Override
+    public conjuntoAdministrador getCojuntoAdministradorByID(int idConjuntoAdministrador) {
+        return conjuntoAdministradorRepository.getById(idConjuntoAdministrador);
+    }
+
+    @Override
+    public List<zonaComun> getZonasComunes() {
+        return zonaComunRepository.findAll();
+    }
+
+    @Override
+    public List<conjuntoUsuario> getConjuntoUsuarioByIDConjunto(int idconjunto) {
+        List<conjuntoUsuario> conjuntoUsuarios=null;
+        List<conjuntoUsuario> conjuntoUsuarioList=conjuntoUsuarioRepository.findAll();
+        for(conjuntoUsuario conjuntoUsuario: conjuntoUsuarioList){
+            if(conjuntoUsuario.getIdConjunto().equals(idconjunto)){
+                conjuntoUsuarios.add(conjuntoUsuario);
+            }
+        }
+        return conjuntoUsuarios;
+    }
+
+    @Override
+    public List<usuario> getUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios) {
+        List<usuario> usuarios=null;
+        for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
+            usuarios.add(usuarioRepository.getById(conjuntoUsuario.getIdUsuario()));
+        }
+        return usuarios;
+    }
+
+    @Override
+    public List<unidadDeViviendaUsuario> getUnidadesDeViviendaUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios) {
+        List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios=null;
+        List<unidadDeViviendaUsuario> unidadDeViviendaUsuarioList=unidadDeViviendaUsuarioRepository.findAll();
+        for (unidadDeViviendaUsuario unidadDeViviendaUsuario:unidadDeViviendaUsuarioList){
+            for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
+                if(unidadDeViviendaUsuario.getIdConjuntoUsuario().equals(conjuntoUsuario.getId())){
+                    unidadesDeViviendaUsuarios.add(unidadDeViviendaUsuario);
+                }
+            }
+        }
+        return unidadesDeViviendaUsuarios;
+    }
+
+    @Override
+    public List<unidadDeVivienda> getUnidadesDeViviendaByUnidadesDeViviendaUsuario(List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios) {
+        int id = 0;
+        List<Integer> ids=null;
+        List<unidadDeVivienda> unidadesDeVivienda=null;
+        for(unidadDeViviendaUsuario unidadDeViviendaUsuario: unidadesDeViviendaUsuarios){
+            id=unidadDeViviendaUsuario.getIdUnidadDeVivienda();
+            if (!ids.contains(id)){
+                unidadesDeVivienda.add(unidadDeViviendaRepository.getById(id));
+                ids.add(id);
+            }
+        }
+        return unidadesDeVivienda;
+    }
+
+    @Override
+    public List<agrupacion> getAgrupacionByUnidadDeVivienda(List<unidadDeVivienda> unidadesDeVivienda) {
+        List<agrupacion> agrupaciones = null;
+        for (unidadDeVivienda unidadDeVivienda:unidadesDeVivienda){
+            agrupaciones.add(agrupacionRepository.getById(unidadDeVivienda.getIdAgrupacion()));
+        }
+        return agrupaciones;
+    }
+
+    @Override
+    public List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
+        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=null;
+        List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
+        for (tipoInmuebleConjunto tipoInmuebleConjunto:tipoInmuebleConjuntoList){
+            if (tipoInmuebleConjunto.getIdConjunto().equals(idconjunto)){
+                tipoInmuebleConjuntos.add(tipoInmuebleConjunto);
+            }
+        }
+        return tipoInmuebleConjuntos;
+    }
+
+    @Override
+    public List<tipoAgrupacionConjunto> getTipoAgrupacionConjuntoByIdConjunto(int idconjunto) {
+        List<tipoAgrupacionConjunto> tipoAgrupacionConjuntos=null;
+        List<tipoAgrupacionConjunto> tipoAgrupacionConjuntoList=tipoAgrupacionConjuntoRepository.findAll();
+        for (tipoAgrupacionConjunto tipoAgrupacionConjunto: tipoAgrupacionConjuntoList){
+            if (tipoAgrupacionConjunto.getIdConjunto().equals(idconjunto)){
+                tipoAgrupacionConjuntos.add(tipoAgrupacionConjunto);
+            }
+        }
+        return tipoAgrupacionConjuntos;
+    }
 }

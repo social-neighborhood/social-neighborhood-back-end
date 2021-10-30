@@ -23,11 +23,13 @@ public class usuario {
     public String email ;
     @Column(name = "contraseña")
     public String password ;
+    @Column(name = "tipousuario")
+    public String tipousuario;
 
     public usuario(){
 
     }
-    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password) {
+    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario) {
         this.tdoc = tdoc;
         this.ndoc = ndoc;
         this.nombres = nombres;
@@ -35,9 +37,10 @@ public class usuario {
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.email = email;
         this.password = password;
+        this.tipousuario=tipousuario;
     }
 
-    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password) {
+    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario) {
         this.id = id;
         this.tdoc = tdoc;
         this.ndoc = ndoc;
@@ -46,6 +49,7 @@ public class usuario {
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.email = email;
         this.password = password;
+        this.tipousuario=tipousuario;
     }
 
     public Integer getId() {
@@ -110,5 +114,13 @@ public class usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTipousuario() {
+        return tipousuario;
+    }
+
+    public void setTipousuario(String tipousuario) {
+        this.tipousuario = tipousuario;
     }
 }

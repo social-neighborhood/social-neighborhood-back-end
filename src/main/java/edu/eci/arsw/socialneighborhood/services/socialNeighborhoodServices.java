@@ -49,8 +49,8 @@ public class socialNeighborhoodServices {
         return socialNeighborhood.getTipoInmueble();
     }
 
-    public Object autorizado(int idconjunto, int idusuario, int idConjuntoUsuario, int idUnidadDeVivienda, int idUnidadDeViviendaUsuario) {
-        cache = new cache(idconjunto, idusuario, idConjuntoUsuario, idUnidadDeVivienda, idUnidadDeViviendaUsuario);
+    public Object autorizado(int idconjunto, int idusuario, int idConjuntoUsuario, int idUnidadDeVivienda, int idUnidadDeViviendaUsuario, int idAgrupacion, int idTipoAgrupacionConjunto, int idTipoInmuebleConjunto, int idTipoAgrupacion, int idTipoInmueble) {
+        cache = new cache(idconjunto,idusuario,idConjuntoUsuario,idUnidadDeVivienda,idUnidadDeViviendaUsuario,idAgrupacion,idTipoAgrupacionConjunto,idTipoInmuebleConjunto,idTipoAgrupacion,idTipoInmueble);
         return null;
     }
 }

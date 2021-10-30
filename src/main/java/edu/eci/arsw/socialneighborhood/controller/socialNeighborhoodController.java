@@ -108,11 +108,11 @@ public class socialNeighborhoodController {
         }
     }
 
-    @RequestMapping(value = "/autorizado/{idconjunto}/{idusuario}/{idConjuntoUsuario}/{idUnidadDeVivienda}/{idUnidadDeViviendaUsuario}",method = RequestMethod.POST)
-    public ResponseEntity<?> autorizado(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoUsuario") int idConjuntoUsuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda, @PathVariable("idUnidadDeViviendaUsuario") int idUnidadDeViviendaUsuario){
+    @RequestMapping(value = "/autorizado/{idconjunto}/{idusuario}/{idConjuntoUsuario}/{idUnidadDeVivienda}/{idUnidadDeViviendaUsuario}/{idAgrupacion}/{idTipoAgrupacionConjunto}/{idTipoInmuebleConjunto}/{idTipoAgrupacion}/{idTipoInmueble}",method = RequestMethod.POST)
+    public ResponseEntity<?> autorizado(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoUsuario") int idConjuntoUsuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda, @PathVariable("idUnidadDeViviendaUsuario") int idUnidadDeViviendaUsuario, @PathVariable("idAgrupacion") int idAgrupacion, @PathVariable("idTipoAgrupacionConjunto") int idTipoAgrupacionConjunto, @PathVariable("idTipoInmuebleConjunto") int idTipoInmuebleConjunto, @PathVariable("idTipoAgrupacion") int idTipoAgrupacion, @PathVariable("idTipoInmueble") int idTipoInmueble){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.autorizado(idconjunto, idusuario, idConjuntoUsuario, idUnidadDeVivienda, idUnidadDeViviendaUsuario), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(neighborhoodServices.autorizado(idconjunto,idusuario,idConjuntoUsuario,idUnidadDeVivienda,idUnidadDeViviendaUsuario,idAgrupacion,idTipoAgrupacionConjunto,idTipoInmuebleConjunto,idTipoAgrupacion,idTipoInmueble), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

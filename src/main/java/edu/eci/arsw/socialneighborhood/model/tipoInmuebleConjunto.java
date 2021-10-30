@@ -44,7 +44,7 @@ public class tipoInmuebleConjunto {
         this.idTipoInmueble = idTipoInmueble;
     }
 
-    public Integer getNombre() {
+    public Integer getIdConjunto() {
         return idConjunto;
     }
 
