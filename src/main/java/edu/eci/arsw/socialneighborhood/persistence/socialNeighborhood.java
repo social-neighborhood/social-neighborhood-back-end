@@ -16,31 +16,9 @@ public interface socialNeighborhood {
 
     List<unidadDeVivienda> getUnidadDeVivinenda();
 
-    Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto);
-
-    Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto);
-
-    Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
-
-    Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
-
     List<usuario> getConjuntoUsuario();
 
-    Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario);
-
-    Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto);
-
-    Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto);
-
     List<agrupacion> getAgrupacion();
-
-    Object postAgrupacion(agrupacion agrupacion);
-
-    Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
-
-    Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
-
-    Object postUsuario(usuario usuario);
 
     Object userByEmail(String email);
 
@@ -50,11 +28,11 @@ public interface socialNeighborhood {
 
     usuario getUsuarioById(int id);
 
-    conjuntoUsuario getConjuntoUsuarioByID(int id);
+    conjuntoUsuario getConjuntoUsuarioByConjuntoUsuario(int idconjunto, int idusuario);
 
     unidadDeVivienda getUnidadDeViviendaByID(int id);
 
-    unidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int id);
+    unidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int idUnidadDeVivienda, int idConjuntoUsuario);
 
     agrupacion getAgrupacionByID(int idAgrupacion);
 
@@ -80,11 +58,39 @@ public interface socialNeighborhood {
 
     List<unidadDeViviendaUsuario> getUnidadesDeViviendaUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios);
 
-    List<unidadDeVivienda> getUnidadesDeViviendaByUnidadesDeViviendaUsuario(List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios);
+    List<unidadDeVivienda> getUnidadesDeViviendaByIdConjunto(int idconjunto);
 
-    List<agrupacion> getAgrupacionByUnidadDeVivienda(List<unidadDeVivienda> unidadesDeVivienda);
+    List<agrupacion> getAgrupacionByIdConjunto(int idconjunto);
 
     List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto);
 
     List<tipoAgrupacionConjunto> getTipoAgrupacionConjuntoByIdConjunto(int idconjunto);
+
+    Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto);
+
+    Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto);
+
+    Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
+
+    Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario);
+
+    Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto);
+
+    Object postAgrupacion(agrupacion agrupacion);
+
+    Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
+
+    Object postUsuario(usuario usuario);
+
+    Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario);
+
+    Object putUsuarioPropio(usuario usuario);
+
+    Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto);
+
+    Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
+
+    List<conjuntoUsuario> getConjuntosByEmaill(String email);
+
+    List<conjunto> getConjuntos();
 }

@@ -1,6 +1,5 @@
 package edu.eci.arsw.socialneighborhood.persistence.impl;
 
-import edu.eci.arsw.socialneighborhood.cache;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.socialNeighborhood;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -229,8 +228,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public conjuntoUsuario getConjuntoUsuarioByID(int id) {
-        return conjuntoUsuarioRepository.getById(id);
+    public conjuntoUsuario getConjuntoUsuarioByConjuntoUsuario(int idconjunto, int idusuario) {
+        List<conjuntoUsuario> conjuntoUsuarioList=conjuntoUsuarioRepository.findAll();
+        for (conjuntoUsuario conjuntoUsuario:conjuntoUsuarioList){
+            if(conjuntoUsuario.getIdConjunto().equals(idconjunto) && conjuntoUsuario.getIdUsuario().equals(idusuario)){
+                return conjuntoUsuario;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -239,8 +244,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public unidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int id) {
-        return unidadDeViviendaUsuarioRepository.getById(id);
+    public unidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int idUnidadDeVivienda, int idConjuntoUsuario) {
+        List<unidadDeViviendaUsuario> unidadDeViviendaUsuarios=unidadDeViviendaUsuarioRepository.findAll();
+        for (unidadDeViviendaUsuario unidadDeViviendaUsuario:unidadDeViviendaUsuarios){
+            if(unidadDeViviendaUsuario.getIdConjuntoUsuario().equals(idConjuntoUsuario) && unidadDeViviendaUsuario.getIdUnidadDeVivienda().equals(idUnidadDeVivienda)){
+                return unidadDeViviendaUsuario;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -335,25 +346,25 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public List<unidadDeVivienda> getUnidadesDeViviendaByUnidadesDeViviendaUsuario(List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios) {
-        int id = 0;
-        List<Integer> ids=null;
+    public List<unidadDeVivienda> getUnidadesDeViviendaByIdConjunto(int idconjunto) {
         List<unidadDeVivienda> unidadesDeVivienda=null;
-        for(unidadDeViviendaUsuario unidadDeViviendaUsuario: unidadesDeViviendaUsuarios){
-            id=unidadDeViviendaUsuario.getIdUnidadDeVivienda();
-            if (!ids.contains(id)){
-                unidadesDeVivienda.add(unidadDeViviendaRepository.getById(id));
-                ids.add(id);
+        List<unidadDeVivienda> unidadDeViviendaList=unidadDeViviendaRepository.findAll();
+        for(unidadDeVivienda unidadDeVivienda: unidadDeViviendaList){
+            if (tipoInmuebleConjuntoRepository.getById(unidadDeVivienda.getIdTipoInmuebleConjunto()).getIdConjunto().equals(idconjunto)){
+                unidadesDeVivienda.add(unidadDeVivienda);
             }
         }
         return unidadesDeVivienda;
     }
 
     @Override
-    public List<agrupacion> getAgrupacionByUnidadDeVivienda(List<unidadDeVivienda> unidadesDeVivienda) {
+    public List<agrupacion> getAgrupacionByIdConjunto(int idconjunto) {
         List<agrupacion> agrupaciones = null;
-        for (unidadDeVivienda unidadDeVivienda:unidadesDeVivienda){
-            agrupaciones.add(agrupacionRepository.getById(unidadDeVivienda.getIdAgrupacion()));
+        List<agrupacion> agrupacionList = agrupacionRepository.findAll();
+        for (agrupacion agrupacion: agrupacionList){
+            if (tipoAgrupacionConjuntoRepository.getById(agrupacion.getIdtipoagrupacionconjunto()).getIdConjunto().equals(idconjunto)){
+                agrupaciones.add(agrupacion);
+            }
         }
         return agrupaciones;
     }
@@ -380,5 +391,35 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
             }
         }
         return tipoAgrupacionConjuntos;
+    }
+
+    @Override
+    public Object putUsuarioPropio(usuario usuario) {
+        usuario usuario1=usuarioRepository.getById(usuario.getId());
+        usuario1.setPassword(usuario.getPassword());
+        return usuarioRepository.save(usuario1);
+    }
+
+    @Override
+    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
+        List<usuario> usuarios=usuarioRepository.findAll();
+        List<conjuntoUsuario> conjuntosUsuario = null;
+        List<conjuntoUsuario> conjuntosUsuarioList= conjuntoUsuarioRepository.findAll();
+        for (usuario usuario: usuarios){
+            if(usuario.getEmail().equals(email)){
+                for (conjuntoUsuario conjuntoUsuario: conjuntosUsuarioList){
+                    if (conjuntoUsuario.getIdUsuario().equals(usuario.getId())){
+                        conjuntosUsuario.add(conjuntoUsuario);
+                    }
+                }
+                return conjuntosUsuario;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<conjunto> getConjuntos() {
+        return conjuntoRepository.findAll();
     }
 }

@@ -1,7 +1,9 @@
 package edu.eci.arsw.socialneighborhood.services;
 
-import edu.eci.arsw.socialneighborhood.cache;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cache;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.model.*;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,8 +16,6 @@ public class socialNeighborhoodServices {
     @Autowired
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
-
-    edu.eci.arsw.socialneighborhood.cache cache;
 
     public usuario userByEmail(String email) {
         return socialNeighborhood.userByEmail(email);
@@ -49,8 +49,21 @@ public class socialNeighborhoodServices {
         return socialNeighborhood.getTipoInmueble();
     }
 
-    public Object autorizado(int idconjunto, int idusuario, int idConjuntoUsuario, int idUnidadDeVivienda, int idUnidadDeViviendaUsuario, int idAgrupacion, int idTipoAgrupacionConjunto, int idTipoInmuebleConjunto, int idTipoAgrupacion, int idTipoInmueble) {
-        cache = new cache(idconjunto,idusuario,idConjuntoUsuario,idUnidadDeVivienda,idUnidadDeViviendaUsuario,idAgrupacion,idTipoAgrupacionConjunto,idTipoInmuebleConjunto,idTipoAgrupacion,idTipoInmueble);
-        return null;
+    public cacheAdmin autorizadoAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
+        cacheAdmin cache = new cacheAdmin(idconjunto,idusuario,idConjuntoAdministrador);
+        return cache;
+    }
+
+    public cacheClient autorizadoClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
+        cacheClient cache = new cacheClient(idconjunto, idusuario, idUnidadDeVivienda);
+        return cache;
+    }
+
+    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
+        return socialNeighborhood.getConjuntosByEmaill(email);
+    }
+
+    public List<conjunto> getConjuntos() {
+        return socialNeighborhood.getConjuntos();
     }
 }

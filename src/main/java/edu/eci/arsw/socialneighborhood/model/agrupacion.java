@@ -12,28 +12,28 @@ public class agrupacion {
     @Column(name = "id")
     private Integer id;
     @Column(name = "idtipoagrupacionconjunto")
-    private Integer idtipoInmuebleConjunto;
+    private Integer idtipoagrupacionconjunto;
     @Column(name = "numagrupacion")
     private String numero;
 
     public agrupacion(){}
-    public agrupacion(Integer idtipoInmuebleConjunto, String numero) {
-        this.idtipoInmuebleConjunto = idtipoInmuebleConjunto;
+    public agrupacion(Integer idtipoagrupacionconjunto, String numero) {
+        this.idtipoagrupacionconjunto = idtipoagrupacionconjunto;
         this.numero = numero;
     }
 
-    public agrupacion(Integer id, Integer idtipoInmuebleConjunto, String numero) {
+    public agrupacion(Integer id, Integer idtipoagrupacionconjunto, String numero) {
         this.id=id;
-        this.idtipoInmuebleConjunto = idtipoInmuebleConjunto;
+        this.idtipoagrupacionconjunto = idtipoagrupacionconjunto;
         this.numero = numero;
     }
 
-    public Integer getIdtipoInmuebleConjunto() {
-        return idtipoInmuebleConjunto;
+    public Integer getIdtipoagrupacionconjunto() {
+        return idtipoagrupacionconjunto;
     }
 
-    public void setIdtipoInmuebleConjunto(Integer idtipoInmuebleConjunto) {
-        this.idtipoInmuebleConjunto = idtipoInmuebleConjunto;
+    public void setIdtipoagrupacionconjunto(Integer idtipoagrupacionconjunto) {
+        this.idtipoagrupacionconjunto = idtipoagrupacionconjunto;
     }
 
     public String getNumero() {
@@ -56,7 +56,7 @@ public class agrupacion {
     public String toString() {
         return "Agrupacion{" +
                 "id=" + id +
-                ", idtipoInmuebleConjunto=" + idtipoInmuebleConjunto +
+                ", idtipoagrupacionconjunto=" + idtipoagrupacionconjunto +
                 ", numero='" + numero + '\'' +
                 '}';
     }

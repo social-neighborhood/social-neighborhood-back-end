@@ -1,6 +1,9 @@
 package edu.eci.arsw.socialneighborhood.controller;
 
 import edu.eci.arsw.socialneighborhood.model.usuario;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cache;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.services.socialNeighborhoodServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,8 +21,11 @@ public class socialNeighborhoodController {
     @Qualifier("socialNeighborhoodServices")
     private socialNeighborhoodServices neighborhoodServices;
 
+    @Autowired
+    private adminController adminController;
+
     @RequestMapping(value = "/userByEmail/{email}",method = RequestMethod.GET)
-    public ResponseEntity<?> getconjuntosByEmail(@PathVariable("email") String email){
+    public ResponseEntity<?> getuserByEmail(@PathVariable("email") String email){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.userByEmail(email), HttpStatus.ACCEPTED);
@@ -47,6 +53,28 @@ public class socialNeighborhoodController {
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.getUnidadesDeViviendaByEmail(email), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/conjuntosByEmail/{email}",method = RequestMethod.GET)
+    public ResponseEntity<?> getConjuntosByEmaill(@PathVariable("email") String email){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.getConjuntosByEmaill(email), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/conjuntos",method = RequestMethod.GET)
+    public ResponseEntity<?> getConjuntos(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.getConjuntos(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -108,11 +136,26 @@ public class socialNeighborhoodController {
         }
     }
 
-    @RequestMapping(value = "/autorizado/{idconjunto}/{idusuario}/{idConjuntoUsuario}/{idUnidadDeVivienda}/{idUnidadDeViviendaUsuario}/{idAgrupacion}/{idTipoAgrupacionConjunto}/{idTipoInmuebleConjunto}/{idTipoAgrupacion}/{idTipoInmueble}",method = RequestMethod.POST)
-    public ResponseEntity<?> autorizado(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoUsuario") int idConjuntoUsuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda, @PathVariable("idUnidadDeViviendaUsuario") int idUnidadDeViviendaUsuario, @PathVariable("idAgrupacion") int idAgrupacion, @PathVariable("idTipoAgrupacionConjunto") int idTipoAgrupacionConjunto, @PathVariable("idTipoInmuebleConjunto") int idTipoInmuebleConjunto, @PathVariable("idTipoAgrupacion") int idTipoAgrupacion, @PathVariable("idTipoInmueble") int idTipoInmueble){
+    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
+    public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoAdministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.autorizado(idconjunto,idusuario,idConjuntoUsuario,idUnidadDeVivienda,idUnidadDeViviendaUsuario,idAgrupacion,idTipoAgrupacionConjunto,idTipoInmuebleConjunto,idTipoAgrupacion,idTipoInmueble), HttpStatus.ACCEPTED);
+            cacheAdmin cache=neighborhoodServices.autorizadoAdmin(idconjunto,idusuario,idConjuntoAdministrador);
+            adminController.setCache(cache);
+            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
+    public ResponseEntity<?> autorizadoClient(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+        try {
+            //obtener datos que se enviarán a través del API
+            cacheClient cache=neighborhoodServices.autorizadoClient(idconjunto,idusuario,idUnidadDeVivienda);
+            //adminController.setCache(cache);
+            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
