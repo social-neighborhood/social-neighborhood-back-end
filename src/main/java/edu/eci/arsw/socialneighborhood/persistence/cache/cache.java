@@ -28,7 +28,7 @@ public abstract class cache {
         this.conjunto = commonServices.getConjuntoById(idconjunto);
     }
 
-    public void  cache(){
+    public void  actualizarCache(){
         this.usuario = commonServices.getUsuarioById(idusuario);
         this.zonasComunesConjunto = commonServices.getZonasComunesConjuntoByIdConjunto(idconjunto);
     }

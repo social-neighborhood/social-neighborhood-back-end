@@ -48,7 +48,7 @@ public class socialNeighborhoodController {
     public ResponseEntity<?> postUsuario(@RequestBody usuario usuario){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.postUsuario(usuario), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(neighborhoodServices.postUsuario(usuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -149,7 +149,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             cacheAdmin cache=neighborhoodServices.autorizadoAdmin(idconjunto,idusuario,idConjuntoAdministrador);
             adminController.setCache(cache);
-            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache, HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -162,7 +162,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             cacheClient cache=neighborhoodServices.autorizadoClient(idconjunto,idusuario,idUnidadDeVivienda);
             //adminController.setCache(cache);
-            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache, HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

@@ -213,11 +213,22 @@ public class adminController {
         }
     }
 
-    @RequestMapping(value = "/conjuntoAdministrador",method = RequestMethod.PUT)
+    @RequestMapping(value = "/conjuntoAdministrador",method = RequestMethod.GET)
     public ResponseEntity<?> getConjuntoAdministrador(){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(cache.getConjuntoAdministrador(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/alquileres",method = RequestMethod.GET)
+    public ResponseEntity<?> getAlquileres(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(adminServices.getAlquileres(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -240,7 +251,7 @@ public class adminController {
     public ResponseEntity<?> postUnidadDeVivinenda(@RequestBody unidadDeVivienda unidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postUnidadesDeVivienda(unidadDeVivienda), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postUnidadesDeVivienda(unidadDeVivienda), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -251,8 +262,9 @@ public class adminController {
     @ResponseBody
     public ResponseEntity<?> postConjuntoUsuario(@RequestBody conjuntoUsuario conjuntoUsuario){
         try {
+            conjuntoUsuario.setIdConjunto(cache.getConjunto().getId());
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postConjuntoUsuarios(conjuntoUsuario), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postConjuntoUsuarios(conjuntoUsuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -263,8 +275,9 @@ public class adminController {
     @ResponseBody
     public ResponseEntity<?> postzonaComunConjunto(@RequestBody zonaComunConjunto zonaComunConjunto){
         try {
+            zonaComunConjunto.setIdConjunto(cache.getConjunto().getId());
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postZonasComunesConjunto(zonaComunConjunto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postZonasComunesConjunto(zonaComunConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -276,7 +289,7 @@ public class adminController {
     public ResponseEntity<?> postAgrupacion(@RequestBody agrupacion agrupacion){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postAgrupaciones(agrupacion), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postAgrupaciones(agrupacion), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -287,8 +300,9 @@ public class adminController {
     @ResponseBody
     public ResponseEntity<?> postUnidadDeViviendaUsuario(@RequestBody unidadDeViviendaUsuario unidadDeViviendaUsuario){
         try {
+            unidadDeViviendaUsuario.setDisponible(true);
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postUnidadesDeViviendaUsuarios(unidadDeViviendaUsuario), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postUnidadesDeViviendaUsuarios(unidadDeViviendaUsuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -299,8 +313,9 @@ public class adminController {
     @ResponseBody
     public ResponseEntity<?> postTipoAgrupacion(@RequestBody tipoAgrupacionConjunto agrupacionConjunto){
         try {
+            agrupacionConjunto.setIdConjunto(cache.getConjunto().getId());
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postTipoAgrupacionesConjunto(agrupacionConjunto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postTipoAgrupacionesConjunto(agrupacionConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -311,8 +326,9 @@ public class adminController {
     @ResponseBody
     public ResponseEntity<?> postTipoInmueble(@RequestBody tipoInmuebleConjunto inmuebleConjunto){
         try {
+            inmuebleConjunto.setIdConjunto(cache.getConjunto().getId());
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.postTipoInmueblesConjuntos(inmuebleConjunto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.postTipoInmueblesConjuntos(inmuebleConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -367,7 +383,16 @@ public class adminController {
         }
     }
 
-
+    @RequestMapping(value = "/actualiza",method = RequestMethod.POST)
+    public ResponseEntity<?> putUsuarioPropio() {
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(cache.actualizaCacheAdmin(), HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 }

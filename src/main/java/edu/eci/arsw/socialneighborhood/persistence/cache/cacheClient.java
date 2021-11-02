@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Service("cacheClient")
@@ -21,6 +22,8 @@ public class cacheClient extends cache{
     private tipoAgrupacion tipoAgrupacion;
     private tipoInmueble tipoInmueble;
     private List<zonaComun> zonasComunes ;
+    private ZonedDateTime dateTime = ZonedDateTime.now();
+    private ZonedDateTime dateTime1 = ZonedDateTime.now();
 
     @Autowired
     @Qualifier("clientServices")
@@ -41,50 +44,70 @@ public class cacheClient extends cache{
         this.tipoInmuebleConjunto = clientServices.getTipoInmuebleConjuntoByID(unidadDeVivienda.getIdTipoInmuebleConjunto());
         this.tipoAgrupacion = clientServices.getTipoAgrupacionByID(tipoAgrupacionConjunto.getIdTipoAgrupacion());
         this.tipoInmueble = clientServices.getTipoinmuebleByID(tipoInmuebleConjunto.getIdTipoInmueble());
+        actualizaCacheClient();
     }
 
-    public void cacheClient(){
+    public Object actualizaCacheClient(){
         this.zonasComunes = clientServices.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
-        super.cache();
+        super.actualizarCache();
+        return null;
     }
 
     public int getIdUnidadDeVivienda() {
+        actualizar();
         return idUnidadDeVivienda;
     }
 
     public conjuntoUsuario getConjuntoUsuario() {
+        actualizar();
         return conjuntoUsuario;
     }
 
     public unidadDeVivienda getUnidadDeVivienda() {
+        actualizar();
         return unidadDeVivienda;
     }
 
     public unidadDeViviendaUsuario getUnidadDeViviendaUsuario() {
+        actualizar();
         return unidadDeViviendaUsuario;
     }
 
     public agrupacion getAgrupacion() {
+        actualizar();
         return agrupacion;
     }
 
     public tipoAgrupacionConjunto getTipoAgrupacionConjunto() {
+        actualizar();
         return tipoAgrupacionConjunto;
     }
 
     public tipoInmuebleConjunto getTipoInmuebleConjunto() {
+        actualizar();
         return tipoInmuebleConjunto;
     }
 
     public tipoAgrupacion getTipoAgrupacion() {
+        actualizar();
         return tipoAgrupacion;
     }
 
     public tipoInmueble getTipoInmueble() {
+        actualizar();
         return tipoInmueble;
     }
 
     public List<zonaComun> getZonasComunes() {
+        actualizar();
         return zonasComunes;
+    }
+
+    public void actualizar(){
+        dateTime1 = ZonedDateTime.now();
+        if (dateTime.plusMinutes(5).compareTo(dateTime1)==-1){
+            dateTime = ZonedDateTime.now();
+            actualizaCacheClient();
+        }
     }
 }

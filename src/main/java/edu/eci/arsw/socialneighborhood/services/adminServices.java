@@ -87,6 +87,10 @@ public class adminServices {
         return socialNeighborhood.getTipoAgrupacionConjuntoByIdConjunto(idconjunto);
     }
 
+    public List<alquiler> getAlquileres() {
+        return socialNeighborhood.getAlquileres();
+    }
+
     public Object postConjuntoUsuarios(conjuntoUsuario conjuntoUsuario) {
         return socialNeighborhood.postConjuntoUsuario(conjuntoUsuario);
     }
@@ -130,6 +134,5 @@ public class adminServices {
     public Object putZonasComunesConjunto(zonaComunConjunto zonaComunConjunto) {
         return socialNeighborhood.putzonaComunConjunto(zonaComunConjunto);
     }
-
 
 }

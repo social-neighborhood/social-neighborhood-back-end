@@ -93,4 +93,6 @@ public interface socialNeighborhood {
     List<conjuntoUsuario> getConjuntosByEmaill(String email);
 
     List<conjunto> getConjuntos();
+
+    List<alquiler> getAlquileres();
 }

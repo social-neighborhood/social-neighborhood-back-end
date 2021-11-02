@@ -98,6 +98,17 @@ public class clientController {
         }
     }
 
+    @RequestMapping(value = "/conjuntoUsuario",method = RequestMethod.GET)
+    public ResponseEntity<?> getConjuntoUsuario(){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(cache.getConjuntoUsuario(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/TipoInmuebleConjunto",method = RequestMethod.GET)
     public ResponseEntity<?> getTipoInmuebleConjuntoByID(){
         try {
@@ -137,6 +148,19 @@ public class clientController {
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.putUsuarioPropio(usuario), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
+    @RequestMapping(value = "/actualiza",method = RequestMethod.POST)
+    public ResponseEntity<?> putUsuarioPropio() {
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(cache.actualizaCacheClient(), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);

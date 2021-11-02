@@ -65,6 +65,10 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Qualifier("conjuntoAdministradorRepository")
     conjuntoAdministradorRepository conjuntoAdministradorRepository;
 
+    @Autowired
+    @Qualifier("alquilerRepository")
+    alquilerRepository alquilerRepository;
+
     @Override
     public List<tipoAgrupacion> getTipoAgrupacion() {
         return tipoAgrupacionRepository.findAll();
@@ -90,31 +94,28 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
         return unidadDeViviendaRepository.findAll();
     }
 
+
     @Override
-    public Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
-        //agrupacionConjunto.setIdConjunto(cache.getConjunto());
-        agrupacionConjunto.setId(Math.toIntExact(tipoAgrupacionConjuntoRepository.count()+1));
-        return tipoAgrupacionConjuntoRepository.save(agrupacionConjunto);
+    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
+        List<usuario> usuarios=usuarioRepository.findAll();
+        List<conjuntoUsuario> conjuntosUsuario = null;
+        List<conjuntoUsuario> conjuntosUsuarioList= conjuntoUsuarioRepository.findAll();
+        for (usuario usuario: usuarios){
+            if(usuario.getEmail().equals(email)){
+                for (conjuntoUsuario conjuntoUsuario: conjuntosUsuarioList){
+                    if (conjuntoUsuario.getIdUsuario().equals(usuario.getId())){
+                        conjuntosUsuario.add(conjuntoUsuario);
+                    }
+                }
+                return conjuntosUsuario;
+            }
+        }
+        return null;
     }
 
     @Override
-    public Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
-        //inmuebleConjunto.setIdConjunto(cache.getConjunto());
-        inmuebleConjunto.setId(Math.toIntExact(tipoInmuebleConjuntoRepository.count()+1));
-        return tipoInmuebleConjuntoRepository.save(inmuebleConjunto);
-    }
-
-    @Override
-    public Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
-        unidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.getById(unidadDeVivienda.getId());
-        unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
-        return unidadDeViviendaRepository.save(unidadDeViviendaDB);
-    }
-
-    @Override
-    public Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
-        unidadDeVivienda.setId(Math.toIntExact(unidadDeViviendaRepository.count()+1));
-        return unidadDeViviendaRepository.save(unidadDeVivienda);
+    public List<conjunto> getConjuntos() {
+        return conjuntoRepository.findAll();
     }
 
     @Override
@@ -123,69 +124,9 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario) {
-       // conjuntoUsuario.setIdConjunto(cache.getConjunto());
-        //conjuntoUsuario.setId(Math.toIntExact(conjuntoUsuarioRepository.count()+1));
-        return conjuntoUsuarioRepository.save(conjuntoUsuario);
-    }
-
-    @Override
-    public Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        zonaComunConjunto zonaComunConjuntoDB = zonaComunConjuntoRepository.getById(zonaComunConjunto.getId());
-        zonaComunConjuntoDB.setCostoAlquiler(zonaComunConjunto.getCostoAlquiler());
-        zonaComunConjuntoDB.setTiempoAlquilerCobro(zonaComunConjunto.getTiempoAlquilerCobro());
-        zonaComunConjuntoDB.setDisponible(zonaComunConjunto.getDisponible());
-        return zonaComunConjuntoRepository.save(zonaComunConjuntoDB);
-    }
-
-    @Override
-    public Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        //zonaComunConjunto.setIdConjunto(cache.getConjunto());
-        zonaComunConjunto.setId(Math.toIntExact(zonaComunConjuntoRepository.count()+1));
-        return zonaComunConjuntoRepository.save(zonaComunConjunto);
-    }
-
-    @Override
     public List<agrupacion> getAgrupacion() {
         System.out.println(Math.toIntExact(usuarioRepository.count()));
         return agrupacionRepository.findAll();
-    }
-
-    @Override
-    public Object postAgrupacion(agrupacion agrupacion) {
-        agrupacion.setId(Math.toIntExact(agrupacionRepository.count())+1);
-        return agrupacionRepository.save(agrupacion);
-    }
-
-    @Override
-    public Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
-        unidadDeViviendaUsuario unidadDeViviendaUsuarioDB = unidadDeViviendaUsuarioRepository.getById(unidadDeViviendaUsuario.getId());
-        unidadDeViviendaUsuarioDB.setDisponible(unidadDeViviendaUsuario.getDisponible());
-        unidadDeViviendaUsuarioDB.setTipoHabitante(unidadDeViviendaUsuario.getTipoHabitante());
-        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuarioDB);
-    }
-
-    @Override
-    public Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
-        unidadDeViviendaUsuario.setId(Math.toIntExact(unidadDeViviendaUsuarioRepository.count())+1);
-        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuario);
-    }
-
-    @Override
-    public Object postUsuario(usuario usuario) {
-        usuario.setId(Math.toIntExact(usuarioRepository.count())+1);
-        return usuarioRepository.save(usuario);
-    }
-
-    @Override
-    public usuario userByEmail(String email) {
-        List<usuario> usuarios = usuarioRepository.findAll();
-        for (usuario usuario: usuarios){
-            if(usuario.getEmail().equals(email)){
-                return usuarioRepository.getById(usuario.getId());
-            }
-        }
-        return null;
     }
 
     @Override
@@ -394,32 +335,98 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public Object putUsuarioPropio(usuario usuario) {
-        usuario usuario1=usuarioRepository.getById(usuario.getId());
-        usuario1.setPassword(usuario.getPassword());
-        return usuarioRepository.save(usuario1);
+    public List<alquiler> getAlquileres() {
+        return alquilerRepository.findAll();
     }
 
     @Override
-    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
-        List<usuario> usuarios=usuarioRepository.findAll();
-        List<conjuntoUsuario> conjuntosUsuario = null;
-        List<conjuntoUsuario> conjuntosUsuarioList= conjuntoUsuarioRepository.findAll();
+    public usuario userByEmail(String email) {
+        List<usuario> usuarios = usuarioRepository.findAll();
         for (usuario usuario: usuarios){
             if(usuario.getEmail().equals(email)){
-                for (conjuntoUsuario conjuntoUsuario: conjuntosUsuarioList){
-                    if (conjuntoUsuario.getIdUsuario().equals(usuario.getId())){
-                        conjuntosUsuario.add(conjuntoUsuario);
-                    }
-                }
-                return conjuntosUsuario;
+                return usuarioRepository.getById(usuario.getId());
             }
         }
         return null;
     }
 
     @Override
-    public List<conjunto> getConjuntos() {
-        return conjuntoRepository.findAll();
+    public Object postAgrupacion(agrupacion agrupacion) {
+        agrupacion.setId(Math.toIntExact(agrupacionRepository.count())+1);
+        return agrupacionRepository.save(agrupacion);
     }
+
+    @Override
+    public Object postConjuntoUsuario(conjuntoUsuario conjuntoUsuario) {
+        conjuntoUsuario.setId(Math.toIntExact(conjuntoUsuarioRepository.count()+1));
+        return conjuntoUsuarioRepository.save(conjuntoUsuario);
+    }
+
+    @Override
+    public Object postzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
+        zonaComunConjunto.setId(Math.toIntExact(zonaComunConjuntoRepository.count()+1));
+        return zonaComunConjuntoRepository.save(zonaComunConjunto);
+    }
+
+    @Override
+    public Object postTipoAgrupacion(tipoAgrupacionConjunto agrupacionConjunto) {
+        agrupacionConjunto.setId(Math.toIntExact(tipoAgrupacionConjuntoRepository.count()+1));
+        return tipoAgrupacionConjuntoRepository.save(agrupacionConjunto);
+    }
+
+    @Override
+    public Object postTipoInmueble(tipoInmuebleConjunto inmuebleConjunto) {
+        inmuebleConjunto.setId(Math.toIntExact(tipoInmuebleConjuntoRepository.count()+1));
+        return tipoInmuebleConjuntoRepository.save(inmuebleConjunto);
+    }
+
+    @Override
+    public Object postUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
+        unidadDeVivienda.setId(Math.toIntExact(unidadDeViviendaRepository.count()+1));
+        return unidadDeViviendaRepository.save(unidadDeVivienda);
+    }
+
+    @Override
+    public Object postUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
+        unidadDeViviendaUsuario.setId(Math.toIntExact(unidadDeViviendaUsuarioRepository.count())+1);
+        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuario);
+    }
+
+    @Override
+    public Object postUsuario(usuario usuario) {
+        usuario.setId(Math.toIntExact(usuarioRepository.count())+1);
+        return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
+        unidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.getById(unidadDeVivienda.getId());
+        unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
+        return unidadDeViviendaRepository.save(unidadDeViviendaDB);
+    }
+
+    @Override
+    public Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
+        zonaComunConjunto zonaComunConjuntoDB = zonaComunConjuntoRepository.getById(zonaComunConjunto.getId());
+        zonaComunConjuntoDB.setCostoAlquiler(zonaComunConjunto.getCostoAlquiler());
+        zonaComunConjuntoDB.setTiempoAlquilerCobro(zonaComunConjunto.getTiempoAlquilerCobro());
+        zonaComunConjuntoDB.setDisponible(zonaComunConjunto.getDisponible());
+        return zonaComunConjuntoRepository.save(zonaComunConjuntoDB);
+    }
+
+    @Override
+    public Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
+        unidadDeViviendaUsuario unidadDeViviendaUsuarioDB = unidadDeViviendaUsuarioRepository.getById(unidadDeViviendaUsuario.getId());
+        unidadDeViviendaUsuarioDB.setDisponible(unidadDeViviendaUsuario.getDisponible());
+        unidadDeViviendaUsuarioDB.setTipoHabitante(unidadDeViviendaUsuario.getTipoHabitante());
+        return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuarioDB);
+    }
+
+    @Override
+    public Object putUsuarioPropio(usuario usuario) {
+        usuario usuario1=usuarioRepository.getById(usuario.getId());
+        usuario1.setPassword(usuario.getPassword());
+        return usuarioRepository.save(usuario1);
+    }
+
 }
