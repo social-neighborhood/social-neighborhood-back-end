@@ -33,4 +33,8 @@ public class commonServices {
     public conjunto getConjuntoById(int id){
         return socialNeighborhood.getConjuntoById(id);
     }
+
+    public usuario userByEmail(String email) {
+        return socialNeighborhood.userByEmail(email);
+    }
 }

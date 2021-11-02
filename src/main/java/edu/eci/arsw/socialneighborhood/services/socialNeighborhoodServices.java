@@ -17,10 +17,6 @@ public class socialNeighborhoodServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood =null;
 
-    public usuario userByEmail(String email) {
-        return socialNeighborhood.userByEmail(email);
-    }
-
     public List<unidadDeVivienda> getUnidadesDeViviendaByEmail(String email){
         return socialNeighborhood.getUnidadDeVivinendaByEmail(email);
     }

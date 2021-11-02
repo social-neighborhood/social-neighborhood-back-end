@@ -224,6 +224,17 @@ public class adminController {
         }
     }
 
+    @RequestMapping(value = "/userByEmail/{email}",method = RequestMethod.GET)
+    public ResponseEntity<?> getuserByEmail(@PathVariable("email") String email){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.userByEmail(email), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/newUnidadDeVivinenda",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<?> postUnidadDeVivinenda(@RequestBody unidadDeVivienda unidadDeVivienda){
@@ -259,8 +270,6 @@ public class adminController {
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
-
-
 
     @RequestMapping(value = "/newAgrupacion",method = RequestMethod.POST)
     @ResponseBody
@@ -357,6 +366,8 @@ public class adminController {
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 
 }

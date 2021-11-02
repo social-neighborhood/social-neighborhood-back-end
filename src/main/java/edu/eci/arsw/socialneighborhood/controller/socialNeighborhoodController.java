@@ -4,6 +4,7 @@ import edu.eci.arsw.socialneighborhood.model.usuario;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cache;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
+import edu.eci.arsw.socialneighborhood.services.commonServices;
 import edu.eci.arsw.socialneighborhood.services.socialNeighborhoodServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,18 +18,24 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("/social")
 public class socialNeighborhoodController {
+
     @Autowired
     @Qualifier("socialNeighborhoodServices")
     private socialNeighborhoodServices neighborhoodServices;
 
     @Autowired
+    @Qualifier("commonServices")
+    private commonServices commonServices;
+
+    @Autowired
     private adminController adminController;
+
 
     @RequestMapping(value = "/userByEmail/{email}",method = RequestMethod.GET)
     public ResponseEntity<?> getuserByEmail(@PathVariable("email") String email){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.userByEmail(email), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(commonServices.userByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

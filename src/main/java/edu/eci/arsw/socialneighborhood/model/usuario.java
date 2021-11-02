@@ -25,11 +25,13 @@ public class usuario {
     public String password ;
     @Column(name = "tipousuario")
     public String tipousuario;
+    @Column(name = "nombrefoto")
+    public String nombrefoto;
 
     public usuario(){
 
     }
-    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario) {
+    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
         this.tdoc = tdoc;
         this.ndoc = ndoc;
         this.nombres = nombres;
@@ -40,7 +42,7 @@ public class usuario {
         this.tipousuario=tipousuario;
     }
 
-    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario) {
+    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
         this.id = id;
         this.tdoc = tdoc;
         this.ndoc = ndoc;
@@ -122,5 +124,13 @@ public class usuario {
 
     public void setTipousuario(String tipousuario) {
         this.tipousuario = tipousuario;
+    }
+
+    public String getNombrefoto() {
+        return nombrefoto;
+    }
+
+    public void setNombrefoto(String nombrefoto) {
+        this.nombrefoto = nombrefoto;
     }
 }
