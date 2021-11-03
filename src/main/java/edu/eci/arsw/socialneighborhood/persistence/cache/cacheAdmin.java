@@ -46,6 +46,7 @@ public class cacheAdmin extends cache{
     }
 
     public Object actualizaCacheAdmin(){
+        dateTime = ZonedDateTime.now();
         this.zonasComunes = adminServices.getZonasComunes();
         this.conjuntoUsuarios = adminServices.getConjuntoUsuarioByIDConjunto(idconjunto);
         this.usuarios=adminServices.getUsuariosByConjuntoUsuarios(conjuntoUsuarios);
@@ -192,7 +193,6 @@ public class cacheAdmin extends cache{
     public void actualizar(){
         dateTime1 = ZonedDateTime.now();
         if (dateTime.plusMinutes(5).compareTo(dateTime1)==-1){
-            dateTime = ZonedDateTime.now();
             actualizaCacheAdmin();
         }
     }

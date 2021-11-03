@@ -1,8 +1,6 @@
 package edu.eci.arsw.socialneighborhood.services;
 
-import edu.eci.arsw.socialneighborhood.model.conjunto;
-import edu.eci.arsw.socialneighborhood.model.usuario;
-import edu.eci.arsw.socialneighborhood.model.zonaComunConjunto;
+import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,5 +34,27 @@ public class commonServices {
 
     public usuario userByEmail(String email) {
         return socialNeighborhood.userByEmail(email);
+    }
+
+
+    public agrupacion getAgrupacionById(int id) {
+        return socialNeighborhood.getAgrupacionByID(id);
+    }
+
+
+    public tipoAgrupacionConjunto getTipoAgrupacionConjuntoById(int id) {
+        return socialNeighborhood.getTipoAgrupacionConjuntoById(id);
+    }
+
+    public tipoInmuebleConjunto getTipoInmuebleConjuntoById(int id) {
+        return socialNeighborhood.getTipoInmuebleConjuntoById(id);
+    }
+
+    public tipoAgrupacion getTipoAgrupacionById(int id) {
+        return socialNeighborhood.getTipoAgrupacionById(id);
+    }
+
+    public tipoInmueble getTipoInmuebleById(int id) {
+        return socialNeighborhood.getTipoInmuebleById(id);
     }
 }

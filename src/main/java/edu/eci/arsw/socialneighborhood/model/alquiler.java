@@ -21,7 +21,7 @@ public class alquiler {
     @Column(name = "idunidaddeviviendausuario")
     private Integer idunidaddeviviendausuario;
 
-    @Column(name = "fechadealquiler")
+    @Column(name = "fechainiciodealquiler")
     private Date fechadealquiler;
 
     @Column(name = "horadeinicio")
@@ -29,6 +29,9 @@ public class alquiler {
 
     @Column(name = "horadefin")
     private Timestamp horadefin;
+
+    @Column(name = "fechafinalquiler")
+    private Date fechafinalquiler;
 
     public alquiler(){
 

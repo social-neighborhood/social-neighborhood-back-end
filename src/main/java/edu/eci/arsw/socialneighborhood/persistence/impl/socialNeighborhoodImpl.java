@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service("socialNeighborhoodImpl")
@@ -160,12 +162,12 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public conjunto getConjuntoById(int id) {
-        return conjuntoRepository.getById(id);
+        return conjuntoRepository.findById(id).get();
     }
 
     @Override
     public usuario getUsuarioById(int id) {
-        return usuarioRepository.getById(id);
+        return usuarioRepository.findById(id).get();
     }
 
     @Override
@@ -181,7 +183,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public unidadDeVivienda getUnidadDeViviendaByID(int id) {
-        return unidadDeViviendaRepository.getById(id);
+        return unidadDeViviendaRepository.findById(id).get();
     }
 
     @Override
@@ -197,27 +199,27 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public agrupacion getAgrupacionByID(int idAgrupacion) {
-        return agrupacionRepository.getById(idAgrupacion);
+        return agrupacionRepository.findById(idAgrupacion).get();
     }
 
     @Override
     public tipoAgrupacion getTipoAgrupacionByID(int idTipoAgrupacion) {
-        return tipoAgrupacionRepository.getById(idTipoAgrupacion);
+        return tipoAgrupacionRepository.findById(idTipoAgrupacion).get();
     }
 
     @Override
     public tipoInmueble getTipoinmuebleByID(int idTipoInmueble) {
-        return tipoInmuebleRepository.getById(idTipoInmueble);
+        return tipoInmuebleRepository.findById(idTipoInmueble).get();
     }
 
     @Override
     public tipoAgrupacionConjunto getTipoAgrupacionConjuntoByID(int idTipoAgrupacionConjunto) {
-        return tipoAgrupacionConjuntoRepository.getById(idTipoAgrupacionConjunto);
+        return tipoAgrupacionConjuntoRepository.findById(idTipoAgrupacionConjunto).get();
     }
 
     @Override
     public tipoInmuebleConjunto getTipoInmuebleConjuntoByID(int idTipoInmuebleConjunto) {
-        return tipoInmuebleConjuntoRepository.getById(idTipoInmuebleConjunto);
+        return tipoInmuebleConjuntoRepository.findById(idTipoInmuebleConjunto).get();
     }
 
     @Override
@@ -236,14 +238,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     public List<zonaComun> getZonasComunesByZonasComunesConjunto(List<zonaComunConjunto> zonasComunesConjunto) {
         List<zonaComun> zonasComunes= null;
         for (zonaComunConjunto zonaComunConjunto: zonasComunesConjunto){
-            zonasComunes.add(zonaComunRepository.getById(zonaComunConjunto.getIdZonaComun()));
+            zonasComunes.add(zonaComunRepository.findById(zonaComunConjunto.getIdZonaComun()).get());
         }
         return zonasComunes;
     }
 
     @Override
     public conjuntoAdministrador getCojuntoAdministradorByID(int idConjuntoAdministrador) {
-        return conjuntoAdministradorRepository.getById(idConjuntoAdministrador);
+        return conjuntoAdministradorRepository.findById(idConjuntoAdministrador).get();
     }
 
     @Override
@@ -267,7 +269,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     public List<usuario> getUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios) {
         List<usuario> usuarios=null;
         for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
-            usuarios.add(usuarioRepository.getById(conjuntoUsuario.getIdUsuario()));
+            usuarios.add(usuarioRepository.findById(conjuntoUsuario.getIdUsuario()).get());
         }
         return usuarios;
     }
@@ -291,7 +293,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
         List<unidadDeVivienda> unidadesDeVivienda=null;
         List<unidadDeVivienda> unidadDeViviendaList=unidadDeViviendaRepository.findAll();
         for(unidadDeVivienda unidadDeVivienda: unidadDeViviendaList){
-            if (tipoInmuebleConjuntoRepository.getById(unidadDeVivienda.getIdTipoInmuebleConjunto()).getIdConjunto().equals(idconjunto)){
+            if (tipoInmuebleConjuntoRepository.findById(unidadDeVivienda.getIdTipoInmuebleConjunto()).get().getIdConjunto().equals(idconjunto)){
                 unidadesDeVivienda.add(unidadDeVivienda);
             }
         }
@@ -303,7 +305,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
         List<agrupacion> agrupaciones = null;
         List<agrupacion> agrupacionList = agrupacionRepository.findAll();
         for (agrupacion agrupacion: agrupacionList){
-            if (tipoAgrupacionConjuntoRepository.getById(agrupacion.getIdtipoagrupacionconjunto()).getIdConjunto().equals(idconjunto)){
+            if (tipoAgrupacionConjuntoRepository.findById(agrupacion.getIdtipoagrupacionconjunto()).get().getIdConjunto().equals(idconjunto)){
                 agrupaciones.add(agrupacion);
             }
         }
@@ -336,6 +338,10 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<alquiler> getAlquileres() {
+        List<alquiler> alquilers = alquilerRepository.findAll();
+        Date date = new Date(alquilers.get(0).getHoradeinicio().getTime()-18000000);
+
+        System.out.println(alquilers.get(0).getFechadealquiler()+"     "+date);
         return alquilerRepository.findAll();
     }
 
@@ -344,7 +350,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
         List<usuario> usuarios = usuarioRepository.findAll();
         for (usuario usuario: usuarios){
             if(usuario.getEmail().equals(email)){
-                return usuarioRepository.getById(usuario.getId());
+                return usuarioRepository.findById(usuario.getId()).get();
             }
         }
         return null;
@@ -400,14 +406,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda) {
-        unidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.getById(unidadDeVivienda.getId());
+        unidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.findById(unidadDeVivienda.getId()).get();
         unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
         return unidadDeViviendaRepository.save(unidadDeViviendaDB);
     }
 
     @Override
     public Object putzonaComunConjunto(zonaComunConjunto zonaComunConjunto) {
-        zonaComunConjunto zonaComunConjuntoDB = zonaComunConjuntoRepository.getById(zonaComunConjunto.getId());
+        zonaComunConjunto zonaComunConjuntoDB = zonaComunConjuntoRepository.findById(zonaComunConjunto.getId()).get();
         zonaComunConjuntoDB.setCostoAlquiler(zonaComunConjunto.getCostoAlquiler());
         zonaComunConjuntoDB.setTiempoAlquilerCobro(zonaComunConjunto.getTiempoAlquilerCobro());
         zonaComunConjuntoDB.setDisponible(zonaComunConjunto.getDisponible());
@@ -416,7 +422,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object putUnidadDeViviendaUsuario(unidadDeViviendaUsuario unidadDeViviendaUsuario) {
-        unidadDeViviendaUsuario unidadDeViviendaUsuarioDB = unidadDeViviendaUsuarioRepository.getById(unidadDeViviendaUsuario.getId());
+        unidadDeViviendaUsuario unidadDeViviendaUsuarioDB = unidadDeViviendaUsuarioRepository.findById(unidadDeViviendaUsuario.getId()).get();
         unidadDeViviendaUsuarioDB.setDisponible(unidadDeViviendaUsuario.getDisponible());
         unidadDeViviendaUsuarioDB.setTipoHabitante(unidadDeViviendaUsuario.getTipoHabitante());
         return unidadDeViviendaUsuarioRepository.save(unidadDeViviendaUsuarioDB);
@@ -424,9 +430,28 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public Object putUsuarioPropio(usuario usuario) {
-        usuario usuario1=usuarioRepository.getById(usuario.getId());
+        usuario usuario1=usuarioRepository.findById(usuario.getId()).get();
         usuario1.setPassword(usuario.getPassword());
         return usuarioRepository.save(usuario1);
     }
 
+    @Override
+    public tipoAgrupacionConjunto getTipoAgrupacionConjuntoById(int id) {
+        return tipoAgrupacionConjuntoRepository.findById(id).get();
+    }
+
+    @Override
+    public tipoInmuebleConjunto getTipoInmuebleConjuntoById(int id) {
+        return tipoInmuebleConjuntoRepository.findById(id).get();
+    }
+
+    @Override
+    public tipoAgrupacion getTipoAgrupacionById(int id) {
+        return tipoAgrupacionRepository.findById(id).get();
+    }
+
+    @Override
+    public tipoInmueble getTipoInmuebleById(int id) {
+        return tipoInmuebleRepository.findById(id).get();
+    }
 }

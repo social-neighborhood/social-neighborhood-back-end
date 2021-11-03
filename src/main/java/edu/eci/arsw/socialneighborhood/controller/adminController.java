@@ -81,27 +81,6 @@ public class adminController {
         }
     }
 
-    @RequestMapping(value = "/TipoAgrupacionById/{id}",method = RequestMethod.GET)
-    public ResponseEntity<?> getTipoAgrupacionById(@PathVariable("id") int id){
-        try {
-            //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(cache.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(value = "/TipoInmuebleById/{id}",method = RequestMethod.GET)
-    public ResponseEntity<?> getTipoInmuebleById(@PathVariable("id") int id){
-        try {
-            //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(cache.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
-        } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
-        }
-    }
 
     @RequestMapping(value = "/UnidadDeVivinenda",method = RequestMethod.GET)
     public ResponseEntity<?> getUnidadDeVivinenda(){
@@ -229,6 +208,61 @@ public class adminController {
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.getAlquileres(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/agrupacionById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getAgrupacionById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getAgrupacionById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoAgrupacionConjuntoById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getTipoAgrupacionConjuntoById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoInmuebleConjuntoById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getTipoInmuebleConjuntoById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoAgrupacionById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getTipoAgrupacionById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/tipoInmuebleById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> gettipoInmuebleById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
