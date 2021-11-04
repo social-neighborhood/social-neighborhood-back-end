@@ -211,7 +211,7 @@ public class socialNeighborhoodController {
         }
     }
 
-    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
+    @RequestMapping(value = "/autorizadoClient/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
     public ResponseEntity<?> autorizadoClient(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
