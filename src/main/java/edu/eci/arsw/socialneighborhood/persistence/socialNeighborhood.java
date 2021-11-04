@@ -90,7 +90,7 @@ public interface socialNeighborhood {
 
     Object putUnidadDeVivinenda(unidadDeVivienda unidadDeVivienda);
 
-    List<conjuntoUsuario> getConjuntosByEmaill(String email);
+    conjuntoAdministrador getConjuntosByEmaill(String email);
 
     List<conjunto> getConjuntos();
 

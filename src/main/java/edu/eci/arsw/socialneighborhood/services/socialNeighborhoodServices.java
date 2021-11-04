@@ -55,7 +55,7 @@ public class socialNeighborhoodServices {
         return cache;
     }
 
-    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
+    public conjuntoAdministrador getConjuntosByEmaill(String email) {
         return socialNeighborhood.getConjuntosByEmaill(email);
     }
 

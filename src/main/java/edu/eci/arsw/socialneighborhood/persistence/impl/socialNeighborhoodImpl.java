@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,21 +97,19 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
 
     @Override
-    public List<conjuntoUsuario> getConjuntosByEmaill(String email) {
-        List<usuario> usuarios=usuarioRepository.findAll();
-        List<conjuntoUsuario> conjuntosUsuario = null;
-        List<conjuntoUsuario> conjuntosUsuarioList= conjuntoUsuarioRepository.findAll();
+    public conjuntoAdministrador getConjuntosByEmaill(String email) {
+        List<usuario> usuarios = usuarioRepository.findAll();
+        List<conjuntoAdministrador> conjuntoAdministradores = conjuntoAdministradorRepository.findAll();
         for (usuario usuario: usuarios){
-            if(usuario.getEmail().equals(email)){
-                for (conjuntoUsuario conjuntoUsuario: conjuntosUsuarioList){
-                    if (conjuntoUsuario.getIdUsuario().equals(usuario.getId())){
-                        conjuntosUsuario.add(conjuntoUsuario);
+            if (usuario.getEmail().equals(email)){
+                for (conjuntoAdministrador conjuntoAdministrador: conjuntoAdministradores){
+                    if(conjuntoAdministrador.getIdusuarioadministrador()==usuario.getId()){
+                        return conjuntoAdministrador;
                     }
                 }
-                return conjuntosUsuario;
             }
         }
-        return null;
+        return  null;
     }
 
     @Override
