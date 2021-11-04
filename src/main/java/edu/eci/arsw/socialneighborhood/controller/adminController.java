@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,18 +19,14 @@ import java.util.logging.Logger;
 @RequestMapping("/admin")
 public class adminController {
 
-    @Autowired
-    @Qualifier("adminServices")
-    private adminServices adminServices;
+    @Resource(name ="adminServices")
+    adminServices adminServices;
 
 
-    @Autowired
-    @Qualifier("commonServices")
-    private commonServices commonServices;
+    @Resource(name ="commonServices")
+    commonServices commonServices;
 
-    @Autowired
-    @Qualifier("cacheAdmin")
-    private cacheAdmin cache;
+    cacheAdmin cache;
 
     public cache getCache() {
         return cache;
@@ -119,7 +117,7 @@ public class adminController {
     public ResponseEntity<?> getConjuntoUsuarioById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(cache.getConjuntoUsuarioById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(adminServices.getConjuntoUsuarioByIDConjunto(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -425,6 +423,18 @@ public class adminController {
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
+    public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+        try {
+            //obtener datos que se enviarán a través del API
+            cache=adminServices.autorizadoAdmin(idconjunto,idusuario,idConjuntoAdministrador);
+            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
 

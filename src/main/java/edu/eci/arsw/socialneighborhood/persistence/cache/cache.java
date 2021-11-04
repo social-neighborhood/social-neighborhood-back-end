@@ -7,9 +7,12 @@ import edu.eci.arsw.socialneighborhood.services.clientServices;
 import edu.eci.arsw.socialneighborhood.services.commonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Component("cache")
 public abstract class cache {
     protected int idconjunto ;
     protected int idusuario;
@@ -17,14 +20,15 @@ public abstract class cache {
     protected usuario usuario;
     protected List<zonaComunConjunto> zonasComunesConjunto ;
 
-    @Autowired
-    @Qualifier("commonServices")
-    protected commonServices commonServices = null;
+    @Resource(name ="commonServices")
+    commonServices commonServices;
 
     public cache(){}
+
     public cache(int idconjunto, int idusuario){
         this.idconjunto=idconjunto;
         this.idusuario=idusuario;
+        System.out.println(idconjunto);
         this.conjunto = commonServices.getConjuntoById(idconjunto);
     }
 

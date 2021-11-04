@@ -1,6 +1,7 @@
 package edu.eci.arsw.socialneighborhood.services;
 
 import edu.eci.arsw.socialneighborhood.model.*;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +14,7 @@ public class clientServices {
 
     @Autowired
     @Qualifier("socialNeighborhoodImpl")
-    socialNeighborhoodImpl socialNeighborhood =null;
+    socialNeighborhoodImpl socialNeighborhood;
 
     public conjuntoUsuario getConjuntoUsuarioByConjuntoUsuario(int idconjunto, int idusuario){
         return socialNeighborhood.getConjuntoUsuarioByConjuntoUsuario(idconjunto,idusuario);
@@ -49,6 +50,11 @@ public class clientServices {
 
     public List<zonaComun> getZonasComunesByZonasComunesConjunto(List<zonaComunConjunto> zonasComunesConjunto){
         return socialNeighborhood.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
+    }
+
+    public cacheClient autorizadoClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
+        cacheClient cache = new cacheClient(idconjunto, idusuario, idUnidadDeVivienda);
+        return cache;
     }
 
 }

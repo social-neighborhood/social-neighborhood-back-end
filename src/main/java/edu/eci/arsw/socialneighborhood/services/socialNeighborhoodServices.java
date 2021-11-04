@@ -15,7 +15,7 @@ import java.util.List;
 public class socialNeighborhoodServices {
     @Autowired
     @Qualifier("socialNeighborhoodImpl")
-    socialNeighborhoodImpl socialNeighborhood =null;
+    socialNeighborhoodImpl socialNeighborhood;
 
     public List<unidadDeVivienda> getUnidadesDeViviendaByEmail(String email){
         return socialNeighborhood.getUnidadDeVivinendaByEmail(email);
@@ -43,16 +43,6 @@ public class socialNeighborhoodServices {
 
     public List<tipoInmueble> tipoInmueble() {
         return socialNeighborhood.getTipoInmueble();
-    }
-
-    public cacheAdmin autorizadoAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
-        cacheAdmin cache = new cacheAdmin(idconjunto,idusuario,idConjuntoAdministrador);
-        return cache;
-    }
-
-    public cacheClient autorizadoClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
-        cacheClient cache = new cacheClient(idconjunto, idusuario, idUnidadDeVivienda);
-        return cache;
     }
 
     public conjuntoAdministrador getConjuntosByEmaill(String email) {

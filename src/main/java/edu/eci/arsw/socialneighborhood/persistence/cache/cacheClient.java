@@ -5,12 +5,13 @@ import edu.eci.arsw.socialneighborhood.services.adminServices;
 import edu.eci.arsw.socialneighborhood.services.clientServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@Service("cacheClient")
 public class cacheClient extends cache{
     private int  idUnidadDeVivienda;
     private conjuntoUsuario conjuntoUsuario;
@@ -25,13 +26,10 @@ public class cacheClient extends cache{
     private ZonedDateTime dateTime = ZonedDateTime.now();
     private ZonedDateTime dateTime1 = ZonedDateTime.now();
 
-    @Autowired
-    @Qualifier("clientServices")
-    protected clientServices clientServices = null;
+    @Resource(name ="clientServices")
+    clientServices clientServices;
 
-    public cacheClient(){
-        super();
-    }
+    public cacheClient(){super();}
 
     public cacheClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
         super(idconjunto,idusuario);

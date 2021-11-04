@@ -1,9 +1,6 @@
 package edu.eci.arsw.socialneighborhood.controller;
 
 import edu.eci.arsw.socialneighborhood.model.usuario;
-import edu.eci.arsw.socialneighborhood.persistence.cache.cache;
-import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
-import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.services.commonServices;
 import edu.eci.arsw.socialneighborhood.services.socialNeighborhoodServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,17 +17,11 @@ import java.util.logging.Logger;
 @RequestMapping("/social")
 public class socialNeighborhoodController {
 
-    @Autowired
-    @Qualifier("socialNeighborhoodServices")
-    private socialNeighborhoodServices neighborhoodServices;
+    @Resource(name = "socialNeighborhoodServices")
+    socialNeighborhoodServices neighborhoodServices;
 
-    @Autowired
-    @Qualifier("commonServices")
-    private commonServices commonServices;
-
-    @Autowired
-    private adminController adminController;
-
+    @Resource(name = "commonServices")
+    commonServices commonServices;
 
     @RequestMapping(value = "/userByEmail/{email}",method = RequestMethod.GET)
     public ResponseEntity<?> getuserByEmail(@PathVariable("email") String email){
@@ -37,7 +29,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.userByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -50,7 +42,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.postUsuario(usuario), HttpStatus.OK);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -61,7 +53,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.getUnidadesDeViviendaByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -72,7 +64,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.getConjuntosByEmaill(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -83,7 +75,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.getConjuntos(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -92,9 +84,9 @@ public class socialNeighborhoodController {
     public ResponseEntity<?> getConjuntoById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.getConjuntoById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(commonServices.getConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -105,7 +97,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.getAgrupacion(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -116,7 +108,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.tipoAgrupacionConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -127,7 +119,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.tipoInmuebleConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -138,7 +130,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.tipoAgrupacion(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -149,7 +141,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(neighborhoodServices.tipoInmueble(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -160,7 +152,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.getAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -171,7 +163,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -182,7 +174,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -193,7 +185,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
@@ -204,33 +196,7 @@ public class socialNeighborhoodController {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
-    public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoAdministrador") int idConjuntoAdministrador){
-        try {
-            //obtener datos que se enviarán a través del API
-            cacheAdmin cache=neighborhoodServices.autorizadoAdmin(idconjunto,idusuario,idConjuntoAdministrador);
-            adminController.setCache(cache);
-            return new ResponseEntity<>(cache, HttpStatus.OK);
-        } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @RequestMapping(value = "/autorizadoClient/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
-    public ResponseEntity<?> autorizadoClient(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
-        try {
-            //obtener datos que se enviarán a través del API
-            cacheClient cache=neighborhoodServices.autorizadoClient(idconjunto,idusuario,idUnidadDeVivienda);
-            //adminController.setCache(cache);
-            return new ResponseEntity<>(cache, HttpStatus.OK);
-        } catch (Exception ex) {
-            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }

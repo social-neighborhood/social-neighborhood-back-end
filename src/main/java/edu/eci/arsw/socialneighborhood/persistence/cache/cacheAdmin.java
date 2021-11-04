@@ -5,12 +5,13 @@ import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.adminServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-@Service("cacheAdmin")
 public class cacheAdmin extends cache{
 
 
@@ -30,13 +31,10 @@ public class cacheAdmin extends cache{
     private ZonedDateTime dateTime = ZonedDateTime.now();
     private ZonedDateTime dateTime1 = ZonedDateTime.now();
 
-    @Autowired
-    @Qualifier("adminServices")
-    protected adminServices adminServices = null;
+    @Resource(name ="adminServices")
+    adminServices adminServices;
 
-    public cacheAdmin(){
-        super();
-    }
+    public cacheAdmin(){super();}
 
     public cacheAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
         super(idconjunto,idusuario);

@@ -1,9 +1,11 @@
 package edu.eci.arsw.socialneighborhood.services;
 
 import edu.eci.arsw.socialneighborhood.model.*;
+import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +15,7 @@ public class adminServices {
 
     @Autowired
     @Qualifier("socialNeighborhoodImpl")
-    socialNeighborhoodImpl socialNeighborhood =null;
+    socialNeighborhoodImpl socialNeighborhood;
 
     public List<tipoAgrupacion> getTipoAgrupacion(){
         return socialNeighborhood.getTipoAgrupacion();
@@ -133,6 +135,11 @@ public class adminServices {
 
     public Object putZonasComunesConjunto(zonaComunConjunto zonaComunConjunto) {
         return socialNeighborhood.putzonaComunConjunto(zonaComunConjunto);
+    }
+
+    public cacheAdmin autorizadoAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
+        cacheAdmin cache = new cacheAdmin(idconjunto,idusuario,idConjuntoAdministrador);
+        return cache;
     }
 
 }

@@ -14,7 +14,7 @@ public class commonServices {
 
     @Autowired
     @Qualifier("socialNeighborhoodImpl")
-    socialNeighborhoodImpl socialNeighborhood =null;
+    socialNeighborhoodImpl socialNeighborhood;
 
     public usuario getUsuarioById(int id){
         return socialNeighborhood.getUsuarioById(id);

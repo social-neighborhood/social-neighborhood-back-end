@@ -1,7 +1,6 @@
 package edu.eci.arsw.socialneighborhood.controller;
 
 import edu.eci.arsw.socialneighborhood.model.*;
-import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.services.clientServices;
 import edu.eci.arsw.socialneighborhood.services.commonServices;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,18 +19,13 @@ import java.util.logging.Logger;
 @RequestMapping("/client")
 public class clientController {
 
-    @Autowired
-    @Qualifier("clientServices")
-    private clientServices clientServices;
+    @Resource(name ="clientServices")
+    clientServices clientServices;
 
+    @Resource(name ="commonServices")
+    commonServices commonServices;
 
-    @Autowired
-    @Qualifier("commonServices")
-    private commonServices commonServices;
-
-    @Autowired
-    @Qualifier("cacheClient")
-    private cacheClient cache;
+    cacheClient cache;
 
     @RequestMapping(value = "/UnidadDeVivienda",method = RequestMethod.GET)
     public ResponseEntity<?> getUnidadDeViviendaByID(){
@@ -164,6 +159,18 @@ public class clientController {
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/autorizadoClient/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.GET)
+    public ResponseEntity<?> autorizadoClient(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+        try {
+            //obtener datos que se enviarán a través del API
+            cache=clientServices.autorizadoClient(idconjunto,idusuario,idUnidadDeVivienda);
+            return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
 

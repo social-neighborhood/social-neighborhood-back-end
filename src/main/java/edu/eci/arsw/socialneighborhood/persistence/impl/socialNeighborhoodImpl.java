@@ -221,7 +221,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<zonaComunConjunto> getZonasComunesConjuntoByIdConjunto(int idconjunto) {
-        List<zonaComunConjunto> zonasComunesConjunto=null;
+        List<zonaComunConjunto> zonasComunesConjunto=new ArrayList<>();
         List<zonaComunConjunto> zonaComunConjuntoList=zonaComunConjuntoRepository.findAll();
         for(zonaComunConjunto zonaComunConjunto:zonaComunConjuntoList){
             if (zonaComunConjunto.getIdConjunto().equals(idconjunto)){
@@ -233,7 +233,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<zonaComun> getZonasComunesByZonasComunesConjunto(List<zonaComunConjunto> zonasComunesConjunto) {
-        List<zonaComun> zonasComunes= null;
+        List<zonaComun> zonasComunes=new ArrayList<>();
         for (zonaComunConjunto zonaComunConjunto: zonasComunesConjunto){
             zonasComunes.add(zonaComunRepository.findById(zonaComunConjunto.getIdZonaComun()).get());
         }
@@ -252,7 +252,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<conjuntoUsuario> getConjuntoUsuarioByIDConjunto(int idconjunto) {
-        List<conjuntoUsuario> conjuntoUsuarios=null;
+        List<conjuntoUsuario> conjuntoUsuarios=new ArrayList<>();
         List<conjuntoUsuario> conjuntoUsuarioList=conjuntoUsuarioRepository.findAll();
         for(conjuntoUsuario conjuntoUsuario: conjuntoUsuarioList){
             if(conjuntoUsuario.getIdConjunto().equals(idconjunto)){
@@ -264,7 +264,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<usuario> getUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios) {
-        List<usuario> usuarios=null;
+        List<usuario> usuarios=new ArrayList<>();
         for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
             usuarios.add(usuarioRepository.findById(conjuntoUsuario.getIdUsuario()).get());
         }
@@ -273,7 +273,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<unidadDeViviendaUsuario> getUnidadesDeViviendaUsuariosByConjuntoUsuarios(List<conjuntoUsuario> conjuntoUsuarios) {
-        List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios=null;
+        List<unidadDeViviendaUsuario> unidadesDeViviendaUsuarios=new ArrayList<>();
         List<unidadDeViviendaUsuario> unidadDeViviendaUsuarioList=unidadDeViviendaUsuarioRepository.findAll();
         for (unidadDeViviendaUsuario unidadDeViviendaUsuario:unidadDeViviendaUsuarioList){
             for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
@@ -287,7 +287,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<unidadDeVivienda> getUnidadesDeViviendaByIdConjunto(int idconjunto) {
-        List<unidadDeVivienda> unidadesDeVivienda=null;
+        List<unidadDeVivienda> unidadesDeVivienda=new ArrayList<>();
         List<unidadDeVivienda> unidadDeViviendaList=unidadDeViviendaRepository.findAll();
         for(unidadDeVivienda unidadDeVivienda: unidadDeViviendaList){
             if (tipoInmuebleConjuntoRepository.findById(unidadDeVivienda.getIdTipoInmuebleConjunto()).get().getIdConjunto().equals(idconjunto)){
@@ -299,7 +299,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<agrupacion> getAgrupacionByIdConjunto(int idconjunto) {
-        List<agrupacion> agrupaciones = null;
+        List<agrupacion> agrupaciones =new ArrayList<>();
         List<agrupacion> agrupacionList = agrupacionRepository.findAll();
         for (agrupacion agrupacion: agrupacionList){
             if (tipoAgrupacionConjuntoRepository.findById(agrupacion.getIdtipoagrupacionconjunto()).get().getIdConjunto().equals(idconjunto)){
@@ -311,7 +311,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
-        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=null;
+        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=new ArrayList<>();
         List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
         for (tipoInmuebleConjunto tipoInmuebleConjunto:tipoInmuebleConjuntoList){
             if (tipoInmuebleConjunto.getIdConjunto().equals(idconjunto)){
@@ -323,7 +323,7 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<tipoAgrupacionConjunto> getTipoAgrupacionConjuntoByIdConjunto(int idconjunto) {
-        List<tipoAgrupacionConjunto> tipoAgrupacionConjuntos=null;
+        List<tipoAgrupacionConjunto> tipoAgrupacionConjuntos=new ArrayList<>();
         List<tipoAgrupacionConjunto> tipoAgrupacionConjuntoList=tipoAgrupacionConjuntoRepository.findAll();
         for (tipoAgrupacionConjunto tipoAgrupacionConjunto: tipoAgrupacionConjuntoList){
             if (tipoAgrupacionConjunto.getIdConjunto().equals(idconjunto)){
