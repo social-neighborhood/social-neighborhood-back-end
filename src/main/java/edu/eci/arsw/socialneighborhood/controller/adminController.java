@@ -218,7 +218,7 @@ public class adminController {
     public ResponseEntity<?> getAgrupacionById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(commonServices.getAgrupacionById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -229,7 +229,7 @@ public class adminController {
     public ResponseEntity<?> getTipoAgrupacionConjuntoById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(commonServices.getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -240,7 +240,7 @@ public class adminController {
     public ResponseEntity<?> getTipoInmuebleConjuntoById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(commonServices.getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -251,7 +251,7 @@ public class adminController {
     public ResponseEntity<?> getTipoAgrupacionById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(commonServices.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
@@ -262,7 +262,7 @@ public class adminController {
     public ResponseEntity<?> gettipoInmuebleById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(commonServices.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

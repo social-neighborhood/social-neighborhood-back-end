@@ -88,6 +88,17 @@ public class socialNeighborhoodController {
         }
     }
 
+    @RequestMapping(value = "/conjuntoById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getConjuntoById(@PathVariable("id") int id){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(neighborhoodServices.getConjuntoById(id), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/agrupacion",method = RequestMethod.GET)
     public ResponseEntity<?> getAgrupacion(){
         try {

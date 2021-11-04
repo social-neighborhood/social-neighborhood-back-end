@@ -197,4 +197,30 @@ public class cacheAdmin extends cache{
         }
     }
 
+    public agrupacion getAgrupacionById(int id) {
+        for (agrupacion agrupacion: agrupaciones){
+            if (agrupacion.getId().equals(id)){
+                return agrupacion;
+            }
+        }
+        return null;
+    }
+
+    public tipoAgrupacionConjunto getTipoAgrupacionConjuntoById(int id) {
+        for (tipoAgrupacionConjunto tipoAgrupacionConjunto: tipoAgrupacionesConjunto){
+            if (tipoAgrupacionConjunto.getId().equals(id)){
+                return tipoAgrupacionConjunto;
+            }
+        }
+        return null;
+    }
+
+    public tipoInmuebleConjunto getTipoInmuebleConjuntoById(int id) {
+        for (tipoInmuebleConjunto tipoInmuebleConjunto: tipoInmueblesConjuntos){
+            if (tipoInmuebleConjunto.getId().equals(id)){
+                return tipoInmuebleConjunto;
+            }
+        }
+        return null;
+    }
 }

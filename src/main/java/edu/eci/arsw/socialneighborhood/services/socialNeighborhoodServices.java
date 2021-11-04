@@ -62,4 +62,8 @@ public class socialNeighborhoodServices {
     public List<conjunto> getConjuntos() {
         return socialNeighborhood.getConjuntos();
     }
+
+    public conjunto getConjuntoById(int id) {
+        return socialNeighborhood.getConjuntoById(id);
+    }
 }
