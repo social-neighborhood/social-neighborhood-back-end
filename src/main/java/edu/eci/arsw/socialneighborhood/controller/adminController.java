@@ -82,8 +82,8 @@ public class adminController {
     }
 
 
-    @RequestMapping(value = "/UnidadDeVivinenda",method = RequestMethod.GET)
-    public ResponseEntity<?> getUnidadDeVivinenda(){
+    @RequestMapping(value = "/UnidadDeVivienda",method = RequestMethod.GET)
+    public ResponseEntity<?> getUnidadDeVivienda(){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(cache.getUnidadesDeVivienda(), HttpStatus.ACCEPTED);
@@ -93,8 +93,8 @@ public class adminController {
         }
     }
 
-    @RequestMapping(value = "/UnidadDeVivinendaById/{id}",method = RequestMethod.GET)
-    public ResponseEntity<?> getUnidadDeVivinendaById(@PathVariable("id") int id){
+    @RequestMapping(value = "/UnidadDeViviendaById/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getUnidadDeViviendaById(@PathVariable("id") int id){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(cache.getUnidadesDeViviendaById(id), HttpStatus.ACCEPTED);
@@ -280,9 +280,9 @@ public class adminController {
         }
     }
 
-    @RequestMapping(value = "/newUnidadDeVivinenda",method = RequestMethod.POST)
+    @RequestMapping(value = "/newUnidadDeVivienda",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postUnidadDeVivinenda(@RequestBody unidadDeVivienda unidadDeVivienda){
+    public ResponseEntity<?> postUnidadDeVivienda(@RequestBody unidadDeVivienda unidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.postUnidadesDeVivienda(unidadDeVivienda), HttpStatus.OK);
@@ -369,9 +369,9 @@ public class adminController {
         }
     }
 
-    @RequestMapping(value = "/updateUnidadDeVivinenda",method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateUnidadDeVivienda",method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putUnidadDeVivinenda(@RequestBody unidadDeVivienda unidadDeVivienda){
+    public ResponseEntity<?> putUnidadDeVivienda(@RequestBody unidadDeVivienda unidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.putUnidadesDeVivienda(unidadDeVivienda), HttpStatus.ACCEPTED);
