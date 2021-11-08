@@ -26,6 +26,7 @@ public class adminController {
     @Resource(name ="commonServices")
     commonServices commonServices;
 
+    @Resource(name = "cacheAdmin")
     cacheAdmin cache;
 
     public cache getCache() {
@@ -430,7 +431,7 @@ public class adminController {
     public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
-            cache=adminServices.autorizadoAdmin(idconjunto,idusuario,idConjuntoAdministrador);
+            cache=new cacheAdmin(idconjunto,idusuario,idConjuntoAdministrador,commonServices,adminServices);
             return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);

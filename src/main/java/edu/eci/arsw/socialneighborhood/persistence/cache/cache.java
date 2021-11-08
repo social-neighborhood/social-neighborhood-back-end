@@ -25,10 +25,10 @@ public abstract class cache {
 
     public cache(){}
 
-    public cache(int idconjunto, int idusuario){
+    public cache(int idconjunto, int idusuario,commonServices commonServices){
+        this.commonServices=commonServices;
         this.idconjunto=idconjunto;
         this.idusuario=idusuario;
-        System.out.println(idconjunto);
         this.conjunto = commonServices.getConjuntoById(idconjunto);
     }
 

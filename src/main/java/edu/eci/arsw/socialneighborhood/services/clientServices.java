@@ -52,9 +52,4 @@ public class clientServices {
         return socialNeighborhood.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
     }
 
-    public cacheClient autorizadoClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
-        cacheClient cache = new cacheClient(idconjunto, idusuario, idUnidadDeVivienda);
-        return cache;
-    }
-
 }

@@ -3,6 +3,7 @@ package edu.eci.arsw.socialneighborhood.persistence.cache;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.adminServices;
+import edu.eci.arsw.socialneighborhood.services.commonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+@Component("cacheAdmin")
 public class cacheAdmin extends cache{
 
 
@@ -36,8 +38,9 @@ public class cacheAdmin extends cache{
 
     public cacheAdmin(){super();}
 
-    public cacheAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
-        super(idconjunto,idusuario);
+    public cacheAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador, commonServices commonServices,adminServices adminServices) {
+        super(idconjunto,idusuario,commonServices);
+        this.adminServices=adminServices;
         this.idConjuntoAdministrador=idConjuntoAdministrador;
         this.conjuntoAdministrador = adminServices.getCojuntoAdministradorByID(idConjuntoAdministrador);
         actualizaCacheAdmin();

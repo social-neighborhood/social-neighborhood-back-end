@@ -137,9 +137,5 @@ public class adminServices {
         return socialNeighborhood.putzonaComunConjunto(zonaComunConjunto);
     }
 
-    public cacheAdmin autorizadoAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) {
-        cacheAdmin cache = new cacheAdmin(idconjunto,idusuario,idConjuntoAdministrador);
-        return cache;
-    }
 
 }

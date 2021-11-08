@@ -3,6 +3,7 @@ package edu.eci.arsw.socialneighborhood.persistence.cache;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.adminServices;
 import edu.eci.arsw.socialneighborhood.services.clientServices;
+import edu.eci.arsw.socialneighborhood.services.commonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -31,8 +32,9 @@ public class cacheClient extends cache{
 
     public cacheClient(){super();}
 
-    public cacheClient(int idconjunto, int idusuario, int idUnidadDeVivienda) {
-        super(idconjunto,idusuario);
+    public cacheClient(int idconjunto, int idusuario, int idUnidadDeVivienda, commonServices commonServices,clientServices clientServices) {
+        super(idconjunto,idusuario,commonServices);
+        this.clientServices=clientServices;
         this.idUnidadDeVivienda=idUnidadDeVivienda;
         this.conjuntoUsuario = clientServices.getConjuntoUsuarioByConjuntoUsuario(idconjunto,idusuario);
         this.unidadDeVivienda = clientServices.getUnidadDeViviendaByID(idUnidadDeVivienda);

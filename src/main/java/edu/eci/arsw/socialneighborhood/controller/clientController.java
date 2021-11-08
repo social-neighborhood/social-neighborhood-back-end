@@ -166,7 +166,7 @@ public class clientController {
     public ResponseEntity<?> autorizadoClient(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
-            cache=clientServices.autorizadoClient(idconjunto,idusuario,idUnidadDeVivienda);
+            cache=new cacheClient(idconjunto,idusuario,idUnidadDeVivienda,commonServices,clientServices);
             return new ResponseEntity<>(cache, HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
