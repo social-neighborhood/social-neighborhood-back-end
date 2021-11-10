@@ -89,8 +89,8 @@ public class adminServices {
         return socialNeighborhood.getTipoAgrupacionConjuntoByIdConjunto(idconjunto);
     }
 
-    public List<alquiler> getAlquileres() {
-        return socialNeighborhood.getAlquileres();
+    public List<alquiler> getAlquileres(List<zonaComunConjunto> zonascomunes) {
+        return socialNeighborhood.getAlquileres(zonascomunes);
     }
 
     public Object postConjuntoUsuarios(conjuntoUsuario conjuntoUsuario) {

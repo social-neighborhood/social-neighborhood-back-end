@@ -311,13 +311,13 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
-        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=new ArrayList<>();
-        List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
+        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=tipoInmuebleConjuntoRepository.findByIdConjunto();
+        /**List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
         for (tipoInmuebleConjunto tipoInmuebleConjunto:tipoInmuebleConjuntoList){
             if (tipoInmuebleConjunto.getIdConjunto().equals(idconjunto)){
                 tipoInmuebleConjuntos.add(tipoInmuebleConjunto);
             }
-        }
+        }*/
         return tipoInmuebleConjuntos;
     }
 
@@ -334,12 +334,17 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     }
 
     @Override
-    public List<alquiler> getAlquileres() {
-        List<alquiler> alquilers = alquilerRepository.findAll();
-        Date date = new Date(alquilers.get(0).getHoradeinicio().getTime()-18000000);
+    public List<alquiler> getAlquileres(List<zonaComunConjunto> zonascomunes) {
+        List<alquiler> alquileres = new ArrayList<>();
+        List<alquiler> alquilerList = alquilerRepository.findAll();
+        for (alquiler alquiler:alquilerList){
+            for (zonaComunConjunto zonaComunConjunto:zonascomunes){
+                if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
 
-        System.out.println(alquilers.get(0).getFechadealquiler()+"     "+date);
-        return alquilerRepository.findAll();
+                }
+            }
+        }
+        return alquileres;
     }
 
     @Override

@@ -206,7 +206,7 @@ public class adminController {
     public ResponseEntity<?> getAlquileres(){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(adminServices.getAlquileres(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getAlquileres(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(adminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

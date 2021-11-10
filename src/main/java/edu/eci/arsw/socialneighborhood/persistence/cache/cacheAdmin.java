@@ -10,7 +10,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Component("cacheAdmin")
@@ -38,12 +41,16 @@ public class cacheAdmin extends cache{
 
     public cacheAdmin(){super();}
 
-    public cacheAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador, commonServices commonServices,adminServices adminServices) {
+    public cacheAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador, commonServices commonServices,adminServices adminServices) throws ParseException {
         super(idconjunto,idusuario,commonServices);
         this.adminServices=adminServices;
         this.idConjuntoAdministrador=idConjuntoAdministrador;
         this.conjuntoAdministrador = adminServices.getCojuntoAdministradorByID(idConjuntoAdministrador);
         actualizaCacheAdmin();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:31:000")));
+        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:32:000")));
+        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:33:000")));
     }
 
     public Object actualizaCacheAdmin(){
@@ -58,7 +65,7 @@ public class cacheAdmin extends cache{
         this.tipoAgrupacionesConjunto = adminServices.getTipoAgrupacionConjuntoByIdConjunto(idconjunto);
         this.tipoAgrupaciones=adminServices.getTipoAgrupacion();
         this.tipoInmuebles=adminServices.getTipoInmueble();
-        //this.alquileres=adminServices.getAlquileres(zonasComunesConjunto);
+        this.alquileres=adminServices.getAlquileres(zonasComunesConjunto);
         super.actualizarCache();
         return null;
     }

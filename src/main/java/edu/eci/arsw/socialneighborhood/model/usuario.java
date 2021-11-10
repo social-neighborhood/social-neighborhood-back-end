@@ -8,25 +8,25 @@ import java.util.Date;
 public class usuario {
     @Id
     @Column(name = "id")
-    public Integer id ;
+    private Integer id ;
     @Column(name = "tdoc")
-    public String tdoc ;
+    private String tdoc ;
     @Column(name = "ndoc")
-    public Integer ndoc ;
+    private Integer ndoc ;
     @Column(name = "nombres")
-    public String nombres ;
+    private String nombres ;
     @Column(name = "apellidos")
-    public String apellidos ;
+    private String apellidos ;
     @Column(name = "fechadenacimiento")
-    protected Date fechaDeNacimiento ;
+    private Date fechaDeNacimiento;
     @Column(name = "email")
-    public String email ;
+    private String email ;
     @Column(name = "contraseña")
-    public String password ;
+    private String password ;
     @Column(name = "tipousuario")
-    public String tipousuario;
+    private String tipousuario;
     @Column(name = "nombrefoto")
-    public String nombrefoto;
+    private String nombrefoto;
 
     public usuario(){
 

@@ -4,9 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Table(name = "alquiler")
@@ -21,37 +18,39 @@ public class alquiler {
     @Column(name = "idunidaddeviviendausuario")
     private Integer idunidaddeviviendausuario;
 
-    @Column(name = "fechainiciodealquiler")
-    private Date fechadealquiler;
+    @Column(name = "iniciodealquiler")
+    private String iniciodealquiler;
 
-    @Column(name = "horadeinicio")
-    private Timestamp horadeinicio;
+    @Column(name = "findealquiler")
+    private String findealquiler;
 
-    @Column(name = "horadefin")
-    private Timestamp horadefin;
+    @Column(name = "costo")
+    private int costo;
 
-    @Column(name = "fechafinalquiler")
-    private Date fechafinalquiler;
+    @Column(name = "pagado")
+    private boolean pagado;
 
     public alquiler(){
 
     }
 
-    public alquiler(Integer idzonacomun, Integer idunidaddeviviendausuario, Date fechadealquiler, Timestamp horadeinicio, Timestamp horadefin) {
+    public alquiler(Integer idzonacomun, Integer idunidaddeviviendausuario, String iniciodealquiler, String findealquiler, int costo, boolean pagado) {
         this.idzonacomun = idzonacomun;
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
-        this.fechadealquiler = fechadealquiler;
-        this.horadeinicio = horadeinicio;
-        this.horadefin = horadefin;
+        this.iniciodealquiler = iniciodealquiler;
+        this.findealquiler = findealquiler;
+        this.costo=costo;
+        this.pagado=pagado;
     }
 
-    public alquiler(Integer id, Integer idzonacomun, Integer idunidaddeviviendausuario, Date fechadealquiler, Timestamp horadeinicio, Timestamp horadefin) {
+    public alquiler(Integer id, Integer idzonacomun, Integer idunidaddeviviendausuario, String iniciodealquiler, String findealquiler, int costo, boolean pagado) {
         this.id = id;
         this.idzonacomun = idzonacomun;
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
-        this.fechadealquiler = fechadealquiler;
-        this.horadeinicio = horadeinicio;
-        this.horadefin = horadefin;
+        this.iniciodealquiler = iniciodealquiler;
+        this.findealquiler = findealquiler;
+        this.costo=costo;
+        this.pagado=pagado;
     }
 
     public Integer getId() {
@@ -78,27 +77,35 @@ public class alquiler {
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
     }
 
-    public Date getFechadealquiler() {
-        return fechadealquiler;
+    public String getIniciodealquiler() {
+        return iniciodealquiler;
     }
 
-    public void setFechadealquiler(Date fechadealquiler) {
-        this.fechadealquiler = fechadealquiler;
+    public void setIniciodealquiler(String iniciodealquiler) {
+        this.iniciodealquiler = iniciodealquiler;
     }
 
-    public Timestamp getHoradeinicio() {
-        return horadeinicio;
+    public String getFindealquiler() {
+        return findealquiler;
     }
 
-    public void setHoradeinicio(Timestamp horadeinicio) {
-        this.horadeinicio = horadeinicio;
+    public void setFindealquiler(String findealquiler) {
+        this.findealquiler = findealquiler;
     }
 
-    public Timestamp getHoradefin() {
-        return horadefin;
+    public int getCosto() {
+        return costo;
     }
 
-    public void setHoradefin(Timestamp horadefin) {
-        this.horadefin = horadefin;
+    public void setCosto(int costo) {
+        this.costo = costo;
+    }
+
+    public boolean isPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
     }
 }

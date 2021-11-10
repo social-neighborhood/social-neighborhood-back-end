@@ -94,7 +94,7 @@ public interface socialNeighborhood {
 
     List<conjunto> getConjuntos();
 
-    List<alquiler> getAlquileres();
+    List<alquiler> getAlquileres(List<zonaComunConjunto> zonascomunes);
 
     tipoAgrupacionConjunto getTipoAgrupacionConjuntoById(int id);
 
