@@ -311,14 +311,15 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
-        List<tipoInmuebleConjunto> tipoInmuebleConjuntos=tipoInmuebleConjuntoRepository.findByIdConjunto();
+        //List<tipoInmuebleConjunto> tipoInmuebleConjuntos=tipoInmuebleConjuntoRepository.findByIdConjunto();
         /**List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
         for (tipoInmuebleConjunto tipoInmuebleConjunto:tipoInmuebleConjuntoList){
             if (tipoInmuebleConjunto.getIdConjunto().equals(idconjunto)){
                 tipoInmuebleConjuntos.add(tipoInmuebleConjunto);
             }
         }*/
-        return tipoInmuebleConjuntos;
+        //return tipoInmuebleConjuntos;
+        return null;
     }
 
     @Override
@@ -337,13 +338,13 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     public List<alquiler> getAlquileres(List<zonaComunConjunto> zonascomunes) {
         List<alquiler> alquileres = new ArrayList<>();
         List<alquiler> alquilerList = alquilerRepository.findAll();
-        for (alquiler alquiler:alquilerList){
-            for (zonaComunConjunto zonaComunConjunto:zonascomunes){
-                if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
-
-                }
-            }
-        }
+        //for (alquiler alquiler:alquilerList){
+        //    for (zonaComunConjunto zonaComunConjunto:zonascomunes){
+         //       if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
+//
+         //       }
+        //    }
+      //  }
         return alquileres;
     }
 

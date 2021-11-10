@@ -18,7 +18,7 @@ public class usuario {
     @Column(name = "apellidos")
     private String apellidos ;
     @Column(name = "fechadenacimiento")
-    private Date fechaDeNacimiento;
+    private String fechaDeNacimiento;
     @Column(name = "email")
     private String email ;
     @Column(name = "contraseña")
@@ -31,7 +31,7 @@ public class usuario {
     public usuario(){
 
     }
-    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
+    public usuario(String tdoc, Integer ndoc, String nombres, String apellidos, String fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
         this.tdoc = tdoc;
         this.ndoc = ndoc;
         this.nombres = nombres;
@@ -42,7 +42,7 @@ public class usuario {
         this.tipousuario=tipousuario;
     }
 
-    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, Date fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
+    public usuario(Integer id, String tdoc, Integer ndoc, String nombres, String apellidos, String fechaDeNacimiento, String email, String password, String tipousuario, String nombrefoto) {
         this.id = id;
         this.tdoc = tdoc;
         this.ndoc = ndoc;
@@ -94,11 +94,11 @@ public class usuario {
         this.apellidos = apellidos;
     }
 
-    public Date getFechaDeNacimiento() {
+    public String getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+    public void setFechaDeNacimiento(String fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
