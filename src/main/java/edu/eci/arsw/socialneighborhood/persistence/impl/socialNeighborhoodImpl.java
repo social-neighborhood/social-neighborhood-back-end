@@ -337,14 +337,14 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Override
     public List<alquiler> getAlquileres(List<zonaComunConjunto> zonascomunes) {
         List<alquiler> alquileres = new ArrayList<>();
-        List<alquiler> alquilerList = alquilerRepository.findAll();
-        for (alquiler alquiler:alquilerList){
-            for (zonaComunConjunto zonaComunConjunto:zonascomunes){
-                if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
-
-                }
-            }
-        }
+        //List<alquiler> alquilerList = alquilerRepository.findAll();
+        //for (alquiler alquiler:alquilerList){
+        //    for (zonaComunConjunto zonaComunConjunto:zonascomunes){
+        //        if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
+//
+        //        }
+        //    }
+       // }
         return alquileres;
     }
 
