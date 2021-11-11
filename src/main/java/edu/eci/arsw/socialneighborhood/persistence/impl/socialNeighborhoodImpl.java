@@ -98,18 +98,8 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public conjuntoAdministrador getConjuntosByEmaill(String email) {
-        List<usuario> usuarios = usuarioRepository.findAll();
-        List<conjuntoAdministrador> conjuntoAdministradores = conjuntoAdministradorRepository.findAll();
-        for (usuario usuario: usuarios){
-            if (usuario.getEmail().equals(email)){
-                for (conjuntoAdministrador conjuntoAdministrador: conjuntoAdministradores){
-                    if(conjuntoAdministrador.getIdusuarioadministrador()==usuario.getId()){
-                        return conjuntoAdministrador;
-                    }
-                }
-            }
-        }
-        return  null;
+        usuario admin = usuarioRepository.findByEmail(email);
+        return  conjuntoAdministradorRepository.findByIdAdmin(admin.getId());
     }
 
     @Override
