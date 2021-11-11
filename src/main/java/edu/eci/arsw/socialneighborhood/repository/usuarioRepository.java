@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface usuarioRepository extends JpaRepository<usuario,Integer> {
 
-    @Query(nativeQuery = true, value = "SELECT id FROM usuario  WHERE email = :email ")
+    @Query(nativeQuery = true, value = "SELECT u.id FROM usuario u WHERE email = :email ")
     public usuario findByEmail(@Param("email") String email);
 
 }
