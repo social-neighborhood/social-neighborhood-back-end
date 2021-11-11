@@ -3,6 +3,8 @@ package edu.eci.arsw.socialneighborhood.services;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -49,7 +51,7 @@ public class adminServices {
         return socialNeighborhood.userByEmail(email);
     }
 
-    public List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email){
+    public JSONArray getUnidadDeVivinendaByEmail(String email){
         return socialNeighborhood.getUnidadDeVivinendaByEmail(email);
     }
 

@@ -3,6 +3,7 @@ package edu.eci.arsw.socialneighborhood.controller;
 import edu.eci.arsw.socialneighborhood.model.usuario;
 import edu.eci.arsw.socialneighborhood.services.commonServices;
 import edu.eci.arsw.socialneighborhood.services.socialNeighborhoodServices;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -51,7 +52,7 @@ public class socialNeighborhoodController {
     public ResponseEntity<?> getUnidadesDeViviendaByEmail(@PathVariable("email") String email){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(neighborhoodServices.getUnidadesDeViviendaByEmail(email), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(neighborhoodServices.getUnidadesDeViviendaByEmail(email).toString(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(socialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

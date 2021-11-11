@@ -5,6 +5,8 @@ import edu.eci.arsw.socialneighborhood.persistence.cache.cacheAdmin;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.cache.cacheClient;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class socialNeighborhoodServices {
     @Qualifier("socialNeighborhoodImpl")
     socialNeighborhoodImpl socialNeighborhood;
 
-    public List<unidadDeVivienda> getUnidadesDeViviendaByEmail(String email){
+    public JSONArray getUnidadesDeViviendaByEmail(String email){
         return socialNeighborhood.getUnidadDeVivinendaByEmail(email);
     }
 

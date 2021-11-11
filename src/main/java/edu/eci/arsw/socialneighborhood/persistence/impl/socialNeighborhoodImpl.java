@@ -2,6 +2,8 @@ package edu.eci.arsw.socialneighborhood.persistence.impl;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.socialNeighborhood;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -114,37 +116,40 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
 
     @Override
     public List<agrupacion> getAgrupacion() {
-        System.out.println(Math.toIntExact(usuarioRepository.count()));
         return agrupacionRepository.findAll();
     }
 
     @Override
-    public List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email) {
-        List<usuario> usuarios = usuarioRepository.findAll();
-        List<conjuntoUsuario> conjuntoUsuarios = conjuntoUsuarioRepository.findAll();
-        List<unidadDeVivienda> unidadDeViviendas = new ArrayList<unidadDeVivienda>();
-        List<unidadDeVivienda> unidadDeViviendaList = unidadDeViviendaRepository.findAll();
-        List<unidadDeViviendaUsuario> unidadDeViviendaUsuarios = unidadDeViviendaUsuarioRepository.findAll();
-        for (usuario usuario1:usuarios){
-            if(usuario1.getEmail().equals(email)){
-                for (conjuntoUsuario conjuntoUsuario: conjuntoUsuarios){
-                    if (conjuntoUsuario.getIdUsuario().equals(usuario1.getId())){
-                        for (unidadDeViviendaUsuario unidadDeViviendaUsuario:unidadDeViviendaUsuarios){
-                            if (conjuntoUsuario.getId().equals(unidadDeViviendaUsuario.getIdConjuntoUsuario())){
-                                for (unidadDeVivienda unidadDeVivienda: unidadDeViviendaList){
-                                    if (unidadDeVivienda.getId().equals(unidadDeViviendaUsuario.getIdUnidadDeVivienda())){
-                                        unidadDeViviendas.add(unidadDeVivienda);
-                                    }
-                                }
-                            }
-                        }
-                    }
+    public JSONArray getUnidadDeVivinendaByEmail(String email) {
+        unidadDeVivienda unidadDeVivienda = new unidadDeVivienda();
+        List<unidadDeViviendaUsuario> unidadDeViviendaUsuario = new ArrayList<>();
+        usuario usuario = usuarioRepository.findByEmail(email);
+        List<conjuntoUsuario> conjuntoUsuario = conjuntoUsuarioRepository.findByIdUsuario(usuario.getId());
+        JSONArray json = new JSONArray();
+        JSONObject jsonObject;
+        String numagrupacion= null;
+        String nombreagrupacion=null;
+        for (conjuntoUsuario conjuntoUsuario1: conjuntoUsuario) {
+            unidadDeViviendaUsuario= unidadDeViviendaUsuarioRepository.findByIdConjuntoUsuario(conjuntoUsuario1.getId());
+            for (unidadDeViviendaUsuario unidadDeViviendaUsuario1 : unidadDeViviendaUsuario) {
+                unidadDeVivienda = unidadDeViviendaRepository.findByIDUnidadDeViviendaUsuario(unidadDeViviendaUsuario1.getIdUnidadDeVivienda());
+                if (unidadDeVivienda.getIdAgrupacion()!=null){
+                    numagrupacion=agrupacionRepository.findById(unidadDeVivienda.getIdAgrupacion()).get().getNumero();
+                    nombreagrupacion=tipoAgrupacionRepository.findById(tipoAgrupacionConjuntoRepository.findById(agrupacionRepository.findById(unidadDeVivienda.getIdAgrupacion()).get().getIdtipoagrupacionconjunto()).get().getIdTipoAgrupacion()).get().getNombre();
                 }
-                return unidadDeViviendas;
+                jsonObject=new JSONObject("{\"nombreconjunto\": \""+ conjuntoRepository.findById(conjuntoUsuario1.getIdConjunto()).get().getNombre() +"\"," +
+                        "\"tipoagrupacion\": \"" + nombreagrupacion + "\"," +
+                        "\"numagrupacion\": \"" + numagrupacion + "\"," +
+                        "\"tipoinmueble\": \"" + tipoInmuebleRepository.findById(tipoInmuebleConjuntoRepository.findById(unidadDeVivienda.getIdTipoInmuebleConjunto()).get().getIdTipoInmueble()).get().getNombre() + "\"," +
+                        "\"numinmueble\": \"" + unidadDeVivienda.getNumInmueble() + "\"," +
+                        "\"idconjunto\": \"" + conjuntoRepository.findById(conjuntoUsuario1.getIdConjunto()).get().getId() + "\"," +
+                        "\"idunidaddevivienda\": \"" + unidadDeVivienda.getId() + "\"}");
+                json.put(jsonObject.toMap());
+                numagrupacion= null;
+                nombreagrupacion=null;
             }
         }
-
-        return null;
+        return json;
     }
 
     @Override
@@ -302,13 +307,6 @@ public class socialNeighborhoodImpl implements socialNeighborhood {
     @Override
     public List<tipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
         List<tipoInmuebleConjunto> tipoInmuebleConjuntos=tipoInmuebleConjuntoRepository.findByIdConjunto(idconjunto);
-        System.out.println(tipoInmuebleConjuntos);
-        /**List<tipoInmuebleConjunto> tipoInmuebleConjuntoList=tipoInmuebleConjuntoRepository.findAll();
-        for (tipoInmuebleConjunto tipoInmuebleConjunto:tipoInmuebleConjuntoList){
-            if (tipoInmuebleConjunto.getIdConjunto().equals(idconjunto)){
-                tipoInmuebleConjuntos.add(tipoInmuebleConjunto);
-            }
-        }*/
         return tipoInmuebleConjuntos;
     }
 

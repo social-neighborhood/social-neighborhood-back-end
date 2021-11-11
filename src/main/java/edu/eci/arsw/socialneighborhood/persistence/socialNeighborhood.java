@@ -2,6 +2,8 @@ package edu.eci.arsw.socialneighborhood.persistence;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.impl.socialNeighborhoodImpl;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -22,7 +24,7 @@ public interface socialNeighborhood {
 
     Object userByEmail(String email);
 
-    List<unidadDeVivienda> getUnidadDeVivinendaByEmail(String email);
+    JSONArray getUnidadDeVivinendaByEmail(String email);
 
     conjunto getConjuntoById(int id);
 
