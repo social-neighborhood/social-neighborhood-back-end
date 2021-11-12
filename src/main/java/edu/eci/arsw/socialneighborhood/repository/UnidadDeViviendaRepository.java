@@ -11,4 +11,5 @@ public interface UnidadDeViviendaRepository extends JpaRepository<UnidadDeVivien
 
     @Query(nativeQuery = true, value = "SELECT * FROM unidaddevivienda WHERE id = :id ")
     UnidadDeVivienda findByIDUnidadDeViviendaUsuario(@Param("id") int id);
+
 }

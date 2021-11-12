@@ -100,7 +100,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     @Override
     public ConjuntoAdministrador getConjuntosByEmaill(String email) {
         Usuario admin = usuarioRepository.findByEmail(email);
-        return  conjuntoAdministradorRepository.findByIdAdmin(admin.getId());
+        return conjuntoAdministradorRepository.findByIdAdmin(admin.getId());
     }
 
     @Override
@@ -163,13 +163,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public ConjuntoUsuario getConjuntoUsuarioByConjuntoUsuario(int idconjunto, int idusuario) {
-        List<ConjuntoUsuario> conjuntoUsuarioList=conjuntoUsuarioRepository.findAll();
-        for (ConjuntoUsuario conjuntoUsuario:conjuntoUsuarioList){
-            if(conjuntoUsuario.getIdConjunto().equals(idconjunto) && conjuntoUsuario.getIdUsuario().equals(idusuario)){
-                return conjuntoUsuario;
-            }
-        }
-        return null;
+        return conjuntoUsuarioRepository.findConjuntoUsuarioByConjuntoUsuario(idconjunto,idusuario);
     }
 
     @Override
@@ -179,13 +173,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public UnidadDeViviendaUsuario getUnidadDeVivendaUsuarioByID(int idUnidadDeVivienda, int idConjuntoUsuario) {
-        List<UnidadDeViviendaUsuario> UnidadDeViviendaUsuarios =unidadDeViviendaUsuarioRepository.findAll();
-        for (UnidadDeViviendaUsuario unidadDeViviendaUsuario: UnidadDeViviendaUsuarios){
-            if(unidadDeViviendaUsuario.getIdConjuntoUsuario().equals(idConjuntoUsuario) && unidadDeViviendaUsuario.getIdUnidadDeVivienda().equals(idUnidadDeVivienda)){
-                return unidadDeViviendaUsuario;
-            }
-        }
-        return null;
+        return unidadDeViviendaUsuarioRepository.findUnidadDeVivendaUsuarioById(idUnidadDeVivienda,idConjuntoUsuario);
     }
 
     @Override
@@ -215,14 +203,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public List<ZonaComunConjunto> getZonasComunesConjuntoByIdConjunto(int idconjunto) {
-        List<ZonaComunConjunto> zonasComunesConjunto=new ArrayList<>();
-        List<ZonaComunConjunto> zonaComunConjuntoList=zonaComunConjuntoRepository.findAll();
-        for(ZonaComunConjunto zonaComunConjunto:zonaComunConjuntoList){
-            if (zonaComunConjunto.getIdConjunto().equals(idconjunto)){
-                zonasComunesConjunto.add(zonaComunConjunto);
-            }
-        }
-        return zonasComunesConjunto;
+        return zonaComunConjuntoRepository.findZonasComunesConjuntoByIdConjunto(idconjunto);
     }
 
     @Override
@@ -246,14 +227,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public List<ConjuntoUsuario> getConjuntoUsuarioByIDConjunto(int idconjunto) {
-        List<ConjuntoUsuario> ConjuntoUsuarios =new ArrayList<>();
-        List<ConjuntoUsuario> conjuntoUsuarioList=conjuntoUsuarioRepository.findAll();
-        for(ConjuntoUsuario conjuntoUsuario: conjuntoUsuarioList){
-            if(conjuntoUsuario.getIdConjunto().equals(idconjunto)){
-                ConjuntoUsuarios.add(conjuntoUsuario);
-            }
-        }
-        return ConjuntoUsuarios;
+        return conjuntoUsuarioRepository.ConjuntoUsuarioByIDConjunto(idconjunto);
     }
 
     @Override
@@ -267,6 +241,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public List<UnidadDeViviendaUsuario> getUnidadesDeViviendaUsuariosByConjuntoUsuarios(List<ConjuntoUsuario> ConjuntoUsuarios) {
+
         List<UnidadDeViviendaUsuario> unidadesDeViviendaUsuarios=new ArrayList<>();
         List<UnidadDeViviendaUsuario> unidadDeViviendaUsuarioList=unidadDeViviendaUsuarioRepository.findAll();
         for (UnidadDeViviendaUsuario unidadDeViviendaUsuario:unidadDeViviendaUsuarioList){
@@ -305,45 +280,31 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     @Override
     public List<TipoInmuebleConjunto> getTipoInmuebleConjuntoByIdConjunto(int idconjunto) {
-        List<TipoInmuebleConjunto> TipoInmuebleConjuntos =tipoInmuebleConjuntoRepository.findByIdConjunto(idconjunto);
-        return TipoInmuebleConjuntos;
+        return tipoInmuebleConjuntoRepository.findByIdConjunto(idconjunto);
     }
 
     @Override
     public List<TipoAgrupacionConjunto> getTipoAgrupacionConjuntoByIdConjunto(int idconjunto) {
-        List<TipoAgrupacionConjunto> TipoAgrupacionConjuntos =new ArrayList<>();
-        List<TipoAgrupacionConjunto> tipoAgrupacionConjuntoList=tipoAgrupacionConjuntoRepository.findAll();
-        for (TipoAgrupacionConjunto tipoAgrupacionConjunto: tipoAgrupacionConjuntoList){
-            if (tipoAgrupacionConjunto.getIdConjunto().equals(idconjunto)){
-                TipoAgrupacionConjuntos.add(tipoAgrupacionConjunto);
-            }
-        }
-        return TipoAgrupacionConjuntos;
+        return tipoAgrupacionConjuntoRepository.findTipoAgrupacionConjuntoByIdConjunto(idconjunto);
     }
 
     @Override
     public List<Alquiler> getAlquileres(List<ZonaComunConjunto> zonascomunes) {
         List<Alquiler> alquileres = new ArrayList<>();
-        //List<alquiler> alquilerList = alquilerRepository.findAll();
-        //for (alquiler alquiler:alquilerList){
-        //    for (zonaComunConjunto zonaComunConjunto:zonascomunes){
-        //        if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
-//
-        //        }
-        //    }
-       // }
+        List<Alquiler> alquilerList = alquilerRepository.findAll();
+        for (Alquiler alquiler:alquilerList){
+            for (ZonaComunConjunto zonaComunConjunto:zonascomunes){
+                if (alquiler.getIdzonacomun().equals(zonaComunConjunto.getId())){
+                    alquileres.add(alquiler);
+                }
+            }
+        }
         return alquileres;
     }
 
     @Override
     public Usuario userByEmail(String email) {
-        List<Usuario> Usuarios = usuarioRepository.findAll();
-        for (Usuario usuario: Usuarios){
-            if(usuario.getEmail().equals(email)){
-                return usuarioRepository.findById(usuario.getId()).get();
-            }
-        }
-        return null;
+        return usuarioRepository.findByEmail(email);
     }
 
     @Override

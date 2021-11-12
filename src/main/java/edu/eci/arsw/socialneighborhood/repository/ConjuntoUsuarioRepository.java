@@ -13,4 +13,10 @@ public interface ConjuntoUsuarioRepository extends JpaRepository<ConjuntoUsuario
 
     @Query(nativeQuery = true, value = "SELECT * FROM conjuntousuario WHERE idusuario = :id ")
     List<ConjuntoUsuario> findByIdUsuario(@Param("id") int id);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM conjuntousuario WHERE idusuario = :idusuario and  idconjunto = :idconjunto")
+    ConjuntoUsuario findConjuntoUsuarioByConjuntoUsuario(@Param("idconjunto") int idconjunto, @Param("idusuario") int idusuario);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM conjuntousuario WHERE idconjunto = :idconjunto")
+    List<ConjuntoUsuario> ConjuntoUsuarioByIDConjunto(@Param("idconjunto") int idconjunto);
 }

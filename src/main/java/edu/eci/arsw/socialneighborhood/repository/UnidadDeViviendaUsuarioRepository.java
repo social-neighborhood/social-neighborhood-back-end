@@ -13,4 +13,7 @@ public interface UnidadDeViviendaUsuarioRepository extends JpaRepository<UnidadD
 
     @Query(nativeQuery = true, value = "SELECT * FROM unidaddeviviendausuario WHERE idconjuntousuario = :id ")
     List<UnidadDeViviendaUsuario> findByIdConjuntoUsuario(@Param("id") int id);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM unidaddeviviendausuario WHERE idconjuntousuario = :idConjuntoUsuario and idunidaddevivienda = :idUnidadDeVivienda ")
+    UnidadDeViviendaUsuario findUnidadDeVivendaUsuarioById(@Param("idUnidadDeVivienda") int idUnidadDeVivienda, @Param("idConjuntoUsuario") int idConjuntoUsuario);
 }
