@@ -408,12 +408,12 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
+    @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
     public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
             cache.loginAdmin(idconjunto, idusuario, idConjuntoAdministrador,commonServices,adminServices);
-            return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
