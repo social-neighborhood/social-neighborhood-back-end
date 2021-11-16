@@ -27,6 +27,7 @@ public class CacheItemClient extends CacheItem {
 
     public CacheItemClient(int idconjunto, int idusuario, int idUnidadDeVivienda, CommonServices commonServices, ClientServices clientServices) {
         super(idconjunto,idusuario,commonServices);
+        actualizaCacheClient();
         this.clientServices=clientServices;
         this.idUnidadDeVivienda=idUnidadDeVivienda;
         this.conjuntoUsuario = clientServices.getConjuntoUsuarioByConjuntoUsuario(idconjunto,idusuario);
@@ -37,7 +38,7 @@ public class CacheItemClient extends CacheItem {
         this.tipoInmuebleConjunto = clientServices.getTipoInmuebleConjuntoByID(unidadDeVivienda.getIdTipoInmuebleConjunto());
         this.tipoAgrupacion = clientServices.getTipoAgrupacionByID(tipoAgrupacionConjunto.getIdTipoAgrupacion());
         this.tipoInmueble = clientServices.getTipoinmuebleByID(tipoInmuebleConjunto.getIdTipoInmueble());
-        actualizaCacheClient();
+
     }
 
     public Object actualizaCacheClient(){

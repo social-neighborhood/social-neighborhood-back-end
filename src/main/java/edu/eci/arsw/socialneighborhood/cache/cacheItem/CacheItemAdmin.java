@@ -39,13 +39,13 @@ public class CacheItemAdmin extends CacheItem {
         this.idConjuntoAdministrador=idConjuntoAdministrador;
         this.conjuntoAdministrador = adminServices.getCojuntoAdministradorByID(idConjuntoAdministrador);
         actualizaCacheAdmin();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:31:000")));
-        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:32:000")));
-        System.out.println(formato.parse("2001/01/31 14:57:32:000").after(formato.parse("2001/01/31 14:57:33:000")));
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println(formato.parse("2021-10-31 14:30:00").getTime());
+        System.out.println(formato.parse("2021-10-31 15:00:00").getTime());
     }
 
     public Object actualizaCacheAdmin(){
+        super.actualizarCache();
         this.zonasComunes = adminServices.getZonasComunes();
         this.ConjuntoUsuarios = adminServices.getConjuntoUsuarioByIDConjunto(idconjunto);
         this.Usuarios =adminServices.getUsuariosByConjuntoUsuarios(ConjuntoUsuarios);
@@ -57,7 +57,7 @@ public class CacheItemAdmin extends CacheItem {
         this.tipoAgrupaciones=adminServices.getTipoAgrupacion();
         this.TipoInmuebles =adminServices.getTipoInmueble();
         this.alquileres=adminServices.getAlquileres(zonasComunesConjunto);
-        super.actualizarCache();
+
         return null;
     }
 
