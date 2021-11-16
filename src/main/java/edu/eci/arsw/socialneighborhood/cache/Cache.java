@@ -44,12 +44,18 @@ public class Cache {
     }
 
     public void loginClient(int idConjunto, int idUsuario, int idUnidadDeVivienda, CommonServices commonServices, ClientServices clientServices) throws ParseException{
-        System.out.println(concurrentCacheClient);
+        System.out.println("cache");
         concurrentCacheClient.put(new ClientKey(idConjunto,idUsuario, idUnidadDeVivienda).toString(),
                 new CacheItemClient(idConjunto,idUsuario,idUnidadDeVivienda,commonServices,clientServices));
+        System.out.println(concurrentCacheClient.size());
+        System.out.println(getClient(idConjunto, idUsuario, idUnidadDeVivienda));
     }
 
     public CacheItemClient getClient(int idConjunto, int idUsuario, int idUnidadDeVivienda){
-        return concurrentCacheClient.get(new AdminKey(idConjunto,idUsuario,idUnidadDeVivienda).toString());
+        System.out.println(concurrentCacheClient.size());
+        for (String key : concurrentCacheClient.keySet()) {
+            System.out.println(key + " = " + concurrentCacheClient.get(key).toString());
+        }
+        return concurrentCacheClient.get(new ClientKey(idConjunto,idUsuario,idUnidadDeVivienda).toString());
     }
 }

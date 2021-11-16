@@ -168,4 +168,15 @@ public class ClientController {
         return cache.getClient(idconjunto, idusuario, idUnidadDeVivienda);
     }
 
+    @RequestMapping(value = "/consulta/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.GET)
+    public ResponseEntity<?> consulta(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(cache.getClient(idconjunto, idusuario, idUnidadDeVivienda), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

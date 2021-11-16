@@ -28,7 +28,6 @@ public class CacheItemClient extends CacheItem {
     public CacheItemClient(int idconjunto, int idusuario, int idUnidadDeVivienda, CommonServices commonServices, ClientServices clientServices) {
         super(idconjunto,idusuario,commonServices);
         this.clientServices=clientServices;
-
         this.idUnidadDeVivienda=idUnidadDeVivienda;
         this.conjuntoUsuario = clientServices.getConjuntoUsuarioByConjuntoUsuario(idconjunto,idusuario);
         this.unidadDeVivienda = clientServices.getUnidadDeViviendaByID(idUnidadDeVivienda);
@@ -39,12 +38,13 @@ public class CacheItemClient extends CacheItem {
         this.tipoAgrupacion = clientServices.getTipoAgrupacionByID(tipoAgrupacionConjunto.getIdTipoAgrupacion());
         this.tipoInmueble = clientServices.getTipoinmuebleByID(tipoInmuebleConjunto.getIdTipoInmueble());
         actualizaCacheClient();
-
+        System.out.println("item");
     }
 
     public Object actualizaCacheClient(){
-        this.zonasComunes = clientServices.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
         super.actualizarCache();
+        this.zonasComunes = clientServices.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
+
         return null;
     }
 
