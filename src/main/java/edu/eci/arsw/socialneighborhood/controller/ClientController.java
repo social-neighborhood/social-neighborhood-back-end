@@ -37,6 +37,8 @@ public class ClientController {
 
     private SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
+    private SimpleDateFormat formatoH = new SimpleDateFormat("yyyy-MM-dd H:mm");
+
     private DateTimeFormatter lformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @RequestMapping(value = "/UnidadDeVivienda/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.GET)
@@ -149,6 +151,18 @@ public class ClientController {
         }
     }
 
+    @RequestMapping(value = "/HorasFinAlquiler/{fechainicio}/{horainicio}/{idZonaComun}",method = RequestMethod.GET)
+    public synchronized ResponseEntity<?> getHorasFinAlquiler(@PathVariable("fechainicio") String fechainicio, @PathVariable("horainicio") String horainicio,@PathVariable("idZonaComun") int idZonaComun){
+        try {
+            //obtener datos que se enviarán a través del API
+            long fechai= formatoH.parse(fechainicio+" "+ horainicio).getTime();
+            return new ResponseEntity<>(clientServices.getHorasFinAlquiler(fechai,fechainicio,horainicio,idZonaComun).toString(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/HorasInicioAlquiler/{fechainicio}/{idZonaComun}",method = RequestMethod.GET)
     public synchronized ResponseEntity<?> getHorasInicioAlquiler(@PathVariable("fechainicio") String fechainicio,@PathVariable("idZonaComun") int idZonaComun){
         try {
@@ -163,12 +177,45 @@ public class ClientController {
         }
     }
 
+    @RequestMapping(value = "/Alquileres/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.GET)
+    public synchronized ResponseEntity<?> getAlquileres(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getAlquileres(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/newAlquiler/{inicio}/{fin}/{idzonacomun}/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
+    public synchronized ResponseEntity<?> postAlquiler(@PathVariable("inicio") long inicio,@PathVariable("fin") long fin, @PathVariable("idzonacomun") int idzonacomun, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(clientServices.postAlquiler(inicio,fin,idzonacomun,getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getUnidadDeViviendaUsuario().getId()), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/updateUsuarioPropio",method = RequestMethod.PUT)
     @ResponseBody
     public synchronized ResponseEntity<?> putUsuarioPropio(@RequestBody Usuario usuario) {
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.putUsuarioPropio(usuario), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/cancelarAlquiler/{id}",method = RequestMethod.PUT)
+    public synchronized ResponseEntity<?> putAlquiler(@PathVariable("id") int id) {
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.putAlquiler(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error", HttpStatus.NOT_FOUND);

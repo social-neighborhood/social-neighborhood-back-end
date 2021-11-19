@@ -58,4 +58,16 @@ public class ClientServices {
     public JSONArray getHorasInicioAlquiler(long fechai, long fechaf, long fecham, String fechainicio,int idZonaComun) throws ParseException {
         return socialNeighborhood.getHorasInicioAlquiler(fechai,fechaf, fecham, fechainicio, idZonaComun);
     }
+
+    public JSONArray getHorasFinAlquiler(long fechai, String fechainicio, String horainicio, int idZonaComun) {
+        return socialNeighborhood.getHorasFinAlquiler(fechai, fechainicio, horainicio, idZonaComun);
+    }
+
+    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id) {
+        return socialNeighborhood.postAlquiler(inicio, fin, idzonacomun, id);
+    }
+
+    public List<Alquiler> getAlquileres(int idunidaddeviviendausuario) {
+        return socialNeighborhood.getAlquileresCliente(idunidaddeviviendausuario);
+    }
 }

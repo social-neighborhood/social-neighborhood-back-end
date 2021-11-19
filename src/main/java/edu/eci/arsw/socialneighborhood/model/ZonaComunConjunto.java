@@ -20,24 +20,27 @@ public class ZonaComunConjunto {
     @Column(name = "tiempoalquilercobro")
     private Integer tiempoAlquilerCobro;
     @Column(name = "costoalquilerportiempo")
-    private Double costoAlquiler;
+    private int costoAlquiler;
     @Column(name = "disponible")
     private Boolean Disponible;
     @Column(name = "tiempodeespera")
     private int tiempodeespera;
+    @Column(name = "tiempomaximoalquiler")
+    private int tiempomaximoalquiler;
 
     public ZonaComunConjunto(){}
 
-    public ZonaComunConjunto(Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible, int tiempodeespera) {
+    public ZonaComunConjunto(Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, int costoAlquiler, Boolean disponible, int tiempodeespera,int tiempomaximoalquiler) {
         this.idZonaComun = idZonaComun;
         this.idConjunto = idConjunto;
         this.tiempoAlquilerCobro = tiempoAlquilerCobro;
         this.costoAlquiler = costoAlquiler;
         this.Disponible = disponible;
         this.tiempodeespera =tiempodeespera;
+        this.tiempomaximoalquiler=tiempomaximoalquiler;
     }
 
-    public ZonaComunConjunto(Integer id, Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible, int tiempodeespera) {
+    public ZonaComunConjunto(Integer id, Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, int costoAlquiler, Boolean disponible, int tiempodeespera,int tiempomaximoalquiler) {
         this.id = id;
         this.idZonaComun = idZonaComun;
         this.idConjunto = idConjunto;
@@ -45,6 +48,7 @@ public class ZonaComunConjunto {
         this.costoAlquiler = costoAlquiler;
         this.Disponible = disponible;
         this.tiempodeespera = tiempodeespera;
+        this.tiempomaximoalquiler=tiempomaximoalquiler;
     }
 
     public Integer getId() {
@@ -79,11 +83,11 @@ public class ZonaComunConjunto {
         this.tiempoAlquilerCobro = tiempoAlquilerCobro;
     }
 
-    public Double getCostoAlquiler() {
+    public int getCostoAlquiler() {
         return costoAlquiler;
     }
 
-    public void setCostoAlquiler(Double costoAlquiler) {
+    public void setCostoAlquiler(int costoAlquiler) {
         this.costoAlquiler = costoAlquiler;
     }
 
@@ -102,5 +106,28 @@ public class ZonaComunConjunto {
     public void setTiempodeespera(int tiempodeespera) {
         this.tiempodeespera = tiempodeespera;
     }
+
+    public int getTiempomaximoalquiler() {
+        return tiempomaximoalquiler;
+    }
+
+    public void setTiempomaximoalquiler(int tiempomaximoalquiler) {
+        this.tiempomaximoalquiler = tiempomaximoalquiler;
+    }
+
+    @Override
+    public String toString() {
+        return "ZonaComunConjunto{" +
+                "id=" + id +
+                ", idZonaComun=" + idZonaComun +
+                ", idConjunto=" + idConjunto +
+                ", tiempoAlquilerCobro=" + tiempoAlquilerCobro +
+                ", costoAlquiler=" + costoAlquiler +
+                ", Disponible=" + Disponible +
+                ", tiempodeespera=" + tiempodeespera +
+                ", tiempomaximoalquiler=" + tiempomaximoalquiler +
+                '}';
+    }
 }
+
 

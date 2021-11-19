@@ -19,6 +19,7 @@ public class CacheItemClient extends CacheItem {
     private TipoAgrupacion tipoAgrupacion;
     private TipoInmueble tipoInmueble;
     private List<ZonaComun> zonasComunes ;
+    private List<Alquiler> alquileres;
 
     @Resource(name ="clientServices")
     ClientServices clientServices;
@@ -37,6 +38,7 @@ public class CacheItemClient extends CacheItem {
         this.tipoInmuebleConjunto = clientServices.getTipoInmuebleConjuntoByID(unidadDeVivienda.getIdTipoInmuebleConjunto());
         this.tipoAgrupacion = clientServices.getTipoAgrupacionByID(tipoAgrupacionConjunto.getIdTipoAgrupacion());
         this.tipoInmueble = clientServices.getTipoinmuebleByID(tipoInmuebleConjunto.getIdTipoInmueble());
+        this.alquileres = clientServices.getAlquileres(unidadDeViviendaUsuario.getId());
         actualizaCacheClient();
     }
 
@@ -87,4 +89,5 @@ public class CacheItemClient extends CacheItem {
         return zonasComunes;
     }
 
+    public List<Alquiler> getAlquileres() {return alquileres;}
 }

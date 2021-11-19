@@ -107,4 +107,12 @@ public interface SocialNeighborhood {
     TipoInmueble getTipoInmuebleById(int id);
 
     JSONArray getHorasInicioAlquiler(long fechai, long fechaf, long fecham, String fechainicio, int idZonaComun) throws ParseException;
+
+    JSONArray getHorasFinAlquiler(long fechai, String fechainicio, String horainicio, int idZonaComun) throws ParseException;
+
+    Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id);
+
+    List<Alquiler> getAlquileresCliente(int idunidaddeviviendausuario);
+
+    Object putAlquiler(int id);
 }

@@ -1,5 +1,6 @@
 package edu.eci.arsw.socialneighborhood.persistence.impl;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.SocialNeighborhood;
 import org.json.JSONArray;
@@ -81,7 +82,11 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     private SimpleDateFormat simpleDateFormat =new SimpleDateFormat("H:mm");
 
+    private SimpleDateFormat simpleDateFormatH =new SimpleDateFormat("yyy-MM-dd H:mm");
+
     private DateTimeFormatter lformat = DateTimeFormatter.ofPattern("yyy-MM-dd");
+
+    private DateTimeFormatter hformat = DateTimeFormatter.ofPattern("yyy-MM-dd H:mm");
 
     @Override
     public List<TipoAgrupacion> getTipoAgrupacion() {
@@ -326,8 +331,9 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
         LocalDateTime local1 = LocalDateTime.of(actual.getYear(),actual.getMonth(),actual.getDayOfMonth(),0,0);
         local1=local1.plusDays(1).minusHours(5);
         String hora = local.getHour()+":"+local.getMinute();
+        if (local.getMinute()==0){hora+="0";}
         String horafin = "23:45";
-        int lapso = (zonaComunConjunto.getTiempoAlquilerCobro()+zonaComunConjunto.getTiempodeespera()-15)*60000;
+        int lapso = (zonaComunConjunto.getTiempoAlquilerCobro()+zonaComunConjunto.getTiempodeespera())*60000;
         if (alquilerNext!= null){
             long inicioOtro = alquilerNext.getIniciodealquiler();
             long minutosOtro= (inicioOtro % 3600000)/60000;
@@ -338,15 +344,18 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
             local1= local1.minusMinutes(lapso/60000);
             horafin = local1.getHour()+":"+local1.getMinute();
         }
+        boolean primer=true;
         for (Alquiler alquiler:alquilerList){
-            while (!hora.equals(simpleDateFormat.format(alquiler.getIniciodealquiler()-lapso))){
+            primer=true;
+            while (primer){
+                if (hora.equals(simpleDateFormat.format(alquiler.getIniciodealquiler()-lapso))){primer=false;}
                 jsonObject=new JSONObject("{\"horainicio\": \""+ hora +"\"}");
                 local = local.plusMinutes(15);
                 hora=local.getHour()+":"+local.getMinute();
                 if (local.getMinute()==0){hora+="0";}
                 json.put(jsonObject.toMap());
             }
-            local = local.plusMinutes(lapso/30000);
+            local = local.plusMinutes((lapso/30000)-15);
         }
         hora=local.getHour()+":"+local.getMinute();
         boolean noCruza = true;
@@ -356,6 +365,33 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
             local = local.plusMinutes(15);
             hora=local.getHour()+":"+local.getMinute();
             if (local.getMinute()==0){hora+="0";}
+            json.put(jsonObject.toMap());
+        }
+        return json;
+    }
+
+    @Override
+    public JSONArray getHorasFinAlquiler(long fechai, String fechainicio, String horainicio, int idZonaComun) {
+        JSONArray json = new JSONArray();
+        ZonaComunConjunto zonaComunConjunto = zonaComunConjuntoRepository.findZonsComunById(idZonaComun);
+        long fechaf=fechai+(zonaComunConjunto.getTiempomaximoalquiler()*60000);
+        LocalDateTime inicio = LocalDateTime.parse(fechainicio+" "+horainicio, hformat);
+        LocalDateTime fin = inicio.plusMinutes(zonaComunConjunto.getTiempomaximoalquiler());
+        JSONObject jsonObject;
+        String hora;
+        boolean otro=true;
+        Alquiler alquiler = alquilerRepository.findInMiddle(fechai,fechaf,idZonaComun,zonaComunConjunto.getTiempodeespera() * 60000);
+        if (alquiler!=null) {
+            LocalDateTime fecham = LocalDateTime.parse(simpleDateFormatH.format(alquiler.getIniciodealquiler() - (zonaComunConjunto.getTiempodeespera() * 60000)), hformat);
+            System.out.println(fecham);
+            if (fecham.isBefore(fin) ) {fin = fecham;}
+        }
+        while (otro){
+            inicio=inicio.plusMinutes(zonaComunConjunto.getTiempoAlquilerCobro());
+            if (inicio.toString().equals(fin.toString())){otro=false;}
+            hora = inicio.getYear()+"-"+inicio.getMonthValue()+"-"+ inicio.getDayOfMonth()+" "+inicio.getHour()+":"+inicio.getMinute();
+            if (inicio.getMinute()==0){hora+="0";}
+            jsonObject=new JSONObject("{\"fin\": \""+ hora +"\"}");
             json.put(jsonObject.toMap());
         }
         return json;
@@ -446,6 +482,13 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     }
 
     @Override
+    public Object putAlquiler(int id) {
+        Alquiler alquiler = alquilerRepository.findById(id).get();
+        alquiler.setCancelado(true);
+        return alquilerRepository.save(alquiler);
+    }
+
+    @Override
     public TipoAgrupacionConjunto getTipoAgrupacionConjuntoById(int id) {
         return tipoAgrupacionConjuntoRepository.findById(id).get();
     }
@@ -463,5 +506,17 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     @Override
     public TipoInmueble getTipoInmuebleById(int id) {
         return tipoInmuebleRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Alquiler> getAlquileresCliente(int idunidaddeviviendausuario) {
+        return alquilerRepository.getAlquilerCliente(idunidaddeviviendausuario);
+    }
+
+    @Override
+    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id) {
+        int tiempo = (int) (((fin-inicio)/60000)/zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getTiempoAlquilerCobro());
+        Alquiler alquiler = new Alquiler(Math.toIntExact(unidadDeViviendaUsuarioRepository.count())+1,idzonacomun,id,inicio,fin,zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getCostoAlquiler()*tiempo,false);
+        return alquilerRepository.saveAndComprobate(alquiler,inicio,fin);
     }
 }

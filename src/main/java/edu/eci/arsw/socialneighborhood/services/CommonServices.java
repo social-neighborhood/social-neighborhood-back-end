@@ -57,4 +57,8 @@ public class CommonServices {
     public TipoInmueble getTipoInmuebleById(int id) {
         return socialNeighborhood.getTipoInmuebleById(id);
     }
+
+    public Object putAlquiler(int id) {
+        return socialNeighborhood.putAlquiler(id);
+    }
 }

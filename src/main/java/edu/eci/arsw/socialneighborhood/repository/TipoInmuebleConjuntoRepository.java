@@ -12,5 +12,5 @@ import java.util.List;
 public interface TipoInmuebleConjuntoRepository extends JpaRepository<TipoInmuebleConjunto,Integer> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM tipoinmuebleconjunto  WHERE idconjunto = :idconjunto ")
-    public List<TipoInmuebleConjunto> findByIdConjunto(@Param("idconjunto") int idconjunto);
+    List<TipoInmuebleConjunto> findByIdConjunto(@Param("idconjunto") int idconjunto);
 }

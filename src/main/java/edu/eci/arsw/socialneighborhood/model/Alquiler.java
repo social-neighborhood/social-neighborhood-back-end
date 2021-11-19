@@ -32,6 +32,9 @@ public class Alquiler {
     @Column(name = "pagado")
     private boolean pagado;
 
+    @Column(name = "cancelado")
+    private  boolean cancelado;
+
 
 
     public Alquiler(){
@@ -112,5 +115,13 @@ public class Alquiler {
 
     public void setPagado(boolean pagado) {
         this.pagado = pagado;
+    }
+
+    public boolean isCancelado() {
+        return cancelado;
+    }
+
+    public void setCancelado(boolean cancelado) {
+        this.cancelado = cancelado;
     }
 }

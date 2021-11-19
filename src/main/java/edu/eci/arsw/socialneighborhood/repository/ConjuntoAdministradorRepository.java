@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface ConjuntoAdministradorRepository extends JpaRepository<ConjuntoAdministrador,Integer> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM conjuntoadministrador  WHERE idusuarioadministrador = :idAdmin ")
-    public ConjuntoAdministrador findByIdAdmin(@Param("idAdmin") int idAdmin);
+    ConjuntoAdministrador findByIdAdmin(@Param("idAdmin") int idAdmin);
 }
