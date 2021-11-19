@@ -23,24 +23,28 @@ public class ZonaComunConjunto {
     private Double costoAlquiler;
     @Column(name = "disponible")
     private Boolean Disponible;
+    @Column(name = "tiempodeespera")
+    private int tiempodeespera;
 
     public ZonaComunConjunto(){}
 
-    public ZonaComunConjunto(Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible) {
+    public ZonaComunConjunto(Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible, int tiempodeespera) {
         this.idZonaComun = idZonaComun;
         this.idConjunto = idConjunto;
         this.tiempoAlquilerCobro = tiempoAlquilerCobro;
         this.costoAlquiler = costoAlquiler;
-        Disponible = disponible;
+        this.Disponible = disponible;
+        this.tiempodeespera =tiempodeespera;
     }
 
-    public ZonaComunConjunto(Integer id, Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible) {
+    public ZonaComunConjunto(Integer id, Integer idZonaComun, Integer idConjunto, Integer tiempoAlquilerCobro, Double costoAlquiler, Boolean disponible, int tiempodeespera) {
         this.id = id;
         this.idZonaComun = idZonaComun;
         this.idConjunto = idConjunto;
         this.tiempoAlquilerCobro = tiempoAlquilerCobro;
         this.costoAlquiler = costoAlquiler;
-        Disponible = disponible;
+        this.Disponible = disponible;
+        this.tiempodeespera = tiempodeespera;
     }
 
     public Integer getId() {
@@ -89,6 +93,14 @@ public class ZonaComunConjunto {
 
     public void setDisponible(Boolean disponible) {
         Disponible = disponible;
+    }
+
+    public int getTiempodeespera() {
+        return tiempodeespera;
+    }
+
+    public void setTiempodeespera(int tiempodeespera) {
+        this.tiempodeespera = tiempodeespera;
     }
 }
 

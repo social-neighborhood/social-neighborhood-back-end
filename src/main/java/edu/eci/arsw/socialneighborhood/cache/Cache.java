@@ -8,12 +8,10 @@ import edu.eci.arsw.socialneighborhood.services.AdminServices;
 import edu.eci.arsw.socialneighborhood.services.ClientServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
 import net.jodah.expiringmap.ExpiringMap;
-import net.jodah.expiringmap.ExpiringValue;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
@@ -44,9 +42,8 @@ public class Cache {
     }
 
     public void loginClient(int idConjunto, int idUsuario, int idUnidadDeVivienda, CommonServices commonServices, ClientServices clientServices) throws ParseException{
-        System.out.println("cache");
         concurrentCacheClient.put(new ClientKey(idConjunto,idUsuario, idUnidadDeVivienda).toString(),
-                new CacheItemClient(idConjunto,idUsuario,idUnidadDeVivienda,commonServices,clientServices));
+                new CacheItemClient( idConjunto,idUsuario,idUnidadDeVivienda,commonServices,clientServices));
         System.out.println(concurrentCacheClient.size());
         System.out.println(getClient(idConjunto, idUsuario, idUnidadDeVivienda));
     }

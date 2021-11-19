@@ -38,7 +38,6 @@ public class CacheItemClient extends CacheItem {
         this.tipoAgrupacion = clientServices.getTipoAgrupacionByID(tipoAgrupacionConjunto.getIdTipoAgrupacion());
         this.tipoInmueble = clientServices.getTipoinmuebleByID(tipoInmuebleConjunto.getIdTipoInmueble());
         actualizaCacheClient();
-        System.out.println("item");
     }
 
     public Object actualizaCacheClient(){

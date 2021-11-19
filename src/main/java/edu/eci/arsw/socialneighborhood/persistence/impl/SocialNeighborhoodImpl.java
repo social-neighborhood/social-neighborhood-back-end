@@ -9,7 +9,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service("socialNeighborhoodImpl")
@@ -70,6 +78,10 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     @Autowired
     @Qualifier("alquilerRepository")
     AlquilerRepository alquilerRepository;
+
+    private SimpleDateFormat simpleDateFormat =new SimpleDateFormat("H:mm");
+
+    private DateTimeFormatter lformat = DateTimeFormatter.ofPattern("yyy-MM-dd");
 
     @Override
     public List<TipoAgrupacion> getTipoAgrupacion() {
@@ -300,6 +312,53 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
             }
         }
         return alquileres;
+    }
+
+    @Override
+    public JSONArray getHorasInicioAlquiler(long fechai, long fechaf, long fecham, String fechainicio,int idZonaComun) throws ParseException {
+        List<Alquiler> alquilerList = alquilerRepository.findAlquileresByFecha(fechai,fechaf,idZonaComun);
+        Alquiler alquilerNext = alquilerRepository.findAlquilereMenorDiaSiguiente(fechaf,fecham,idZonaComun);
+        ZonaComunConjunto zonaComunConjunto = zonaComunConjuntoRepository.findZonsComunById(idZonaComun);
+        JSONObject jsonObject;
+        JSONArray json = new JSONArray();
+        LocalDate actual = LocalDate.parse(fechainicio, lformat);
+        LocalDateTime local = LocalDateTime.of(actual.getYear(),actual.getMonth(),actual.getDayOfMonth(),0,0);
+        LocalDateTime local1 = LocalDateTime.of(actual.getYear(),actual.getMonth(),actual.getDayOfMonth(),0,0);
+        local1=local1.plusDays(1).minusHours(5);
+        String hora = local.getHour()+":"+local.getMinute();
+        String horafin = "23:45";
+        int lapso = (zonaComunConjunto.getTiempoAlquilerCobro()+zonaComunConjunto.getTiempodeespera()-15)*60000;
+        if (alquilerNext!= null){
+            long inicioOtro = alquilerNext.getIniciodealquiler();
+            long minutosOtro= (inicioOtro % 3600000)/60000;
+            inicioOtro-=(minutosOtro*60000);
+            long horasOtro =  (inicioOtro % 86400000)/3600000;
+            local1=local1.plusHours(horasOtro);
+            local1= local1.plusMinutes(minutosOtro);
+            local1= local1.minusMinutes(lapso/60000);
+            horafin = local1.getHour()+":"+local1.getMinute();
+        }
+        for (Alquiler alquiler:alquilerList){
+            while (!hora.equals(simpleDateFormat.format(alquiler.getIniciodealquiler()-lapso))){
+                jsonObject=new JSONObject("{\"horainicio\": \""+ hora +"\"}");
+                local = local.plusMinutes(15);
+                hora=local.getHour()+":"+local.getMinute();
+                if (local.getMinute()==0){hora+="0";}
+                json.put(jsonObject.toMap());
+            }
+            local = local.plusMinutes(lapso/30000);
+        }
+        hora=local.getHour()+":"+local.getMinute();
+        boolean noCruza = true;
+        while (actual.getYear()==local.getYear() && actual.getMonth()==local.getMonth() && actual.getDayOfMonth()==local.getDayOfMonth() && noCruza){
+            if (hora.equals(horafin) ){noCruza=false;}
+            jsonObject=new JSONObject("{\"horainicio\": \""+ hora +"\"}");
+            local = local.plusMinutes(15);
+            hora=local.getHour()+":"+local.getMinute();
+            if (local.getMinute()==0){hora+="0";}
+            json.put(jsonObject.toMap());
+        }
+        return json;
     }
 
     @Override

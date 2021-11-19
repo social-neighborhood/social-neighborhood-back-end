@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 public class CacheItemAdmin extends CacheItem {
@@ -39,9 +41,19 @@ public class CacheItemAdmin extends CacheItem {
         this.idConjuntoAdministrador=idConjuntoAdministrador;
         this.conjuntoAdministrador = adminServices.getCojuntoAdministradorByID(idConjuntoAdministrador);
         actualizaCacheAdmin();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        System.out.println(formato.parse("2021-10-31 14:30:00").getTime());
-        System.out.println(formato.parse("2021-10-31 15:00:00").getTime());
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm");
+        System.out.println(formato.parse("2021-11-01 00:00").getTime());
+        System.out.println(formato.parse("2021-11-01 00:30").getTime());
+        System.out.println(formato1.parse("14:30").getTime());
+        System.out.println(formato1.parse("15:00").getTime());
+        System.out.println(new Date(formato.parse("2021-11-01 00:00").getTime()));
+        System.out.println(new Date(formato.parse("2021-11-01 00:30").getTime()));
+        System.out.println(new SimpleDateFormat("hh:mm").format(new Date(formato.parse("2021-10-31 15:00").getTime())));
+        System.out.println(new Date(formato1.parse("14:30").getTime()));
+        System.out.println(new Date(formato1.parse("15:00").getTime()));
+
+
     }
 
     public Object actualizaCacheAdmin(){

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "alquiler")
@@ -19,10 +21,10 @@ public class Alquiler {
     private Integer idunidaddeviviendausuario;
 
     @Column(name = "iniciodealquiler")
-    private String iniciodealquiler;
+    private long iniciodealquiler;
 
     @Column(name = "findealquiler")
-    private String findealquiler;
+    private long findealquiler;
 
     @Column(name = "costo")
     private int costo;
@@ -30,11 +32,13 @@ public class Alquiler {
     @Column(name = "pagado")
     private boolean pagado;
 
+
+
     public Alquiler(){
 
     }
 
-    public Alquiler(Integer idzonacomun, Integer idunidaddeviviendausuario, String iniciodealquiler, String findealquiler, int costo, boolean pagado) {
+    public Alquiler(Integer idzonacomun, Integer idunidaddeviviendausuario, long iniciodealquiler, long findealquiler, int costo, boolean pagado) {
         this.idzonacomun = idzonacomun;
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
         this.iniciodealquiler = iniciodealquiler;
@@ -43,7 +47,7 @@ public class Alquiler {
         this.pagado=pagado;
     }
 
-    public Alquiler(Integer id, Integer idzonacomun, Integer idunidaddeviviendausuario, String iniciodealquiler, String findealquiler, int costo, boolean pagado) {
+    public Alquiler(Integer id, Integer idzonacomun, Integer idunidaddeviviendausuario, long iniciodealquiler, long findealquiler, int costo, boolean pagado) {
         this.id = id;
         this.idzonacomun = idzonacomun;
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
@@ -52,6 +56,7 @@ public class Alquiler {
         this.costo=costo;
         this.pagado=pagado;
     }
+
 
     public Integer getId() {
         return id;
@@ -77,19 +82,19 @@ public class Alquiler {
         this.idunidaddeviviendausuario = idunidaddeviviendausuario;
     }
 
-    public String getIniciodealquiler() {
+    public long getIniciodealquiler() {
         return iniciodealquiler;
     }
 
-    public void setIniciodealquiler(String iniciodealquiler) {
+    public void setIniciodealquiler(long iniciodealquiler) {
         this.iniciodealquiler = iniciodealquiler;
     }
 
-    public String getFindealquiler() {
+    public long getFindealquiler() {
         return findealquiler;
     }
 
-    public void setFindealquiler(String findealquiler) {
+    public void setFindealquiler(long findealquiler) {
         this.findealquiler = findealquiler;
     }
 

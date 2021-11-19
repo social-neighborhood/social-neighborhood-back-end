@@ -2,10 +2,13 @@ package edu.eci.arsw.socialneighborhood.services;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.impl.SocialNeighborhoodImpl;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 @Service("clientServices")
@@ -51,4 +54,8 @@ public class ClientServices {
         return socialNeighborhood.getZonasComunesByZonasComunesConjunto(zonasComunesConjunto);
     }
 
+
+    public JSONArray getHorasInicioAlquiler(long fechai, long fechaf, long fecham, String fechainicio,int idZonaComun) throws ParseException {
+        return socialNeighborhood.getHorasInicioAlquiler(fechai,fechaf, fecham, fechainicio, idZonaComun);
+    }
 }

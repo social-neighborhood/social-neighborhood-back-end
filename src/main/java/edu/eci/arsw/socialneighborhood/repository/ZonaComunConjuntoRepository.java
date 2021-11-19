@@ -15,4 +15,7 @@ public interface ZonaComunConjuntoRepository extends JpaRepository<ZonaComunConj
     @Query(nativeQuery = true, value = "SELECT * FROM zonacomunconjunto WHERE idconjunto = :idconjunto")
     List<ZonaComunConjunto> findZonasComunesConjuntoByIdConjunto(@Param("idconjunto") int idconjunto);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM zonacomunconjunto WHERE id = :idZonaComun")
+    ZonaComunConjunto findZonsComunById(@Param("idZonaComun") int idZonaComun);
+
 }

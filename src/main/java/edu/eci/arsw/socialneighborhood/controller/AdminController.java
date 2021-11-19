@@ -273,7 +273,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newUnidadDeVivienda",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postUnidadDeVivienda(@RequestBody UnidadDeVivienda unidadDeVivienda){
+    public synchronized ResponseEntity<?> postUnidadDeVivienda(@RequestBody UnidadDeVivienda unidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.postUnidadesDeVivienda(unidadDeVivienda), HttpStatus.OK);
@@ -285,7 +285,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newConjuntoUsuario/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postConjuntoUsuario(@RequestBody ConjuntoUsuario conjuntoUsuario,@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> postConjuntoUsuario(@RequestBody ConjuntoUsuario conjuntoUsuario,@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             conjuntoUsuario.setIdConjunto(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjunto().getId());
             //obtener datos que se enviarán a través del API
@@ -298,7 +298,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newzonaComunConjunto/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postzonaComunConjunto(@RequestBody ZonaComunConjunto zonaComunConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> postzonaComunConjunto(@RequestBody ZonaComunConjunto zonaComunConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             zonaComunConjunto.setIdConjunto(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjunto().getId());
             //obtener datos que se enviarán a través del API
@@ -311,7 +311,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newAgrupacion",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postAgrupacion(@RequestBody Agrupacion agrupacion){
+    public synchronized ResponseEntity<?> postAgrupacion(@RequestBody Agrupacion agrupacion){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.postAgrupaciones(agrupacion), HttpStatus.OK);
@@ -323,7 +323,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newUnidadDeViviendaUsuario",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postUnidadDeViviendaUsuario(@RequestBody UnidadDeViviendaUsuario unidadDeViviendaUsuario){
+    public synchronized ResponseEntity<?> postUnidadDeViviendaUsuario(@RequestBody UnidadDeViviendaUsuario unidadDeViviendaUsuario){
         try {
             unidadDeViviendaUsuario.setDisponible(true);
             //obtener datos que se enviarán a través del API
@@ -336,7 +336,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newTipoAgrupacion/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postTipoAgrupacion(@RequestBody TipoAgrupacionConjunto agrupacionConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> postTipoAgrupacion(@RequestBody TipoAgrupacionConjunto agrupacionConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             agrupacionConjunto.setIdConjunto(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjunto().getId());
             //obtener datos que se enviarán a través del API
@@ -349,7 +349,7 @@ public class AdminController {
 
     @RequestMapping(value = "/newInmueble/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<?> postTipoInmueble(@RequestBody TipoInmuebleConjunto inmuebleConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> postTipoInmueble(@RequestBody TipoInmuebleConjunto inmuebleConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             inmuebleConjunto.setIdConjunto(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjunto().getId());
             //obtener datos que se enviarán a través del API
@@ -362,7 +362,7 @@ public class AdminController {
 
     @RequestMapping(value = "/updateUnidadDeVivienda",method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putUnidadDeVivienda(@RequestBody UnidadDeVivienda unidadDeVivienda){
+    public synchronized ResponseEntity<?> putUnidadDeVivienda(@RequestBody UnidadDeVivienda unidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.putUnidadesDeVivienda(unidadDeVivienda), HttpStatus.ACCEPTED);
@@ -374,7 +374,7 @@ public class AdminController {
 
     @RequestMapping(value = "/updatezonaComunConjunto",method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putzonaComunConjunto(@RequestBody ZonaComunConjunto zonaComunConjunto){
+    public synchronized ResponseEntity<?> putzonaComunConjunto(@RequestBody ZonaComunConjunto zonaComunConjunto){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.putZonasComunesConjunto(zonaComunConjunto), HttpStatus.ACCEPTED);
@@ -386,7 +386,7 @@ public class AdminController {
 
     @RequestMapping(value = "/updateUnidadDeViviendaUsuario",method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putUnidadDeViviendaUsuario(@RequestBody UnidadDeViviendaUsuario unidadDeViviendaUsuario){
+    public synchronized ResponseEntity<?> putUnidadDeViviendaUsuario(@RequestBody UnidadDeViviendaUsuario unidadDeViviendaUsuario){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.putUnidadesDeViviendaUsuarios(unidadDeViviendaUsuario), HttpStatus.ACCEPTED);
@@ -398,7 +398,7 @@ public class AdminController {
 
     @RequestMapping(value = "/updateUsuarioPropio",method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> putUsuarioPropio(@RequestBody Usuario usuario){
+    public synchronized ResponseEntity<?> putUsuarioPropio(@RequestBody Usuario usuario){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(commonServices.putUsuarioPropio(usuario), HttpStatus.ACCEPTED);
@@ -409,7 +409,7 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/autorizadoAdmin/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.POST)
-    public ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> autorizadoAdmin(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
             cache.loginAdmin(idconjunto, idusuario, idConjuntoAdministrador,commonServices,adminServices);
@@ -420,13 +420,13 @@ public class AdminController {
         }
     }
 
-    private CacheItemAdmin getCacheItemAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) throws ParseException {
+    private synchronized CacheItemAdmin getCacheItemAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) throws ParseException {
         cache.loginAdmin(idconjunto, idusuario, idConjuntoAdministrador,commonServices,adminServices);
         return cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador);
     }
 
     @RequestMapping(value = "/consulta/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
-    public ResponseEntity<?> consulta(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+    public synchronized ResponseEntity<?> consulta(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador), HttpStatus.ACCEPTED);

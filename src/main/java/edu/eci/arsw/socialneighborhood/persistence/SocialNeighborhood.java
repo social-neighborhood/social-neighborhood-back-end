@@ -3,6 +3,8 @@ package edu.eci.arsw.socialneighborhood.persistence;
 import edu.eci.arsw.socialneighborhood.model.*;
 import org.json.JSONArray;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.List;
 
 public interface SocialNeighborhood {
@@ -103,4 +105,6 @@ public interface SocialNeighborhood {
     TipoAgrupacion getTipoAgrupacionById(int id);
 
     TipoInmueble getTipoInmuebleById(int id);
+
+    JSONArray getHorasInicioAlquiler(long fechai, long fechaf, long fecham, String fechainicio, int idZonaComun) throws ParseException;
 }
