@@ -428,6 +428,18 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/registrarUsuario",method = RequestMethod.POST)
+    @ResponseBody
+    public synchronized ResponseEntity<?> registrarUsuario(@RequestBody ConjuntoUsuario conjuntoUsuario){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(adminServices.registrarUsuario(conjuntoUsuario), HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/updateUsuarioPropio",method = RequestMethod.PUT)
     @ResponseBody
     public synchronized ResponseEntity<?> putUsuarioPropio(@RequestBody Usuario usuario){

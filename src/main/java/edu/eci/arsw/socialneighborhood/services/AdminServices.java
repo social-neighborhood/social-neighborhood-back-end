@@ -140,4 +140,8 @@ public class AdminServices {
     public Object postPostAdmin(Posts posts) {
         return socialNeighborhood.postPostAdmin(posts);
     }
+
+    public Object registrarUsuario(ConjuntoUsuario conjuntoUsuario) {
+        return socialNeighborhood.registrarUsuario(conjuntoUsuario);
+    }
 }

@@ -121,4 +121,7 @@ public interface SocialNeighborhood {
     List<Posts> getPostDeAdmin(int idconjunto);
 
     List<Posts> getPostDeClient(int idconjunto);
+
+
+    Object registrarUsuario(ConjuntoUsuario conjuntoUsuario);
 }

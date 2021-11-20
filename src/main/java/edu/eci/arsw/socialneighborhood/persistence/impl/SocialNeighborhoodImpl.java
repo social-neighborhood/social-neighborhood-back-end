@@ -462,6 +462,12 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     }
 
     @Override
+    public Object registrarUsuario(ConjuntoUsuario conjuntoUsuario) {
+        conjuntoUsuario.setId(Math.toIntExact(conjuntoUsuarioRepository.count())+1);
+        return conjuntoUsuarioRepository.save(conjuntoUsuario);
+    }
+
+    @Override
     public Object putUnidadDeVivinenda(UnidadDeVivienda unidadDeVivienda) {
         UnidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.findById(unidadDeVivienda.getId()).get();
         unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
