@@ -1,8 +1,12 @@
 package edu.eci.arsw.socialneighborhood.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "posts")
 public class Posts {
 
     @Id

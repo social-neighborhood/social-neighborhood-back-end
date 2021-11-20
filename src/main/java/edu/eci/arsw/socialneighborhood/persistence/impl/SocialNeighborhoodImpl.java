@@ -76,7 +76,7 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     AlquilerRepository alquilerRepository;
 
     @Autowired
-    @Qualifier("PostsRepository")
+    @Qualifier("postsRepository")
     PostsRepository postsRepository;
 
     private SimpleDateFormat simpleDateFormat =new SimpleDateFormat("H:mm");
