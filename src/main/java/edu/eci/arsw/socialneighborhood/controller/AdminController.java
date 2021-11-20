@@ -321,7 +321,6 @@ public class AdminController {
     @ResponseBody
     public synchronized ResponseEntity<?> postzonaComunConjunto(@RequestBody ZonaComunConjunto zonaComunConjunto, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
-            zonaComunConjunto.setIdConjunto(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjunto().getId());
             //obtener datos que se enviarán a través del API
             return new ResponseEntity<>(adminServices.postZonasComunesConjunto(zonaComunConjunto), HttpStatus.OK);
         } catch (Exception ex) {
