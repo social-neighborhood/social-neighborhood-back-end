@@ -2,8 +2,6 @@ package edu.eci.arsw.socialneighborhood.persistence;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import org.json.JSONArray;
-
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 
@@ -115,4 +113,12 @@ public interface SocialNeighborhood {
     List<Alquiler> getAlquileresCliente(int idunidaddeviviendausuario);
 
     Object putAlquiler(int id);
+
+    Object postPostAdmin(Posts posts);
+
+    Object postPostClient(Posts posts);
+
+    List<Posts> getPostDeAdmin(int idconjunto);
+
+    List<Posts> getPostDeClient(int idconjunto);
 }

@@ -5,7 +5,6 @@ import edu.eci.arsw.socialneighborhood.services.ClientServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
 
 import javax.annotation.Resource;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 public class CacheItemClient extends CacheItem {

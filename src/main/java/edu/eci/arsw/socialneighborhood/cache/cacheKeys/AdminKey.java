@@ -1,11 +1,7 @@
 package edu.eci.arsw.socialneighborhood.cache.cacheKeys;
 
-import org.apache.ibatis.cache.CacheKey;
 
-import javax.swing.*;
-import javax.swing.text.Keymap;
-
-public class AdminKey extends CacheKey {
+public class AdminKey{
     private int idUsuario;
     private int idConjunto;
     private int idConjuntoAdministrador;

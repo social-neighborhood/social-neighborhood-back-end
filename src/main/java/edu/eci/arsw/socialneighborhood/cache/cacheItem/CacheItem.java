@@ -2,7 +2,6 @@ package edu.eci.arsw.socialneighborhood.cache.cacheItem;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;

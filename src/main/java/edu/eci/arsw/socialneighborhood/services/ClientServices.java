@@ -6,8 +6,6 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 
@@ -69,5 +67,9 @@ public class ClientServices {
 
     public List<Alquiler> getAlquileres(int idunidaddeviviendausuario) {
         return socialNeighborhood.getAlquileresCliente(idunidaddeviviendausuario);
+    }
+
+    public Object postPostClient(Posts posts) {
+        return socialNeighborhood.postPostClient(posts);
     }
 }

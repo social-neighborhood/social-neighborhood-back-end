@@ -1,7 +1,5 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-import org.junit.Test;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

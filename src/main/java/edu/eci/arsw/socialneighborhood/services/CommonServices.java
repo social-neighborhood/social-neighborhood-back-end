@@ -61,4 +61,12 @@ public class CommonServices {
     public Object putAlquiler(int id) {
         return socialNeighborhood.putAlquiler(id);
     }
+
+    public List<Posts> getPostDeAdmin(int idconjunto) {
+        return socialNeighborhood.getPostDeAdmin(idconjunto);
+    }
+
+    public Object getPostDeClient(int idconjunto) {
+        return socialNeighborhood.getPostDeClient(idconjunto);
+    }
 }

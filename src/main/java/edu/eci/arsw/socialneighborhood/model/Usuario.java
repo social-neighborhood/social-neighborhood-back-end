@@ -1,9 +1,6 @@
 package edu.eci.arsw.socialneighborhood.model;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "usuario")

@@ -2,7 +2,6 @@ package edu.eci.arsw.socialneighborhood.controller;
 
 import edu.eci.arsw.socialneighborhood.cache.Cache;
 import edu.eci.arsw.socialneighborhood.model.*;
-import edu.eci.arsw.socialneighborhood.cache.cacheItem.CacheItem;
 import edu.eci.arsw.socialneighborhood.cache.cacheItem.CacheItemAdmin;
 import edu.eci.arsw.socialneighborhood.services.AdminServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
@@ -271,6 +270,28 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/PostsDeAdmin/{idconjunto}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsDeAdmin(@PathVariable("idconjunto") int idconjunto){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getPostDeAdmin(idconjunto), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/PostsDeClient/{idconjunto}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsDeClient(@PathVariable("idconjunto") int idconjunto){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getPostDeClient(idconjunto), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/newUnidadDeVivienda",method = RequestMethod.POST)
     @ResponseBody
     public synchronized ResponseEntity<?> postUnidadDeVivienda(@RequestBody UnidadDeVivienda unidadDeVivienda){
@@ -396,6 +417,18 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/newPost",method = RequestMethod.POST)
+    @ResponseBody
+    public synchronized ResponseEntity<?> postPost(@RequestBody Posts posts){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(adminServices.postPostAdmin(posts), HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/updateUsuarioPropio",method = RequestMethod.PUT)
     @ResponseBody
     public synchronized ResponseEntity<?> putUsuarioPropio(@RequestBody Usuario usuario){
@@ -435,6 +468,4 @@ public class AdminController {
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
         }
     }
-
-
 }

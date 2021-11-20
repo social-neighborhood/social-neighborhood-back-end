@@ -5,20 +5,14 @@ import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.cache.cacheItem.CacheItemClient;
 import edu.eci.arsw.socialneighborhood.services.ClientServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
-import org.springframework.boot.autoconfigure.web.format.DateTimeFormatters;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -177,6 +171,28 @@ public class ClientController {
         }
     }
 
+    @RequestMapping(value = "/PostsDeAdmin/{idconjunto}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsDeAdmin(@PathVariable("idconjunto") int idconjunto){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getPostDeAdmin(idconjunto), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/PostsDeClient/{idconjunto}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsDeClient(@PathVariable("idconjunto") int idconjunto){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(commonServices.getPostDeClient(idconjunto), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(value = "/Alquileres/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.GET)
     public synchronized ResponseEntity<?> getAlquileres(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
         try {
@@ -192,7 +208,19 @@ public class ClientController {
     public synchronized ResponseEntity<?> postAlquiler(@PathVariable("inicio") long inicio,@PathVariable("fin") long fin, @PathVariable("idzonacomun") int idzonacomun, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(clientServices.postAlquiler(inicio,fin,idzonacomun,getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getUnidadDeViviendaUsuario().getId()), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(clientServices.postAlquiler(inicio,fin,idzonacomun,getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getUnidadDeViviendaUsuario().getId()), HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/newPost",method = RequestMethod.POST)
+    @ResponseBody
+    public synchronized ResponseEntity<?> postPost(@RequestBody Posts posts){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(clientServices.postPostClient(posts), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);

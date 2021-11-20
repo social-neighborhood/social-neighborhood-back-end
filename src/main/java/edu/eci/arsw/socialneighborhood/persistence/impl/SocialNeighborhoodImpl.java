@@ -1,6 +1,5 @@
 package edu.eci.arsw.socialneighborhood.persistence.impl;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.persistence.SocialNeighborhood;
 import org.json.JSONArray;
@@ -9,16 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
-
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("socialNeighborhoodImpl")
@@ -79,6 +74,10 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     @Autowired
     @Qualifier("alquilerRepository")
     AlquilerRepository alquilerRepository;
+
+    @Autowired
+    @Qualifier("PostsRepository")
+    PostsRepository postsRepository;
 
     private SimpleDateFormat simpleDateFormat =new SimpleDateFormat("H:mm");
 
@@ -451,6 +450,18 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     }
 
     @Override
+    public Object postPostAdmin(Posts posts) {
+        posts.setId("PA"+postsRepository.getNumPostsAdmin(posts.getIduserconjunto()));
+        return postsRepository.save(posts);
+    }
+
+    @Override
+    public Object postPostClient(Posts posts) {
+        posts.setId("PC"+postsRepository.getNumPostsClient(posts.getIduserconjunto()));
+        return postsRepository.save(posts);
+    }
+
+    @Override
     public Object putUnidadDeVivinenda(UnidadDeVivienda unidadDeVivienda) {
         UnidadDeVivienda unidadDeViviendaDB = unidadDeViviendaRepository.findById(unidadDeVivienda.getId()).get();
         unidadDeViviendaDB.setCostoAdministracion(unidadDeVivienda.getCostoAdministracion());
@@ -518,5 +529,15 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
         int tiempo = (int) (((fin-inicio)/60000)/zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getTiempoAlquilerCobro());
         Alquiler alquiler = new Alquiler(Math.toIntExact(unidadDeViviendaUsuarioRepository.count())+1,idzonacomun,id,inicio,fin,zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getCostoAlquiler()*tiempo,false);
         return alquilerRepository.saveAndComprobate(alquiler,inicio,fin);
+    }
+
+    @Override
+    public List<Posts> getPostDeAdmin(int idconjunto) {
+        return postsRepository.getPostsAdmin(idconjunto);
+    }
+
+    @Override
+    public List<Posts> getPostDeClient(int idconjunto) {
+        return postsRepository.getPostsClient(idconjunto);
     }
 }

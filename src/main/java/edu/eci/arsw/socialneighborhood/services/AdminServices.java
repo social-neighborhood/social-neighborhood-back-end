@@ -137,4 +137,7 @@ public class AdminServices {
     }
 
 
+    public Object postPostAdmin(Posts posts) {
+        return socialNeighborhood.postPostAdmin(posts);
+    }
 }

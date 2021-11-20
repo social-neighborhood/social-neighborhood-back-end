@@ -6,7 +6,6 @@ import edu.eci.arsw.socialneighborhood.services.SocialNeighborhoodServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.logging.Level;
 import java.util.logging.Logger;

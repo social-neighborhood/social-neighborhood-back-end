@@ -4,13 +4,9 @@ package edu.eci.arsw.socialneighborhood.cache.cacheItem;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.AdminServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
-import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 

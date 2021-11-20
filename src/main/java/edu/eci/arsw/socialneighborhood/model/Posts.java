@@ -7,7 +7,7 @@ public class Posts {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(name = "mensaje")
     private String mensaje;
@@ -15,11 +15,8 @@ public class Posts {
     @Column(name = "foto")
     private String foto;
 
-    @Column(name = "idunidaddeviviendausuario")
-    private int idunidaddeviviendausuario;
-
-    @Column(name = "idconjuntoadministrador")
-    private int idconjuntoadministrador;
+    @Column(name = "iduserconjunto")
+    private int iduserconjunto;
 
     @Column(name = "fechapublicacion")
     private String fechapublicacion;
@@ -27,34 +24,37 @@ public class Posts {
     @Column(name = "fechaactualizacion")
     private String fechaactualizacion;
 
+    @Column(name = "idconjunto")
+    private int idconjunto;
+
     public Posts(){
 
     }
 
-    public Posts(String mensaje, String foto, int idunidaddeviviendausuario, int idconjuntoadministrador, String fechapublicacion, String fechaactualizacion) {
+    public Posts(String mensaje, String foto, int iduserconjunto, String fechapublicacion, String fechaactualizacion, int idconjunto) {
         this.mensaje = mensaje;
         this.foto = foto;
-        this.idunidaddeviviendausuario = idunidaddeviviendausuario;
-        this.idconjuntoadministrador = idconjuntoadministrador;
+        this.iduserconjunto = iduserconjunto;
         this.fechapublicacion = fechapublicacion;
         this.fechaactualizacion = fechaactualizacion;
+        this.idconjunto=idconjunto;
     }
 
-    public Posts(int id, String mensaje, String foto, int idunidaddeviviendausuario, int idconjuntoadministrador, String fechapublicacion, String fechaactualizacion) {
+    public Posts(String id, String mensaje, String foto, int iduserconjunto, String fechapublicacion, String fechaactualizacion, int idconjunto) {
         this.id = id;
         this.mensaje = mensaje;
         this.foto = foto;
-        this.idunidaddeviviendausuario = idunidaddeviviendausuario;
-        this.idconjuntoadministrador = idconjuntoadministrador;
+        this.iduserconjunto = iduserconjunto;
         this.fechapublicacion = fechapublicacion;
         this.fechaactualizacion = fechaactualizacion;
+        this.idconjunto=idconjunto;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,21 +74,11 @@ public class Posts {
         this.foto = foto;
     }
 
-    public int getIdunidaddeviviendausuario() {
-        return idunidaddeviviendausuario;
+    public int getIduserconjunto() {
+        return iduserconjunto;
     }
 
-    public void setIdunidaddeviviendausuario(int idunidaddeviviendausuario) {
-        this.idunidaddeviviendausuario = idunidaddeviviendausuario;
-    }
-
-    public int getIdconjuntoadministrador() {
-        return idconjuntoadministrador;
-    }
-
-    public void setIdconjuntoadministrador(int idconjuntoadministrador) {
-        this.idconjuntoadministrador = idconjuntoadministrador;
-    }
+    public void setIduserconjuntoo(int iduserconjunto) {this.iduserconjunto = iduserconjunto;}
 
     public String getFechapublicacion() {
         return fechapublicacion;
@@ -106,16 +96,28 @@ public class Posts {
         this.fechaactualizacion = fechaactualizacion;
     }
 
+    public void setIduserconjunto(int iduserconjunto) {
+        this.iduserconjunto = iduserconjunto;
+    }
+
+    public int getIdconjunto() {
+        return idconjunto;
+    }
+
+    public void setIdconjunto(int idconjunto) {
+        this.idconjunto = idconjunto;
+    }
+
     @Override
     public String toString() {
         return "Posts{" +
                 "id=" + id +
                 ", mensaje='" + mensaje + '\'' +
                 ", foto='" + foto + '\'' +
-                ", idunidaddeviviendausuario=" + idunidaddeviviendausuario +
-                ", idconjuntoadministrador=" + idconjuntoadministrador +
+                ", iduserconjunto=" + iduserconjunto +
                 ", fechapublicacion='" + fechapublicacion + '\'' +
                 ", fechaactualizacion='" + fechaactualizacion + '\'' +
+                ", iduserconjunto='" + idconjunto + + '\'' +
                 '}';
     }
 }
