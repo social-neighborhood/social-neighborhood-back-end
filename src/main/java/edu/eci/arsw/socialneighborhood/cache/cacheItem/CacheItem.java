@@ -2,6 +2,7 @@ package edu.eci.arsw.socialneighborhood.cache.cacheItem;
 
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -13,12 +14,12 @@ public abstract class CacheItem {
     protected Usuario usuario;
     protected List<ZonaComunConjunto> zonasComunesConjunto ;
 
-    @Resource(name ="commonServices")
-    CommonServices commonServices;
+    @Autowired
+    private CommonServices commonServices;
 
     public CacheItem(){}
 
-    public CacheItem(int idconjunto, int idusuario, CommonServices commonServices){
+    public CacheItem(int idconjunto, int idusuario, CommonServices commonServices) {
         this.commonServices=commonServices;
         this.idconjunto=idconjunto;
         this.idusuario=idusuario;

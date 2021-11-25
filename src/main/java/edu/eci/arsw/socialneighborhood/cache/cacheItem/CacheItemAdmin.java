@@ -4,11 +4,14 @@ package edu.eci.arsw.socialneighborhood.cache.cacheItem;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.AdminServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 
 public class CacheItemAdmin extends CacheItem {
 
@@ -29,6 +32,9 @@ public class CacheItemAdmin extends CacheItem {
     @Resource(name ="adminServices")
     AdminServices adminServices;
 
+
+
+
     public CacheItemAdmin(){super();}
 
     public CacheItemAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador, CommonServices commonServices, AdminServices adminServices) throws ParseException {
@@ -37,19 +43,6 @@ public class CacheItemAdmin extends CacheItem {
         this.idConjuntoAdministrador=idConjuntoAdministrador;
         this.conjuntoAdministrador = adminServices.getCojuntoAdministradorByID(idConjuntoAdministrador);
         actualizaCacheAdmin();
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        SimpleDateFormat formato1 = new SimpleDateFormat("hh:mm");
-        System.out.println(formato.parse("2021-11-01 00:00").getTime());
-        System.out.println(formato.parse("2021-11-01 00:30").getTime());
-        System.out.println(formato1.parse("14:30").getTime());
-        System.out.println(formato1.parse("15:00").getTime());
-        System.out.println(new Date(formato.parse("2021-11-01 00:00").getTime()));
-        System.out.println(new Date(formato.parse("2021-11-01 00:30").getTime()));
-        System.out.println(new SimpleDateFormat("hh:mm").format(new Date(formato.parse("2021-10-31 15:00").getTime())));
-        System.out.println(new Date(formato1.parse("14:30").getTime()));
-        System.out.println(new Date(formato1.parse("15:00").getTime()));
-
-
     }
 
     public Object actualizaCacheAdmin(){

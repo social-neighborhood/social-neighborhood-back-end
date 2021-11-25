@@ -27,7 +27,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.userByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -40,7 +40,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.postUsuario(usuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -51,7 +51,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.getUnidadesDeViviendaByEmail(email).toString(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -62,7 +62,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.getConjuntosByEmaill(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -73,7 +73,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.getConjuntos(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -84,7 +84,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -95,7 +95,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.getAgrupacion(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -106,7 +106,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.tipoAgrupacionConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -117,7 +117,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.tipoInmuebleConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -128,7 +128,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.tipoAgrupacion(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -139,7 +139,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(neighborhoodServices.tipoInmueble(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -150,7 +150,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -161,7 +161,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -172,7 +172,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -183,7 +183,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -194,7 +194,7 @@ public class SocialNeighborhoodController {
             return new ResponseEntity<>(commonServices.getTipoInmuebleById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

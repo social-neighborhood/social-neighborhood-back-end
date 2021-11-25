@@ -81,11 +81,11 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
 
     private SimpleDateFormat simpleDateFormat =new SimpleDateFormat("H:mm");
 
-    private SimpleDateFormat simpleDateFormatH =new SimpleDateFormat("yyy-MM-dd H:mm");
+    private SimpleDateFormat simpleDateFormatH =new SimpleDateFormat("yyyy-MM-dd H:mm");
 
-    private DateTimeFormatter lformat = DateTimeFormatter.ofPattern("yyy-MM-dd");
+    private DateTimeFormatter lformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    private DateTimeFormatter hformat = DateTimeFormatter.ofPattern("yyy-MM-dd H:mm");
+    private DateTimeFormatter hformat = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm");
 
     @Override
     public List<TipoAgrupacion> getTipoAgrupacion() {

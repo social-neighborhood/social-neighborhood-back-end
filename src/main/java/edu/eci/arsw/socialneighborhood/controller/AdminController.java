@@ -35,7 +35,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoAgrupaciones(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -45,7 +45,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoInmuebles(),HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -56,7 +56,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoAgrupacionesConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -67,7 +67,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoInmueblesConjuntos(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -79,7 +79,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getUnidadesDeVivienda(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -90,7 +90,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getUnidadesDeViviendaById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -101,7 +101,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjuntoUsuarios(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -112,7 +112,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjuntoUsuarioById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -123,7 +123,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getUsuarios(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -134,7 +134,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getUsuarioById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -145,7 +145,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getZonasComunes(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -156,7 +156,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getZonasComunesConjunto(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -167,7 +167,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getAgrupaciones(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -178,7 +178,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getUnidadesDeViviendaUsuarios(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -189,7 +189,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getConjuntoAdministrador(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -200,7 +200,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getAlquileres(), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -211,7 +211,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -222,7 +222,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoAgrupacionConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -233,7 +233,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoInmuebleConjuntoById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -244,7 +244,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoAgrupacionById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -255,7 +255,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).getTipoInmuebleById(id), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -266,7 +266,7 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).userByEmail(email), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -277,7 +277,7 @@ public class AdminController {
             return new ResponseEntity<>(commonServices.getPostDeAdmin(idconjunto), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -288,7 +288,7 @@ public class AdminController {
             return new ResponseEntity<>(commonServices.getPostDeClient(idconjunto), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -300,7 +300,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postUnidadesDeVivienda(unidadDeVivienda), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -313,7 +313,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postConjuntoUsuarios(conjuntoUsuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -325,7 +325,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postZonasComunesConjunto(zonaComunConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -337,7 +337,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postAgrupaciones(agrupacion), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -350,7 +350,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postUnidadesDeViviendaUsuarios(unidadDeViviendaUsuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -363,7 +363,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postTipoAgrupacionesConjunto(agrupacionConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -376,7 +376,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postTipoInmueblesConjuntos(inmuebleConjunto), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -388,7 +388,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.putUnidadesDeVivienda(unidadDeVivienda), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -400,7 +400,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.putZonasComunesConjunto(zonaComunConjunto), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -412,7 +412,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.putUnidadesDeViviendaUsuarios(unidadDeViviendaUsuario), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -424,7 +424,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.postPostAdmin(posts), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -436,7 +436,7 @@ public class AdminController {
             return new ResponseEntity<>(adminServices.registrarUsuario(conjuntoUsuario), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -448,7 +448,7 @@ public class AdminController {
             return new ResponseEntity<>(commonServices.putUsuarioPropio(usuario), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -460,23 +460,22 @@ public class AdminController {
             return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     private synchronized CacheItemAdmin getCacheItemAdmin(int idconjunto, int idusuario, int idConjuntoAdministrador) throws ParseException {
-        cache.loginAdmin(idconjunto, idusuario, idConjuntoAdministrador,commonServices,adminServices);
-        return cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador);
+        return cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador, commonServices, adminServices);
     }
 
     @RequestMapping(value = "/consulta/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
     public synchronized ResponseEntity<?> consulta(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(cache.getAdmin(idconjunto, idusuario, idConjuntoAdministrador, commonServices, adminServices), HttpStatus.ACCEPTED);
         } catch (Exception ex) {
             Logger.getLogger(SocialNeighborhoodController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
