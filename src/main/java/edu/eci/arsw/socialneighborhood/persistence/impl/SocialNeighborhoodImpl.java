@@ -379,6 +379,8 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
         JSONObject jsonObject;
         String hora;
         boolean otro=true;
+        int costototal = zonaComunConjunto.getCostoAlquiler();
+        int costoneto = zonaComunConjunto.getCostoAlquiler();
         Alquiler alquiler = alquilerRepository.findInMiddle(fechai,fechaf,idZonaComun,zonaComunConjunto.getTiempodeespera() * 60000);
         if (alquiler!=null) {
             LocalDateTime fecham = LocalDateTime.parse(simpleDateFormatH.format(alquiler.getIniciodealquiler() - (zonaComunConjunto.getTiempodeespera() * 60000)), hformat);
@@ -390,8 +392,9 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
             if (inicio.toString().equals(fin.toString())){otro=false;}
             hora = inicio.getYear()+"-"+inicio.getMonthValue()+"-"+ inicio.getDayOfMonth()+" "+inicio.getHour()+":"+inicio.getMinute();
             if (inicio.getMinute()==0){hora+="0";}
-            jsonObject=new JSONObject("{\"fin\": \""+ hora +"\"}");
+            jsonObject=new JSONObject("{\"fin\": \""+ hora +"\", \"costo\": \""+ costototal +"\"}");
             json.put(jsonObject.toMap());
+            costototal+=costoneto;
         }
         return json;
     }
