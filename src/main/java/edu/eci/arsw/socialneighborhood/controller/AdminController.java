@@ -182,6 +182,17 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/unidadesDeViviendaConjuto/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
+    public ResponseEntity<?> getunidadesDeViviendaConjuto(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
+        try {
+            //obtener datos que se enviarán a través del API
+            return new ResponseEntity<>(getCacheItemAdmin(idconjunto, idusuario, idConjuntoAdministrador).unidadesDeViviendaConjuto().toString(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @RequestMapping(value = "/conjuntoAdministrador/{idconjunto}/{idusuario}/{idConjuntoadministrador}",method = RequestMethod.GET)
     public ResponseEntity<?> getConjuntoAdministrador(@PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idConjuntoadministrador") int idConjuntoAdministrador){
         try {

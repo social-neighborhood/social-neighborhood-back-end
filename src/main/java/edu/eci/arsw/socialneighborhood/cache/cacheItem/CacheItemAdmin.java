@@ -4,6 +4,8 @@ package edu.eci.arsw.socialneighborhood.cache.cacheItem;
 import edu.eci.arsw.socialneighborhood.model.*;
 import edu.eci.arsw.socialneighborhood.services.AdminServices;
 import edu.eci.arsw.socialneighborhood.services.CommonServices;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -204,5 +206,48 @@ public class CacheItemAdmin extends CacheItem {
             }
         }
         return null;
+    }
+
+    public JSONArray unidadesDeViviendaConjuto() {
+        JSONArray json = new JSONArray();
+        JSONObject jsonObject;
+        String nombretipoagrupacion="", nombretipoinmueble="", numagrupacion="";
+        for (UnidadDeVivienda unidadDeVivienda:unidadesDeVivienda){
+            for (Agrupacion agrupacion: agrupaciones){
+                if (agrupacion.getId().equals(unidadDeVivienda.getIdAgrupacion())){
+                    numagrupacion=agrupacion.getNumero();
+                    for (TipoAgrupacionConjunto tipoAgrupacionConjunto: tipoAgrupacionesConjunto){
+                        if (tipoAgrupacionConjunto.getIdTipoAgrupacion().equals(agrupacion.getIdtipoagrupacionconjunto())){
+                            for (TipoAgrupacion tipoAgrupacion: tipoAgrupaciones){
+                                if (tipoAgrupacion.getId().equals(tipoAgrupacionConjunto.getIdTipoAgrupacion())){
+                                    nombretipoagrupacion=tipoAgrupacion.getNombre();
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            for (TipoInmuebleConjunto tipoInmuebleConjunto: tipoInmueblesConjuntos){
+                if (tipoInmuebleConjunto.getId().equals(unidadDeVivienda.getIdTipoInmuebleConjunto())){
+                    for (TipoInmueble tipoInmueble: TipoInmuebles){
+                        if (tipoInmueble.getId().equals(tipoInmuebleConjunto.getIdTipoInmueble())){
+                            nombretipoinmueble=tipoInmueble.getNombre();
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            jsonObject=new JSONObject("{\"tipoagrupacion\": \"" + nombretipoagrupacion + "\"," +
+                    "\"numagrupacion\": \"" + numagrupacion + "\"," +
+                    "\"tipoinmueble\": \"" + nombretipoinmueble + "\"," +
+                    "\"numinmueble\": \"" + unidadDeVivienda.getNumInmueble() + "\"," +
+                    "\"idunidaddevivienda\": \"" + unidadDeVivienda.getId() + "\"}");
+            json.put(jsonObject.toMap());
+        }
+        return json;
     }
 }
