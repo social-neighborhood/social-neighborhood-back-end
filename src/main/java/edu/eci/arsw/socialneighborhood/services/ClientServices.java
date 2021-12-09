@@ -61,8 +61,8 @@ public class ClientServices {
         return socialNeighborhood.getHorasFinAlquiler(fechai, fechainicio, horainicio, idZonaComun);
     }
 
-    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id) {
-        return socialNeighborhood.postAlquiler(inicio, fin, idzonacomun, id);
+    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id, int costo) {
+        return socialNeighborhood.postAlquiler(inicio, fin, idzonacomun, id, costo);
     }
 
     public List<Alquiler> getAlquileres(int idunidaddeviviendausuario) {

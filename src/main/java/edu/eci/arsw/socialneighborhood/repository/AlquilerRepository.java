@@ -22,7 +22,7 @@ public interface AlquilerRepository extends JpaRepository<Alquiler,Integer> {
     @Query(nativeQuery = true, value = "SELECT * FROM alquiler WHERE idunidaddeviviendausuario = :idunidaddeviviendausuario ")
     List<Alquiler> getAlquilerCliente(@Param("idunidaddeviviendausuario") int idunidaddeviviendausuario);
 
-    @Query(nativeQuery = true, value = "INSERT INTO alquiler a VALUES :alquiler WHERE 0 = (SELECT COUNT(*) FROM alquiler b WHERE (:fechai BETWEEN iniciodealquiler AND findealquiler) or (:fechaf BETWEEN iniciodealquiler AND findealquiler))")
-    Object saveAndComprobate(@Param("alquiler") Alquiler alquiler, @Param("fechai") long fechai, @Param("fechaf") long fechaf);
+    @Query(nativeQuery = true, value = "SELECT * FROM  alquiler  WHERE ( (:idZonaComun = idzonacomun) and ((:fechai BETWEEN iniciodealquiler AND findealquiler) or (:fechaf BETWEEN iniciodealquiler AND findealquiler)))")
+    List<Alquiler> Comprobate( @Param("fechai") long fechai, @Param("fechaf") long fechaf, @Param("idZonaComun") int idZonaComun);
 
 }

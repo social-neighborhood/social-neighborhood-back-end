@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import edu.eci.arsw.socialneighborhood.repository.*;
+
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -534,10 +536,16 @@ public class SocialNeighborhoodImpl implements SocialNeighborhood {
     }
 
     @Override
-    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id) {
-        int tiempo = (int) (((fin-inicio)/60000)/zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getTiempoAlquilerCobro());
-        Alquiler alquiler = new Alquiler(Math.toIntExact(unidadDeViviendaUsuarioRepository.count())+1,idzonacomun,id,inicio,fin,zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getCostoAlquiler()*tiempo,false);
-        return alquilerRepository.saveAndComprobate(alquiler,inicio,fin);
+    public Object postAlquiler(long inicio, long fin, int idzonacomun, Integer id, int costo) {
+        //int tiempo = (int) (((fin-inicio)/60000)/zonaComunConjuntoRepository.findZonsComunById(idzonacomun).getTiempoAlquilerCobro());
+        Alquiler alquiler = new Alquiler(Math.toIntExact(alquilerRepository.count())+1,idzonacomun,id,inicio,fin,costo,false);
+        if(alquilerRepository.Comprobate(inicio,fin,idzonacomun).size()==0){
+            return alquilerRepository.save(alquiler);
+        }
+        for( Alquiler alquiler1: alquilerRepository.Comprobate(inicio,fin,idzonacomun)){
+            System.out.println(alquiler1.toString());
+        }
+        throw new Error("Error");
     }
 
     @Override

@@ -205,11 +205,12 @@ public class ClientController {
         }
     }
 
-    @RequestMapping(value = "/newAlquiler/{inicio}/{fin}/{idzonacomun}/{idconjunto}/{idusuario}/{idUnidadDeVivienda}",method = RequestMethod.POST)
-    public synchronized ResponseEntity<?> postAlquiler(@PathVariable("inicio") long inicio,@PathVariable("fin") long fin, @PathVariable("idzonacomun") int idzonacomun, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda){
+    @RequestMapping(value = "/newAlquiler/{inicio}/{fin}/{idzonacomun}/{idconjunto}/{idusuario}/{idUnidadDeVivienda}/{costo}",method = RequestMethod.POST)
+    public synchronized ResponseEntity<?> postAlquiler(@PathVariable("inicio") long inicio,@PathVariable("fin") long fin, @PathVariable("idzonacomun") int idzonacomun, @PathVariable("idconjunto") int idconjunto, @PathVariable("idusuario") int idusuario, @PathVariable("idUnidadDeVivienda") int idUnidadDeVivienda,@PathVariable("costo") int costo){
         try {
             //obtener datos que se enviarán a través del API
-            return new ResponseEntity<>(clientServices.postAlquiler(inicio,fin,idzonacomun,getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getUnidadDeViviendaUsuario().getId()), HttpStatus.OK);
+            System.out.println(inicio+","+fin+","+idzonacomun+","+idUnidadDeVivienda+","+idconjunto+","+idusuario);
+            return new ResponseEntity<>(clientServices.postAlquiler(inicio,fin,idzonacomun,getCacheItemClient(idconjunto, idusuario, idUnidadDeVivienda).getUnidadDeViviendaUsuario().getId(),costo), HttpStatus.OK);
         } catch (Exception ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error",HttpStatus.INTERNAL_SERVER_ERROR);

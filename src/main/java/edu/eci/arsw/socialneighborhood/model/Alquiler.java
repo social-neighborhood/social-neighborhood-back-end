@@ -122,4 +122,18 @@ public class Alquiler {
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
     }
+
+    @Override
+    public String toString() {
+        return "Alquiler{" +
+                "id=" + id +
+                ", idzonacomun=" + idzonacomun +
+                ", idunidaddeviviendausuario=" + idunidaddeviviendausuario +
+                ", iniciodealquiler=" + iniciodealquiler +
+                ", findealquiler=" + findealquiler +
+                ", costo=" + costo +
+                ", pagado=" + pagado +
+                ", cancelado=" + cancelado +
+                '}';
+    }
 }
