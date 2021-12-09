@@ -1,5 +1,5 @@
 # Social Neighborhood back-end
-> En el repositorio social-neighborhood-back-end se encuentra todo el código fuente relacionado única y exclusivamente al Back del proyecto Social Neighborhood. Aca se encuentra el código de la aplicación que permite el correcto funcionamiento de todas las características implementadas en el Front-End del proyecto
+> En el repositorio social-neighborhood-back-end se encuentra todo el código fuente relacionado única y exclusivamente al Back del proyecto Social Neighborhood. Aca se encuentra el código de la aplicación que permite el correcto funcionamiento de todas las características implementadas en el Front-End del proyecto, un codigo trabajado a traves de capas, con spring boot para su funcionamiento e inyección de dependencias, jdbc para conexión e implementación de requerimientos a base de datos, codigo desarrollado en java y construido por medio de maven
 
 # Otros repositorios del proyecto
   * [Repositorio principal del proyecto](https://github.com/social-neighborhood/social-neighborhood.git) 
